@@ -1,0 +1,120 @@
+import Semiclone from '../assets/Semiclone.svg'
+import iconsleft from '../assets/iconsleft.svg'
+import iconsright from '../assets/iconsright.svg'
+import Wishlist from '../assets/Wishlist.svg'
+import view from '../assets/view.svg'
+import HAVIT from '../assets/products/HAVIT.svg'
+import YelowStar from '../assets/YelowStar.svg'
+
+import {ProductIcons} from '../utils/data.js'
+
+
+const Products = () => {
+    const numberOfIcons = 5;
+    const iconsArray = Array.from({ length: numberOfIcons });
+    return (
+        <div className="w-full max-w-400 mx-auto px-36 mt-35 flex flex-col items-center gap-10">
+            <div className=" w-full max-w-400 flex flex-row justify-between items-baseline-last gap-117.5">
+                <div className="flex flex-row items-baseline-last gap-21.75">
+                    <div className="flex flex-col gap-6">
+                        <div className="flex flex-row items-center gap-6">
+                            <span className="w-5 h-10 bg-[#DB4444] rounded-sm"></span>
+                            <p className="font-poppins text-base text-4 font-semibold leading-5 tracking-normal
+                              text-[#DB4444] ">Today’s</p>
+
+                        </div>
+                        <p className="font-inter text-4xl font-semibold leading-12 tracking-[0.04em]
+                          text-[#000000]">Flash Sales</p>
+
+                    </div>
+
+                    <div className="flex flex-row items-baseline-last gap-4">
+                        <div className="flex flex-col gap-1">
+                            <p className="font-poppins text-xs font-medium leading-4.5 tracking-normal
+                              text-[#000000]">Days</p>
+                            <p className="font-inter text-3xl font-bold leading-7.5 tracking-[0.04em]
+                               text-[#000000]">03</p>
+                        </div>
+                        <img src={Semiclone} alt="Semiclone"  className="w-1 h-4"/>
+                        <div className="flex flex-col  gap-1">
+                            <p className="font-poppins text-xs font-medium leading-4.5 tracking-normal
+                              text-[#000000]">Hours</p>
+                            <p className="font-inter text-3xl font-bold leading-7.5 tracking-[0.04em]
+                               text-[#000000]">23</p>
+                        </div>
+                        <img src={Semiclone} alt="Semiclone"  className="w-1 h-4"/>
+                        <div className="flex flex-col  gap-1">
+                            <p className="font-poppins text-xs font-medium leading-4.5 tracking-normal
+                              text-[#000000]">Minutes</p>
+                            <p className="font-inter text-3xl font-bold leading-7.5 tracking-[0.04em]
+                               text-[#000000]">19</p>
+                        </div>
+                        <img src={Semiclone} alt="Semiclone" className="w-1 h-4" />
+                        <div className="flex flex-col  gap-1">
+                            <p className="font-poppins text-xs font-medium leading-4.5 tracking-normal
+                              text-[#000000]">Seconds</p>
+                            <p className="font-inter text-3xl font-bold leading-7.5 tracking-[0.04em]
+                               text-[#000000]">56</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='flex flex-row gap-2'>
+                    <div className='w-11.5 h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
+                        <img src={iconsleft} alt="iconsleft" />
+                    </div>
+                    <div className='w-11.5 h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
+                        <img src={iconsright} alt="iconsright" />
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div className='flex flex-row gap-7.5 w-full max-w-350 overflow-x-auto'>
+                {ProductIcons.map((icon,index) =>( 
+                <div className='w-full max-w-67.5 flex flex-col gap-4 '>
+                    < div className='ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
+                          justify-center'>
+                         <div className='flex flex-row justify-between items-start'>
+                            <p className='py-1 px-3 rounded-sm bg-[#DB4444] text-[#FAFAFA] text-[12px] font-normal leading-4.5 tracking-0 text-center'>-40%</p>
+                            <div className='flex flex-col gap-2'>
+                                <button className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
+                                    <img src={Wishlist} alt="Wishlist" />
+                                </button>
+                                <button className=' w-8.5 h-8.5 rounded-full bg-white flex items-center justify-center'>
+                                    <img src={view} alt="view" />
+                                </button>
+                            </div>
+                         </div>
+                         <img src={icon.image} alt="icon" className='w-43 h-38 mx-auto' />
+                        <button className='mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
+                    </div>
+                   
+                    <div className='ProductDetails flex flex-col gap-2'>
+                              <p className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{icon.name }</p>
+                        <p className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>{icon.price} 
+                                  <span className='text-[#000000] line-through opacity-50'>
+                                      {icon.discounted}</span>
+                        </p>
+                        <div className="flex flex-row items-center space-x-1"> 
+                        {iconsArray.map((_, index) => (
+                         <img src={YelowStar} className="h-4 w-4" alt="YelowStar"  key={index}>
+                          </img>
+                        ))}
+                             <p className='text-[#000000]'>(88)</p>
+                        </div>
+                       
+                    </div>
+                </div>
+               ))}  
+            </div>
+
+            <button className='w-58.5 h-14 bg-[#DB4444] py-4 px-12 flex items-center justify-center text-[white] rounded-sm font-poppins font-bold cursor-pointer text-[16px]'>View All Products</button>
+
+        </div>
+
+    )
+}
+
+export default Products;
