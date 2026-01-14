@@ -1,7 +1,7 @@
 
 import Header from "./Header";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Footer from "./footer";
 import { FaGoogle } from  'react-icons/fa';
 
 import signupImage from '../assets/signupImage.png'

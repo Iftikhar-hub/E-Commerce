@@ -8,7 +8,7 @@ import { ProductIcons } from '../utils/data.js'
 
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Footer from "../components/footer";
 
 
 const WhishList = () => {
