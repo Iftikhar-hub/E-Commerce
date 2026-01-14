@@ -77,7 +77,7 @@ const NewArrival = () => {
 
                 </div>
 
-                <div className='flex flex-row justify-center items-center gap-22'>
+                <div className='flex flex-row mt-15 justify-center items-center gap-22'>
                     <div className='flex flex-col items-center gap-6'>
                         <img src={Services} alt="Services" className='w-20 h-20' />
                         <div className='flex flex-col gap-1 items-center'>

@@ -9,7 +9,7 @@ const Navbar = () => {
         {name:"Home", href:"/"},
         {name:"Contact", href:"#"},
         {name:"About", href:"#"},
-        {name:"Sign Up", href:"#"},
+        {name:"Sign Up", href:"/signup"},
         
     ]
 
@@ -24,7 +24,7 @@ const Navbar = () => {
                     <div className="flex flex-row gap-12 items-center">
                         {navLinks.map((link, index) => (
                             <a key={index} href={link.href} className={`text-[#000000] font-poppins text-base font-normal leading-6 tracking-normal text-center
-                             ${window.location.pathname === link.href ? "underline underline-offset-3" : ""}`}>
+                             ${window.location.pathname === link.href ? "underline underline-offset-5" : ""}`}>
                                 {link.name}</a>
        
                         ))}

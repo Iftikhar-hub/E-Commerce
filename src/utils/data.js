@@ -1,3 +1,5 @@
+import { FaTwitter, FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'; 
+
 // products Images
 
 import HAVIT from '../assets/products/HAVIT.svg';
@@ -174,3 +176,24 @@ export const upperitems = [
        
     },
 ]
+
+export const socialMediaIcons = [FaFacebook, FaTwitter, FaInstagram, FaLinkedin]
+
+// export const socialMediaIcons = [
+//     {
+//         scocialIcons: FaFacebook,
+//         name : 'FaceBook',
+//     },
+//     {
+//         scocialIcons: FaTwitter,
+//         name: 'FaceBook',
+//     },
+//     {
+//         scocialIcons: FaInstagram,
+//         name: 'FaceBook',
+//     },
+//     {
+//         scocialIcons: FaLinkedin,
+//         name: 'FaceBook',
+//     },
+// ]

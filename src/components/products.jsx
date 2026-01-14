@@ -13,7 +13,7 @@ const Products = () => {
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
     return (
-        <div className="w-full max-w-400 mx-auto px-36 mt-35 flex flex-col items-center gap-10">
+        <div className="w-full max-w-400 mx-auto px-36 mt-25 flex flex-col items-center gap-10">
             <div className=" w-full max-w-400 flex flex-row justify-between items-baseline-last gap-117.5">
                 <div className="flex flex-row items-baseline-last gap-21.75">
                     <div className="flex flex-col gap-6">
@@ -87,19 +87,19 @@ const Products = () => {
                                 </button>
                             </div>
                          </div>
-                         <img src={icon.image} alt="icon" className='w-43 h-38 mx-auto' />
+                            <img key={index} src={icon.image} alt="icon" className='w-43 h-38 mx-auto' />
                         <button className='mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
                     </div>
                    
                     <div className='ProductDetails flex flex-col gap-2'>
-                              <p className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{icon.name }</p>
-                        <p className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>{icon.price} 
-                                  <span className='text-[#000000] line-through opacity-50'>
+                            <p key={index} className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{icon.name }</p>
+                            <p key={index} className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>{icon.price} 
+                                <span key={index} className='text-[#000000] line-through opacity-50'>
                                       {icon.discounted}</span>
                         </p>
                         <div className="flex flex-row items-center space-x-1"> 
                         {iconsArray.map((_, index) => (
-                         <img src={YelowStar} className="h-4 w-4" alt="YelowStar"  key={index}>
+                         <img  src={YelowStar} className="h-4 w-4" alt="YelowStar"  key={index}>
                           </img>
                         ))}
                              <p className='text-[#000000]'>(88)</p>
