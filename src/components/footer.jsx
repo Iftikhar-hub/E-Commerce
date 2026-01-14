@@ -40,10 +40,10 @@ const Footer = () => {
                     <p className="text-[#FAFAFA] font-inter text-[24px] font-bold leading-6 tracking-[0.03em]">Account
 
                     </p>
-                    <a href="#" className="font-poppins text-[#FAFAFA] text-[16px] font-normal font-regular leading-6 tracking-0">My Account</a>
+                    <a href="/signup" className="font-poppins text-[#FAFAFA] text-[16px] font-normal font-regular leading-6 tracking-0">My Account</a>
                     <a href="/signup" className="font-poppins text-[#FAFAFA] text-[16px] font-normal font-regular leading-6 tracking-0">Login / Register</a>
-                    <a href="#" className="font-poppins text-[#FAFAFA] text-[16px] font-normal font-regular leading-6 tracking-0">Cart</a>
-                    <a href="#" className="font-poppins text-[#FAFAFA] text-[16px] font-normal font-regular leading-6 tracking-0">Wishlist</a>
+                    <a href="/Cart" className="font-poppins text-[#FAFAFA] text-[16px] font-normal font-regular leading-6 tracking-0">Cart</a>
+                    <a href="/WhishLists" className="font-poppins text-[#FAFAFA] text-[16px] font-normal font-regular leading-6 tracking-0">Wishlist</a>
                     <a href="#" className="font-poppins text-[#FAFAFA] text-[16px] font-normal font-regular leading-6 tracking-0">Shop</a>
                    
                 </div>

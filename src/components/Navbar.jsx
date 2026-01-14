@@ -44,7 +44,7 @@ const Navbar = () => {
                         <a href='/WhishLists' className='cursor-pointer'>
                             <img src={Wishlist} alt="Wishlist" className='w-8 h-8' />
                         </a>
-                        <a className='cursor-pointer'>
+                        <a href='/Cart' className='cursor-pointer'>
                             <img src={cart} alt="cart" className='w-8 h-8'/>
                         </a>
                     </div>
