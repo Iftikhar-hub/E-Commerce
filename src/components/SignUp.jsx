@@ -39,7 +39,7 @@ const SignUp = () => {
 
                         <div className="w-full max-w-80 flex flex-row gap-1 justify-center items-center"> 
                             <p className="font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#424242]">Already have account?</p>
-                            <a href='#' className=" cursor-pointer font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#424242] underline underline-offset-4">Login</a>
+                            <a href='/Login' className=" cursor-pointer font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#424242] underline underline-offset-4">Login</a>
                         </div>
 
                     </div>
