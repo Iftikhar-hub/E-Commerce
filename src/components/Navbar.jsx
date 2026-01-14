@@ -41,12 +41,12 @@ const Navbar = () => {
                     </div>
 
                     <div className='flex flex-row gap-4'>
-                        <button className='cursor-pointer'>
+                        <a href='/WhishLists' className='cursor-pointer'>
                             <img src={Wishlist} alt="Wishlist" className='w-8 h-8' />
-                        </button>
-                        <button className='cursor-pointer'>
+                        </a>
+                        <a className='cursor-pointer'>
                             <img src={cart} alt="cart" className='w-8 h-8'/>
-                        </button>
+                        </a>
                     </div>
 
                 </div>
