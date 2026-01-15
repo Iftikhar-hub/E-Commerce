@@ -179,21 +179,20 @@ export const upperitems = [
 
 export const socialMediaIcons = [FaFacebook, FaTwitter, FaInstagram, FaLinkedin]
 
-// export const socialMediaIcons = [
-//     {
-//         scocialIcons: FaFacebook,
-//         name : 'FaceBook',
-//     },
-//     {
-//         scocialIcons: FaTwitter,
-//         name: 'FaceBook',
-//     },
-//     {
-//         scocialIcons: FaInstagram,
-//         name: 'FaceBook',
-//     },
-//     {
-//         scocialIcons: FaLinkedin,
-//         name: 'FaceBook',
-//     },
-// ]
+// carts items array
+
+export const cartItems = [
+    {
+        image: HAVIT,
+        name: 'HV Gamepad',
+        price: '$120',
+        
+    },
+    {
+        image: keyboard,
+        name: 'Wired Keyboard',
+        price: '$960',
+        
+    },
+    
+]
