@@ -7,6 +7,7 @@ import NewArrival from "../components/NewArrival"
 import OurProducts from "../components/OurProducts"
 import Products from "../components/products"
 import SellingProducts from "../components/SellingProducts"
+// import Bread from "../components/bread"
 
 function HomePage() {
 
@@ -15,6 +16,7 @@ function HomePage() {
         <>
             <Header />
             <Navbar />
+            {/* <Bread /> */}
             <Hero />
             <Products />
             <Categor />

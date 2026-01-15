@@ -10,6 +10,11 @@ import React, { useState } from "react";
 
 
 const Cart = () => {
+    const [quantity, setQuantity] = useState(1)
+
+    console.log(quantity)
+
+    
 
     return (
         <div className="flex flex-col h-screen">
@@ -38,6 +43,9 @@ const Cart = () => {
                       
                         <tbody>
                             {cartItems.map((cart, index) => (
+                                <>
+                                   
+                                    
                                 <tr
                                     key={index}
                                     className="bg-white/5 shadow-sm backdrop-blur-sm rounded-sm"
@@ -64,17 +72,20 @@ const Cart = () => {
                                   
                                     <td className="px-2 py-2">
                                         <input
-                                            type="number"
-                                            placeholder="0"
+                                                type="number"
+                                                value={quantity}
+                                                onChange={(e) => setQuantity(e.target.value)}
+                                            min={1}
                                             className="border border-[#87878a] w-12 pl-2 rounded-sm"
                                         />
                                     </td>
 
                                 
                                     <td className="px-2 py-2 font-poppins font-normal text-[16px] leading-6 text-black">
-                                        {cart.price}
+                                        {parseInt(cart.price.slice(1)) * quantity}
                                     </td>
-                                </tr>
+                                    </tr>
+                                </>
                                 
                             ))}
                         </tbody>
@@ -111,7 +122,7 @@ const Cart = () => {
 
                         </div>
 
-                        <a href="#" className='bg-[#DB4444] transition-colors duration-500 hover:bg-[#b73434] text-white py-2 text-center rounded-sm font-medium text-[16px] font-poppins'>Proceed to Checkout </a>
+                        <a href="/CheckOut" className='bg-[#DB4444] transition-colors duration-500 hover:bg-[#b73434] text-white py-2 text-center rounded-sm font-medium text-[16px] font-poppins'>Proceed to Checkout </a>
 
                     </div>
 
