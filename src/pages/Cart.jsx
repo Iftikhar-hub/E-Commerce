@@ -10,9 +10,14 @@ import React, { useState } from "react";
 
 
 const Cart = () => {
-    const [quantity, setQuantity] = useState(1)
+    const [cart, setCart] = useState(cartItems)
 
-    console.log(quantity)
+    const handleQuantityChange = (index, value) => {
+        const updatedCart = [...cart]
+        updatedCart[index].quantity = Number(value)
+        setCart(updatedCart)
+    }
+
 
     
 
@@ -42,7 +47,8 @@ const Cart = () => {
 
                       
                         <tbody>
-                            {cartItems.map((cart, index) => (
+                            {cart.map((item, index) => (
+
                                 <>
                                    
                                     
@@ -66,23 +72,26 @@ const Cart = () => {
 
                               
                                     <td className="px-2 py-2 font-poppins font-normal text-[16px] leading-6 text-black">
-                                        {cart.price}
+                                            ${item.price}
+
                                     </td>
 
                                   
                                     <td className="px-2 py-2">
                                         <input
                                                 type="number"
-                                                value={quantity}
-                                                onChange={(e) => setQuantity(e.target.value)}
-                                            min={1}
+                                                min={1}
+                                                value={item.quantity}
+                                                onChange={(e) => handleQuantityChange(index, e.target.value)}
                                             className="border border-[#87878a] w-12 pl-2 rounded-sm"
                                         />
                                     </td>
 
                                 
-                                    <td className="px-2 py-2 font-poppins font-normal text-[16px] leading-6 text-black">
-                                        {parseInt(cart.price.slice(1)) * quantity}
+                                        <td className="px-2 py-2 font-poppins font-normal text-[16px] leading-6 text-black">
+                                           
+                                            ${item.price * item.quantity}
+
                                     </td>
                                     </tr>
                                 </>

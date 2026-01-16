@@ -185,14 +185,14 @@ export const cartItems = [
     {
         image: HAVIT,
         name: 'HV Gamepad',
-        price: '$120',
+        price: 120,
         quantity: 1
         
     },
     {
         image: keyboard,
         name: 'Wired Keyboard',
-        price: '$960',
+        price: 90,
         quantity: 1
     },
     

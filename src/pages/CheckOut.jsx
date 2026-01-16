@@ -4,6 +4,8 @@ import Footer from '../components/footer'
 
 import bankImage from '../assets/bankImage.png'
 import { cartItems } from '../utils/data.js'
+import { useState } from 'react'
+// import { Checkbox, Popover, Radio } from 'flowbite-react'
 
 // import { cartItems } from '../utils/data.js'
 
@@ -12,7 +14,20 @@ import { cartItems } from '../utils/data.js'
 
 
 
+
 const CheckOut = () => {
+
+    const {Option , setOption} = useState()
+
+    const handleSubmit = () => {
+        if (Option) {
+            alert(Thanks);
+            return;
+        }
+       
+      
+        // alert('Your Order has been successfully placed')    
+    }
 
     return (
         <div className="flex flex-col h-screen">
@@ -74,14 +89,14 @@ const CheckOut = () => {
                         <form action="#" className='flex flex-col gap-6'>
                             <div className='w-full flex flex-row justify-between items-center '>
                                 <div className='flex flex-row gap-2 items-center'>
-                                    <input  required type="radio" name="gg" id="ff" className='w-4 h-4 accent-[#DB4444] cursor-pointer' />
+                                    <input required type="radio" name="gg" id="ff" className='w-4 h-4 accent-[#DB4444] cursor-pointer' onChange={(e) => setOption(e.target.value)} />
                                     <p className='text-[16px] font-normal tracking-0 font-poppins'>Bank</p>
                                 </div>
 
                                 <img src={bankImage} alt="PNG" />
                             </div>
                             <div className='flex flex-row gap-2 items-center'>
-                                <input required type="radio" name="gg" id="ee" className='w-4 h-4 accent-[#DB4444] cursor-pointer' />
+                                <input required type="radio" name="gg" id="ee" className='w-4 h-4 accent-[#DB4444] cursor-pointer' onChange={(e) => setOption(e.target.value)} />
                                 <p className='text-[16px] font-normal tracking-0 font-poppins'>Cash on Delivery</p>
                             </div>
 
@@ -91,7 +106,7 @@ const CheckOut = () => {
 
                             </div>
 
-                            <button href="#" className='bg-[#DB4444] transition-colors duration-500 hover:bg-[#b73434] text-white py-2 px-8 rounded-sm font-medium text-[16px] font-poppins cursor-pointer'>Order Now </button>
+                            <button href="#" onClick={handleSubmit} className='bg-[#DB4444] transition-colors duration-500 hover:bg-[#b73434] text-white py-2 px-8 rounded-sm font-medium text-[16px] font-poppins cursor-pointer'>Order Now </button>
 
 
 
