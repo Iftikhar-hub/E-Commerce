@@ -2,11 +2,40 @@
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
+
+import axios from "axios";
+import { useState } from "react";
+import {useNavigate} from "react-router-dom"
 // import { FaGoogle } from 'react-icons/fa';
 
 import signupImage from '../assets/signupImage.png'
 
 const Login = () => {
+    const [loginForm, setloginForm] = useState({
+        email: "", password: ""
+    });
+    const [message, setMessage] = useState("");
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        setloginForm({ ...loginForm, [e.target.name]: e.target.value });
+        
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post('http://localhost:1673/api/user/user-login', loginForm);
+            setMessage(res.data.msg);
+            navigate('/')
+            
+        } catch (err) {
+            setMessage(err.response?.data?.msg || "Something Wrong, Please try agian");
+            
+        }
+    }
+
+
     return (
         <div className="flex flex-col h-screen">
             <Header />
@@ -21,12 +50,24 @@ const Login = () => {
                         <div className="flex flex-col gap-4 items-start">
                             <p className="font-inter font-medium text-[36px] leading-7.5 tracking-[4%] text-[#000000]">Log in to Exclusive</p>
                             <p className="font-inter font-regular text-[16px] leading-6 tracking-[0] text-[#000000]">Enter your details below</p>
+                            {message && (
+                                <div
+                                    style={{
+                                        marginTop: "10px",
+                                        color: message.includes("successful") ? "green" : "red"
+                                    }}
+                                >
+                                    {message}
+                                </div>
+                            )}
 
                         </div>
 
-                        <form className="w-full max-w-80 flex flex-col gap-4">
-                            <input type="char" placeholder="Email or Phone Number" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
-                            <input type="password" placeholder="Password" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
+                        <form onSubmit={handleSubmit} className="w-full max-w-80 flex flex-col gap-4">
+                            <input type="email" name="email" onChange={handleChange} value={loginForm.email} placeholder="Email" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
+
+                            <input type="password" name="password" onChange={handleChange}
+                                value={loginForm.password} placeholder="Password" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
                             <div className="w-full max-w-80 flex flex-row gap-1 justify-between items-center">
                                 <button className="bg-[#DB4444] px-6 py-2 flex flex-row gap-4 items-center justify-center rounded-sm text-[#FAFAFA]  text-[16px] font-medium font-poppins cursor-pointer"> Login</button>
                                 <a href='#' className=" cursor-pointer font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#DB4444]">Forget Password?</a>

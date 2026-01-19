@@ -2,11 +2,57 @@
 import Header from "./Header";
 import Navbar from "./Navbar";
 import Footer from "./footer";
-import { FaGoogle } from  'react-icons/fa';
+import { FaGoogle, FaFacebook } from 'react-icons/fa';
+import axios from "axios";
+import { useState } from "react";
+import {useNavigate} from "react-router-dom"
 
 import signupImage from '../assets/signupImage.png'
+import hide from '../assets/hide.png'
+import visible from '../assets/visible.png'
+
+// import { Icon } from 'react-icons-kit';
+// import { eyeOff } from 'react-icons-kit/feather/eyeOff';
+// import { eye } from 'react-icons-kit/feather/eye'
 
 const SignUp = () => {
+    const [registerForm, setRegisterForm] = useState({
+        fname: "", email: "", pass: "", cpass: ""
+    });
+    const [message, setMessage] = useState("");
+    const navigate = useNavigate()
+
+    const [password, setPassword] = useState("");
+    const [type, setType] = useState('password');
+    const [icon, setIcon] = useState(hide);
+
+    const handleToggle = (e) => {
+        if (type === 'password') {
+            setIcon(visible);
+            setType('text')
+        } else {
+            setIcon(hide)
+            setType('password')
+        }
+    }
+   
+    const handleChange = (e) => {
+        setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
+    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await axios.post("http://localhost:1673/api/user/user-insert",registerForm);
+            setMessage(res.data.msg); 
+            navigate('/login')
+            
+            
+        } catch (err) {
+            
+            setMessage(err.response?.data?.msg || "Something Wrong, Please try agian");
+        }
+    };
     return (
         <div className="flex flex-col h-full">
             <Header />
@@ -21,13 +67,42 @@ const SignUp = () => {
                         <div className="flex flex-col gap-4 items-start">
                             <p className="font-inter font-medium text-[36px] leading-7.5 tracking-[4%] text-[#000000]">Create an account</p>
                             <p className="font-inter font-regular text-[16px] leading-6 tracking-[0] text-[#000000]">Enter your details below</p>
+                            {message && (
+                                <div
+                                    style={{
+                                        marginTop: "10px",
+                                        color: message.includes("successful") ? "green" : "red"
+                                    }}
+                                >
+                                    {message}
+                                </div>
+                            )}
 
                         </div>
 
-                        <form className="w-full max-w-80 flex flex-col gap-4">
-                            <input type="text" placeholder="Name" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required/>
-                            <input type="char" placeholder="Email or Phone Number" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required/>
-                            <input type="password" placeholder="Password" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
+                        <form onSubmit={handleSubmit} className="w-full max-w-80 flex flex-col gap-4">
+                            <input type="text" name='fname' value={registerForm.fname}
+                                onChange={handleChange} placeholder="Name" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
+                            
+                            <input type="email" name='email' value={registerForm.email}
+                                onChange={handleChange} placeholder="Email" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
+                            <div className="w-full flex flex-row justify-between">
+                                <input type={type} name='pass' value={registerForm.pass}
+                                    onChange={(e) => {
+                                        handleChange(e);
+                                        setPassword(e.target.value);
+                                    }}
+                                    placeholder="Password" className="w-full border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
+                                <span className="flex justify-around items-center" onClick={handleToggle}>
+                                    <img src={icon} alt="PNG" className="w-6 h-6" />
+                                </span>
+
+                            </div>
+                           
+
+                            <input type="password" name='cpass' value={registerForm.cpass}
+                                onChange={handleChange} placeholder="Confirm Password" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
+                            
                         
                             <button className="w-full bg-[#DB4444] py-4 flex items-center justify-center  
                              rounded-sm text-[#FAFAFA] text-[16px] font-medium font-poppins cursor-pointer">Create Account
