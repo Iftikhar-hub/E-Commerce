@@ -3,6 +3,9 @@ import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
 
+import hide from '../assets/hide.png'
+import visible from '../assets/visible.png'
+
 import axios from "axios";
 import { useState } from "react";
 import {useNavigate} from "react-router-dom"
@@ -16,6 +19,20 @@ const Login = () => {
     });
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
+
+    const [password, setPassword] = useState("");
+    const [type, setType] = useState('password');
+    const [icon, setIcon] = useState(hide);
+
+     const handleToggle = (e) => {
+            if (type === 'password') {
+                setIcon(visible);
+                setType('text')
+            } else {
+                setIcon(hide)
+                setType('password')
+            }
+        }
 
     const handleChange = (e) => {
         setloginForm({ ...loginForm, [e.target.name]: e.target.value });
@@ -65,9 +82,17 @@ const Login = () => {
 
                         <form onSubmit={handleSubmit} className="w-full max-w-80 flex flex-col gap-4">
                             <input type="email" name="email" onChange={handleChange} value={loginForm.email} placeholder="Email" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
+                             
+                            <div className="w-full flex flex-row justify-between">
+                                <input type={type} name="password" onChange={handleChange}
+                                    value={loginForm.password} placeholder="Password" className="border-b h-12 p-2 border-[#ccc9c9] outline-0 w-full" required />
+                                <span className="flex justify-around items-center" onClick={handleToggle}>
+                                    <img src={icon} alt="PNG" className="w-5 h-5 cursor-pointer" />
+                                </span>
+                            </div>
+                            
+                            
 
-                            <input type="password" name="password" onChange={handleChange}
-                                value={loginForm.password} placeholder="Password" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
                             <div className="w-full max-w-80 flex flex-row gap-1 justify-between items-center">
                                 <button className="bg-[#DB4444] px-6 py-2 flex flex-row gap-4 items-center justify-center rounded-sm text-[#FAFAFA]  text-[16px] font-medium font-poppins cursor-pointer"> Login</button>
                                 <a href='#' className=" cursor-pointer font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#DB4444]">Forget Password?</a>
