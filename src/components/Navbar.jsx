@@ -62,8 +62,9 @@ const Navbar = ({ userId }) => {
                     </div>
 
                 </div>
-
-                <UserProfile />
+                {userData && (
+                    <UserProfile />
+                )}
 
             </div>
 
