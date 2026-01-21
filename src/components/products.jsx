@@ -5,6 +5,10 @@ import Wishlist from '../assets/Wishlist.svg'
 import view from '../assets/view.svg'
 import HAVIT from '../assets/products/HAVIT.svg'
 import YelowStar from '../assets/YelowStar.svg'
+import React, { useState } from 'react';
+
+import { useGetUserDataQuery } from '../services/userApi';
+import LoginPopup from './LoginPopup';
 
 import {ProductIcons} from '../utils/data.js'
 
@@ -12,6 +16,16 @@ import {ProductIcons} from '../utils/data.js'
 const Products = () => {
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
+
+    const { data: userData } = useGetUserDataQuery();
+    const [showLoginPopup, setShowLoginPopup] = useState(false);
+
+    const handleAddToCart = () => {
+        if (!userData) {
+            setShowLoginPopup(true);
+            return;
+        }
+    }
     return (
         <div className="w-full max-w-400 mx-auto px-36 mt-25 flex flex-col items-center gap-10">
             <div className=" w-full max-w-400 flex flex-row justify-between items-baseline-last gap-117.5">
@@ -88,7 +102,7 @@ const Products = () => {
                             </div>
                          </div>
                             <img key={index} src={icon.image} alt="icon" className='w-43 h-38 mx-auto' />
-                        <button className='mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
+                            <button onClick={handleAddToCart} className='mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
                     </div>
                    
                     <div className='ProductDetails flex flex-col gap-2'>
@@ -107,7 +121,11 @@ const Products = () => {
                        
                     </div>
                 </div>
-               ))}  
+                ))}  
+                <LoginPopup
+                    show={showLoginPopup}
+                    onClose={() => setShowLoginPopup(false)}
+                />
             </div>
 
             <button className='w-58.5 h-14 bg-[#DB4444] py-4 px-12 flex items-center justify-center text-[white] rounded-sm font-poppins font-bold cursor-pointer text-[16px]'>View All Products</button>

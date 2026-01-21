@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { useGetUserDataQuery } from '../services/userApi';
-
 const UserProfile = ({ userId }) => {
    
     const { data: userData, isLoading, isError, error } = useGetUserDataQuery(userId);
@@ -16,21 +15,25 @@ const UserProfile = ({ userId }) => {
             Error: {error.status}</div>;
     }
 
-    if (userData ) {
-        console.log(userData.name)
+    if (userData) {
+        console.log(userData.file)
+    
         return (
             
-            <div className='text-black'>
-                <h1>Welcome, {userData.name}!</h1>
-                <p>Email: {userData.email}</p>
-                <p>Joined: {new Date(userData.joinDate).toLocaleDateString()}</p>
+            <div className='text-black flex flex-row gap-4 items-center'>
+                <img src={userData.file} alt="PNG" />
+                <div className='text-black flex flex-col items-center'>
+                    <h1 className='text-[24px] font-bold'>{userData.name}</h1>
+                    <p>{userData.email}</p>
+
+                </div>
+               
+               
             </div>
         );
     }
 
-    return (
-        <p className='text-black text-[24px]'>Login Page</p>
-    );
+
 };
 
 export default UserProfile;

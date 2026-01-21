@@ -17,7 +17,7 @@ import visible from '../assets/visible.png'
 
 const SignUp = () => {
     const [registerForm, setRegisterForm] = useState({
-        fname: "", email: "", pass: "", cpass: ""
+        fname: "", email: "", file: "", pass: "", cpass: ""
     });
     const [message, setMessage] = useState("");
     const navigate = useNavigate()
@@ -43,7 +43,7 @@ const SignUp = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:1673/api/user/user-insert",registerForm);
+            const res = await axios.post("http://localhost:1673/api/user/user-insert", registerForm);
             setMessage(res.data.msg); 
             navigate('/login')
             
@@ -80,12 +80,14 @@ const SignUp = () => {
 
                         </div>
 
-                        <form onSubmit={handleSubmit} className="w-full max-w-80 flex flex-col gap-4">
+                        <form onSubmit={handleSubmit} encType="multipart/form-data" className="w-full max-w-80 flex flex-col gap-4">
                             <input type="text" name='fname' value={registerForm.fname}
                                 onChange={handleChange} placeholder="Name" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
                             
                             <input type="email" name='email' value={registerForm.email}
                                 onChange={handleChange} placeholder="Email" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
+                            <input onChange={handleChange} type="file" name="file" className="border-b h-12 p-2 border-[#ccc9c9] outline-0 text-[#6e6d6d]"
+                                id="file" value={registerForm.file} />
                             <div className="w-full flex flex-row justify-between">
                                 <input type={type} name='pass' value={registerForm.pass}
                                     onChange={(e) => {
