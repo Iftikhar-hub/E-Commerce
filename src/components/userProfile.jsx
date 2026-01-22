@@ -19,10 +19,10 @@ const UserProfile = ({ userId }) => {
         return (
             
             <div className='text-black flex flex-row gap-4 items-center'>
-                <img src={userData.file} alt="PNG" className='w-25 h-25 rounded-full'/>
+                <img src={userData.file} alt="PNG" className='w-15 h-15 rounded-full'/>
                 <div className='text-black flex flex-col items-start'>
-                    <h1 className='text-[24px] font-bold'>{userData.name}</h1>
-                    <p>{userData.email}</p>
+                    <h1 className='text-[18px] font-bold'>{userData.name}</h1>
+                    <p className='text-[15px] '>{userData.email}</p>
 
                 </div>
                

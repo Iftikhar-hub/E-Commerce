@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import WhishLists from './pages/WhishLists'
 import Cart from './pages/Cart'
 import CheckOut from './pages/CheckOut'
+import Admin from './pages/admin'
 
 
 
@@ -24,6 +25,7 @@ function App() {
       <Route path='/WhishLists' element={<WhishLists />} />
       <Route path='/Cart' element={<Cart />} />
       <Route path='/CheckOut' element={<CheckOut />}/>
+      <Route path='/Admin' element={<Admin />}/>
       
 
    </Routes>
