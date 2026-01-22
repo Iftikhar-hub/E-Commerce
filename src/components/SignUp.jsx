@@ -17,7 +17,7 @@ import visible from '../assets/visible.png'
 
 const SignUp = () => {
     const [registerForm, setRegisterForm] = useState({
-        fname: "", email: "", file: "", pass: "", cpass: ""
+        fname: "", email: "", file: null, pass: "", cpass: ""
     });
     const [message, setMessage] = useState("");
     const navigate = useNavigate()
@@ -37,13 +37,29 @@ const SignUp = () => {
     }
    
     const handleChange = (e) => {
-        setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
+         const { name, value, files } = e.target;
+           if (name === "file") {
+             setRegisterForm({ ...registerForm, file: files[0] });
+         } else {
+            setRegisterForm({ ...registerForm, [name]: value });
+    }
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:1673/api/user/user-insert", registerForm);
+            const formData = new FormData();
+              formData.append("fname", registerForm.fname);
+              formData.append("email", registerForm.email);
+              formData.append("pass", registerForm.pass);
+              formData.append("cpass", registerForm.cpass);
+              formData.append("file", registerForm.file);
+            const res = await axios.post("http://localhost:1673/api/user/user-insert", formData,
+                {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
             setMessage(res.data.msg); 
             navigate('/login')
             
@@ -87,7 +103,7 @@ const SignUp = () => {
                             <input type="email" name='email' value={registerForm.email}
                                 onChange={handleChange} placeholder="Email" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
                             <input onChange={handleChange} type="file" name="file" className="border-b h-12 p-2 border-[#ccc9c9] outline-0 text-[#6e6d6d]"
-                                id="file" value={registerForm.file} />
+                                id="file"  />
                             <div className="w-full flex flex-row justify-between">
                                 <input type={type} name='pass' value={registerForm.pass}
                                     onChange={(e) => {
