@@ -35,7 +35,7 @@ const SellingProducts = () => {
 
                 <div className='flex flex-row gap-7.5 justify-between items-center w-full max-w-350 overflow-x-auto'>
                     {sellingItems.map((sellingIcon, index) => (
-                        <div className='w-full max-w-67.5 flex flex-col gap-4 '>
+                        <div key={index} className='w-full max-w-67.5 flex flex-col gap-4 '>
                             < div className='ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex  
                              flex-col justify-center'>
                                 <div className='flex flex-row justify-between items-start'>

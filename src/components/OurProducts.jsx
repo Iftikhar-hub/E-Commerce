@@ -38,7 +38,7 @@ const OurProducts = () => {
 
                 <div className='grid grid-cols-4 gap-7.5 place-content-between place-items-center w-full max-w-350 overflow-x-auto'>
                     {upperitems.map((upperIcon, index) => (
-                        <div className='w-full max-w-67.5 flex flex-col gap-4 '>
+                        <div key={index} className='w-full max-w-67.5 flex flex-col gap-4 '>
                             < div className='ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex  
                                              flex-col justify-center'>
                                 <div className='flex flex-row justify-between items-start'>

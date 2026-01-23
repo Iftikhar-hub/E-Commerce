@@ -3,29 +3,53 @@ import iconsleft from '../assets/iconsleft.svg'
 import iconsright from '../assets/iconsright.svg'
 import Wishlist from '../assets/Wishlist.svg'
 import view from '../assets/view.svg'
-import HAVIT from '../assets/products/HAVIT.svg'
 import YelowStar from '../assets/YelowStar.svg'
-import React, { useState } from 'react';
+
+import  { useEffect, useState } from "react";
 
 import { useGetUserDataQuery } from '../services/userApi';
+import { useGetProductDataQuery } from '../services/productApi'
 import LoginPopup from './LoginPopup';
 
-import {ProductIcons} from '../utils/data.js'
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from '../services/adToCart';
 
+// import {ProductIcons} from '../utils/data.js'
+ 
 
 const Products = () => {
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
 
     const { data: userData } = useGetUserDataQuery();
+   
     const [showLoginPopup, setShowLoginPopup] = useState(false);
 
-    const handleAddToCart = () => {
+    // const handleAddToCart = () => {
+    //     if (!userData) {
+    //         setShowLoginPopup(true);
+    //         return;
+    //     }
+    // }
+    const dispatch = useDispatch();
+    const handleAddToCart = (product) => {
         if (!userData) {
-            setShowLoginPopup(true);
+               setShowLoginPopup(true);
             return;
+           }
+        dispatch(addItemToCart(product));
+    };
+    
+    const { data, error, isLoading, isFetching } = useGetProductDataQuery(); 
+    const [displayProducts, setDisplayedProducts] = useState([]);
+    useEffect(() => {
+        if (data && data.data) {
+            setDisplayedProducts(data.data)
         }
-    }
+       
+    }, [data])
+    
+    
     return (
         <div className="w-full max-w-400 mx-auto px-36 mt-25 flex flex-col items-center gap-10">
             <div className=" w-full max-w-400 flex flex-row justify-between items-baseline-last gap-117.5">
@@ -86,8 +110,8 @@ const Products = () => {
             </div>
 
             <div className='flex flex-row gap-7.5 w-full max-w-350 overflow-x-auto'>
-                {ProductIcons.map((icon,index) =>( 
-                <div className='w-full max-w-67.5 flex flex-col gap-4 '>
+                {displayProducts && displayProducts.map((product,index) =>( 
+                <div key={product._id ?? index} className='w-full max-w-67.5 flex flex-col gap-4 '>
                     < div className='ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
                           justify-center'>
                          <div className='flex flex-row justify-between items-start'>
@@ -101,15 +125,15 @@ const Products = () => {
                                 </button>
                             </div>
                          </div>
-                            <img key={index} src={icon.image} alt="icon" className='w-43 h-38 mx-auto' />
-                            <button onClick={handleAddToCart} className='mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
+                            <img src={product.image} alt="icon" className='w-43 h-38 mx-auto' />
+                            <button onClick={() => handleAddToCart(product)} className='mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
                     </div>
                    
                     <div className='ProductDetails flex flex-col gap-2'>
-                            <p key={index} className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{icon.name }</p>
-                            <p key={index} className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>{icon.price} 
-                                <span key={index} className='text-[#000000] line-through opacity-50'>
-                                      {icon.discounted}</span>
+                            <p  className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{product.pname }</p>
+                            <p  className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>$ {product.orignalPrice} 
+                                <span className='text-[#000000] line-through opacity-50'>
+                                    $ {product.discountedPrice}</span>
                         </p>
                         <div className="flex flex-row items-center space-x-1"> 
                         {iconsArray.map((_, index) => (
@@ -122,6 +146,7 @@ const Products = () => {
                     </div>
                 </div>
                 ))}  
+            
                 <LoginPopup
                     show={showLoginPopup}
                     onClose={() => setShowLoginPopup(false)}

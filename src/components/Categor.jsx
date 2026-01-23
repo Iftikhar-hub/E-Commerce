@@ -35,7 +35,7 @@ const Categor = () => {
                 <div className='flex flex-row justify-between items-center'>
 
                     {categoryItems.map((category, index) => (
-                        <div className='w-42.5 h-36.25 flex flex-col items-center justify-center gap-4 rounded-sm border border-[#d4d2d2]'>
+                        <div key={category.name?? index} className='w-42.5 h-36.25 flex flex-col items-center justify-center gap-4 rounded-sm border border-[#d4d2d2]'>
                             <img src={category.categoryImage} alt="category" className='w-14 h-14' />
                             <p className='text-black'>{ category.categoryName}</p>
                         </div>

@@ -5,6 +5,7 @@ import UserProfile from './userProfile';
 import { useGetUserDataQuery } from '../services/userApi';
 import axios from "axios";
 
+import { useSelector } from 'react-redux'
 
 
 
@@ -13,6 +14,8 @@ const Navbar = ({ userId }) => {
     const { data: userData } = useGetUserDataQuery(undefined, {
         skip: !isAuth
     });
+
+    
     
     // const { data: userData, isLoading, isError, error } = useGetUserDataQuery(userId);
 

@@ -74,7 +74,7 @@ const Footer = () => {
 
                     <div className='flex flex-row justify-between items-center'>
                         {socialMediaIcons.map((Icons, index) => (
-                            <Icons className="text-white cursor-pointer w-6 h-6" />
+                            <Icons key={index} className="text-white cursor-pointer w-6 h-6" />
                         ))
 
                         }
