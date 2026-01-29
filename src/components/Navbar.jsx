@@ -20,25 +20,22 @@ const Navbar = ({ userId }) => {
         skip: !isAuth
     });
     const cartItems = useSelector((state) => state.cart.items);
-    const totalCartItems = cartItems.length;  
+    const totalCartItems = cartItems.length; 
+    console.log("User Data in Navbar:", userData);
 
- 
-    
-    // const { data: userData, isLoading, isError, error } = useGetUserDataQuery(userId);
+
 
     const navLinks = [
         {name:"Home", href:"/"},
         {name:"Contact", href:"#"},
         {name:"About", href:"#"},
-        // {name:"Sign Up", href:"/signup"},
         
     ]
     const navigate = useNavigate();
-    //  const [showLoginPopup, setShowLoginPopup] = useState(false);
-    
+
+
     const handleTpaddedCart = () => {
         if (!userData) {
-            // setShowLoginPopup(true);
             alert("Please login to view your cart");
             return;
         }

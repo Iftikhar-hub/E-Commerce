@@ -4,10 +4,10 @@ import Footer from '../components/footer'
 import axios from "axios";
 
 import bankImage from '../assets/bankImage.png'
-// import { cartItems } from '../utils/data.js'
+
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-// import { Checkbox, Popover, Radio } from 'flowbite-react'
+
 
 
 const CheckOut = () => {

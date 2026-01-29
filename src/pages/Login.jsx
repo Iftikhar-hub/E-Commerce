@@ -9,7 +9,6 @@ import visible from '../assets/visible.png'
 import axios from "axios";
 import { useState } from "react";
 import {useNavigate} from "react-router-dom"
-// import { FaGoogle } from 'react-icons/fa';
 
 import signupImage from '../assets/signupImage.png'
 
