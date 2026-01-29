@@ -42,7 +42,7 @@ const CheckOut = () => {
         if (Option === 'BANK') {
             try {
                 const res = await axios.post(
-                    "http://localhost:1673/create-checkout-session",
+                    "http://localhost:8000/create-checkout-session",
                     { cartItems },
                     {userInfo: userInfo},
                     { headers: { 'Content-Type': 'application/json' } }

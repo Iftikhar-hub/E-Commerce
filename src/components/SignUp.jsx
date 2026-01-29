@@ -54,7 +54,7 @@ const SignUp = () => {
               formData.append("pass", registerForm.pass);
               formData.append("cpass", registerForm.cpass);
               formData.append("file", registerForm.file);
-            const res = await axios.post("http://localhost:1673/api/user/user-insert", formData,
+            const res = await axios.post("http://localhost:8000/api/user/user-insert", formData,
                 {
                 headers: {
                     "Content-Type": "multipart/form-data",

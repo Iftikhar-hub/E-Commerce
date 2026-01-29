@@ -29,7 +29,7 @@ const Admin = () => {
                   productData.append("orignalPrice", productForm.orignalPrice);
                   productData.append("discountedPrice", productForm.discountedPrice);
                   productData.append("image", productForm.image);
-                const res = await axios.post("http://localhost:1673/api/product/product-insert", productData,
+                const res = await axios.post("http://localhost:8000/api/product/product-insert", productData,
                     {
                     headers: {
                         "Content-Type": "multipart/form-data",

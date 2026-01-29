@@ -44,7 +44,7 @@ const Navbar = ({ userId }) => {
     const handleLogout = async () => {
         try {
             await axios.post(
-                'http://localhost:1673/api/user/user-logout',
+                'http://localhost:8000/api/user/user-logout',
                 {},
                 { withCredentials: true }
             );
