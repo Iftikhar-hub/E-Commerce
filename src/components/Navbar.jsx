@@ -4,8 +4,13 @@ import cart from '../assets/cart.svg';
 import UserProfile from './userProfile';
 import { useGetUserDataQuery } from '../services/userApi';
 import axios from "axios";
-
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux'
+import { useEffect, useState } from "react";
+import LoginPopup from './LoginPopup';
+
+
 
 
 
@@ -14,8 +19,10 @@ const Navbar = ({ userId }) => {
     const { data: userData } = useGetUserDataQuery(undefined, {
         skip: !isAuth
     });
+    const cartItems = useSelector((state) => state.cart.items);
+    const totalCartItems = cartItems.length;  
 
-    
+ 
     
     // const { data: userData, isLoading, isError, error } = useGetUserDataQuery(userId);
 
@@ -26,7 +33,17 @@ const Navbar = ({ userId }) => {
         // {name:"Sign Up", href:"/signup"},
         
     ]
-
+    const navigate = useNavigate();
+    //  const [showLoginPopup, setShowLoginPopup] = useState(false);
+    
+    const handleTpaddedCart = () => {
+        if (!userData) {
+            // setShowLoginPopup(true);
+            alert("Please login to view your cart");
+            return;
+        }
+        navigate('/Cart');
+    };
     const handleLogout = async () => {
         try {
             await axios.post(
@@ -36,6 +53,7 @@ const Navbar = ({ userId }) => {
             );
 
             localStorage.removeItem('isAuth');
+            navigate('/')
             window.location.reload();
 
         } catch (error) {
@@ -45,13 +63,19 @@ const Navbar = ({ userId }) => {
 
 
     return(
-        <div className="w-full  max-w-400 mx-auto px-26 pt-10">
-            <div className="flex flex-row  w-full  justify-between items-center">
+        <div className="w-full  max-w-400 mx-auto px-26 pt-10 ">
+            {/* <LoginPopup className=''
+                show={showLoginPopup}
+                onClose={() => setShowLoginPopup(false)}
+            /> */}
+            <div className="flex flex-row  w-full  justify-between items-center ">
                 {userData && (
                     <UserProfile />
                 )}
                
-                <div className="flex flex-row gap-25 items-center justify-center">
+               
+                <div className="flex flex-row gap-25 items-center justify-center ">
+                    
                     <p className="text-[#000000] font-inter text-2xl font-bold leading-6 tracking-[0.03em]
                      ">Exclusive</p>
                     
@@ -92,14 +116,14 @@ const Navbar = ({ userId }) => {
                             )}
                             <img src={Wishlist} alt="Wishlist" className='w-8 h-8' />
                         </a>
-                        <a href='/Cart' className='cursor-pointer relative'>
+                        <div onClick={handleTpaddedCart} className='cursor-pointer relative'>
                             {isAuth && (
                                 
-                                <p className='absolute right-0 -top-1 text-[12px] flex items-center justify-center bg-red-800 text-white font-bold rounded-full w-4 h-4 '>2</p>
+                                <p className='absolute right-0 -top-1 text-[12px] flex items-center justify-center bg-red-800 text-white font-bold rounded-full w-4 h-4 '>{totalCartItems}</p>
                             )}
                             
                             <img src={cart} alt="cart" className='w-8 h-8' />
-                        </a>
+                        </div>
                     </div>
 
                 </div>

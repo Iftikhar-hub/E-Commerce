@@ -2,28 +2,30 @@ import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import Footer from '../components/footer'
 
-import { cartItems } from '../utils/data.js'
-
-
 import { useState } from "react";
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { addItemToCart, updateQuantity, removeItemFromCart } from '../services/adToCart';
 
 
 
 
 
 const Cart = () => {
-    // const [cart, setCart] = useState(cartItems)
 
-    // const handleQuantityChange = (index, value) => {
-    //     const updatedCart = [...cart]
-    //     updatedCart[index].quantity = Number(value)
-    //     setCart(updatedCart)
-    // }
+    const dispatch = useDispatch();
+   
+
+    const handleQuantityChange = (index, value) => {
+        const item = cartItems[index];
+        dispatch(updateQuantity({ id: item._id, quantity: Number(value) }));
+    };
 
     const cartItems = useSelector((state) => state.cart.items);
-    console.log('Total Number Of Carts :',cartItems.length)
+    const subtotal = cartItems.reduce((subTotalPerItem, item) => {
+        return subTotalPerItem + item.discountedPrice * item.quantity;
+    }, 0);
+
 
     return (
         <div className="flex flex-col h-screen">
@@ -33,8 +35,9 @@ const Cart = () => {
                 <p className='text-[22px] text-red-900 font-bold text-center mt-6'>Your cart is empty</p>
             ) : (
                 <div className="w-full max-w-400 px-36 flex flex-col gap-20 items-center justify-center mx-auto mt-20">
-                
+
                     <div className="w-full overflow-x-auto">
+                       
                         <table className="w-full border-separate border-spacing-y-4">
                             <thead>
                                 <tr className="bg-white/5   shadow-sm backdrop-blur-sm">
@@ -50,66 +53,76 @@ const Cart = () => {
                                     <th className="px-2 py-2 text-left font-poppins font-normal text-[18px] leading-6 text-black">
                                         Subtotal
                                     </th>
+                                    <th className="px-2 py-2 text-left font-poppins font-normal text-[18px] leading-6 text-black">
+                                        Action
+                                    </th>
                                 </tr>
                             </thead>
 
-                      
+
                             <tbody>
-                                    {cartItems.map((item, index) => (
+                                {cartItems.map((cart, index) => (
 
-                                    <>
-                                   
-                                    
-                                        <tr
-                                            key={index}
-                                            className="bg-white/5 shadow-sm backdrop-blur-sm rounded-sm"
-                                        >
-                                 
-                                            <td className="px-2 py-2">
-                                                <div className="flex items-center gap-3 ">
-                                                    <img
-                                                        src={cart.image}
-                                                        alt="Product"
-                                                        className="w-13.5 h-13.5 object-cover"
-                                                    />
-                                                    <p className="font-poppins font-normal text-[16px] leading-6 text-black">
-                                                        {cart.pname}
-                                                    </p>
-                                                </div>
-                                            </td>
 
-                              
-                                            <td className="px-2 py-2 font-poppins font-normal text-[16px] leading-6 text-black">
-                                                    ${item.orignalPrice}
+                                    <tr
+                                        key={cart._id ?? index}
+                                        className="bg-white/5 shadow-sm backdrop-blur-sm rounded-sm"
+                                    >
 
-                                            </td>
-
-                                  
-                                            <td className="px-2 py-2">
-                                                <input
-                                                    type="number"
-                                                    min={1}
-                                                    value={item.quantity}
-                                                    onChange={(e) => handleQuantityChange(index, e.target.value)}
-                                                    className="border border-[#87878a] w-12 pl-2 rounded-sm"
+                                        <td className="px-2 py-2">
+                                            <div className="flex items-center gap-3 ">
+                                                <img
+                                                    src={cart.image}
+                                                    alt="Product"
+                                                    className="w-13.5 h-13.5 object-cover"
                                                 />
-                                            </td>
+                                                <p className="font-poppins font-normal text-[16px] leading-6 text-black">
+                                                    {cart.pname}
+                                                </p>
+                                            </div>
+                                        </td>
 
-                                
-                                            <td className="px-2 py-2 font-poppins font-normal text-[16px] leading-6 text-black">
-                                           
-                                                ${item.price * item.quantity}
 
-                                            </td>
-                                        </tr>
-                                    </>
-                                
+                                        <td className="px-2 py-2 font-poppins font-normal text-[16px] leading-6 text-black">
+                                            ${cart.discountedPrice ?? cart.orignalPrice}
+
+                                        </td>
+
+
+                                        <td className="px-2 py-2">
+                                            <input
+                                                type="number"
+                                                min={1}
+                                                value={cart.quantity}
+                                                onChange={(e) => handleQuantityChange(index, e.target.value)}
+                                                className="border border-[#87878a] w-12 pl-2 rounded-sm"
+                                            />
+                                        </td>
+
+
+
+                                        <td className="px-2 py-2 font-poppins font-normal text-[16px] leading-6 text-black">
+
+                                            ${cart.discountedPrice ? cart.discountedPrice * cart.quantity : cart.orignalPrice * cart.quantity}
+
+                                        </td>
+                                        <td>
+                                            <button
+                                                onClick={() => dispatch(removeItemFromCart(cart._id))}
+                                                className="bg-red-600 text-white px-2 py-1 rounded-sm"
+                                            >
+                                                Remove
+                                            </button>
+                                        </td>
+                                    </tr>
+
+
                                 ))}
                             </tbody>
                         </table>
                         <div className='w-full flex flex-row justify-between items-center'>
                             <a href="#" className='border border-[#00000080] py-4 px-12 rounded-sm font-medium text-[16px] font-poppins transition-colors duration-500 hover:bg-[#DB4444] hover:text-[white] hover:border-[#DB4444]'>Return to Shop </a>
-                            <a href="#" className='border border-[#00000080] py-4 px-12 rounded-sm font-medium text-[16px] font-poppins transition-colors duration-500 hover:bg-[#DB4444] hover:text-[white] hover:border-[#DB4444]'>Update Cart </a>
+
 
                         </div>
                     </div>
@@ -125,7 +138,7 @@ const Cart = () => {
                             <p className='text-[#000000] text-[20px] font-poppins font-medium'>Cart Total</p>
                             <div className='border-b border-[#a3a3a3] pb-2 w-full flex flex-row justify-between'>
                                 <p className='text-[16px] font-poppins font-normal'>Subtotal</p>
-                                <p className='text-[16px] font-poppins font-normal'>$120</p>
+                                <p className='text-[16px] font-poppins font-normal'>${subtotal}</p>
 
                             </div>
                             <div className='border-b border-[#a3a3a3] pb-2 w-full flex flex-row justify-between'>
@@ -135,7 +148,7 @@ const Cart = () => {
                             </div>
                             <div className=' w-full flex flex-row justify-between'>
                                 <p className='text-[16px] font-poppins font-normal'>Total:</p>
-                                <p className='text-[16px] font-poppins font-normal'>$1200</p>
+                                <p className='text-[16px] font-poppins font-normal'>${subtotal}</p>
 
                             </div>
 

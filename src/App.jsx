@@ -9,6 +9,7 @@ import WhishLists from './pages/WhishLists'
 import Cart from './pages/Cart'
 import CheckOut from './pages/CheckOut'
 import Admin from './pages/admin'
+import Success from './components/succeed.jsx'
 
 
 
@@ -24,8 +25,10 @@ function App() {
       <Route path='/Login' element={<Login />} />
       <Route path='/WhishLists' element={<WhishLists />} />
       <Route path='/Cart' element={<Cart />} />
+      
       <Route path='/CheckOut' element={<CheckOut />}/>
-      <Route path='/Admin' element={<Admin />}/>
+      <Route path='/Admin' element={<Admin />} />
+      <Route path='/success' element={<Success />} />
       
 
    </Routes>

@@ -181,19 +181,19 @@ export const socialMediaIcons = [FaFacebook, FaTwitter, FaInstagram, FaLinkedin]
 
 // carts items array
 
-export const cartItems = [
-    {
-        image: HAVIT,
-        name: 'HV Gamepad',
-        price: 120,
-        quantity: 1
+// export const cartItems = [
+//     {
+//         image: HAVIT,
+//         name: 'HV Gamepad',
+//         price: 120,
+//         quantity: 1
         
-    },
-    {
-        image: keyboard,
-        name: 'Wired Keyboard',
-        price: 90,
-        quantity: 1
-    },
+//     },
+//     {
+//         image: keyboard,
+//         name: 'Wired Keyboard',
+//         price: 90,
+//         quantity: 1
+//     },
     
-]
+// ]
