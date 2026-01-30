@@ -1,5 +1,6 @@
 import RightArrow from '../assets/RightArrow.svg'
 import heroPicture from '../assets/heroPicture.svg'
+import {motion} from 'framer-motion'
 const Hero = () => {
 
     const CategoryLinks = [
@@ -27,10 +28,15 @@ const Hero = () => {
                   <a key={index} href={link.href} className="font-poppins text-start font-normal leading-6 tracking-normal text-[#000000]">
                         {link.name}</a>))}
             </div>
-            <div className='pt-11'>
+            <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                viewport={{ amount: 0.1 }}
+                className='pt-11'>
                 <img src={heroPicture} alt="heroPicture" className='w-223 h-86'/>
 
-            </div>
+            </motion.div>
         </div>
     )
 }

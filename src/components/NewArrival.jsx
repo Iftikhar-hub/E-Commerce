@@ -3,12 +3,18 @@ import women from '../assets/newArrival/women.png'
 import amazonEcho from '../assets/newArrival/amazonEcho.png'
 import gocci from '../assets/newArrival/gocci.png'
 import Services from '../assets/Services.png'
+import {motion} from 'framer-motion'
 
 const NewArrival = () => {
     return (
         <div className="w-full max-w-400 px-36  mx-auto mt-20 ">
             <div className=" flex flex-col items-center gap-15 py-2 ">
-                <div className=" w-full flex flex-row justify-between items-baseline-last 
+                <motion.div
+                    initial={{ opacity: 0, x: -100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    viewport={{ amount: 0.1 }}
+                    className=" w-full flex flex-row justify-between items-baseline-last 
                                   gap-117.5">
                     <div className="flex flex-row items-baseline-last gap-21.75">
                         <div className="flex flex-col gap-6">
@@ -20,9 +26,14 @@ const NewArrival = () => {
                             <p className="font-inter text-4xl font-semibold leading-12 tracking-[0.04em] text-[#000000]">New Arrival</p>
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="flex flex-row justify-between items-center w-full">
+                <motion.div
+                    initial={{ opacity: 0, y: 60 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    viewport={{ amount: 0.1 }}
+                    className="flex flex-row justify-between items-center w-full">
                     <div className="relative bg-[#000000] pt-22.25 px-7 rounded-sm w-142.5 h-150">
                         <img src={PowerBank} alt="PowerBank" />
                         <div className=' absolute top-110 flex flex-col gap-4'>
@@ -75,25 +86,40 @@ const NewArrival = () => {
                         </div>
                     </div>
 
-                </div>
+                </motion.div>
 
                 <div className='flex flex-row mt-15 justify-center items-center gap-22'>
                     <div className='flex flex-col items-center gap-6'>
-                        <img src={Services} alt="Services" className='w-20 h-20' />
+                        <motion.img
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1, rotate: 360, y: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            viewport={{ amount: 0.1 }}
+                            src={Services} alt="Services" className='w-20 h-20' />
                         <div className='flex flex-col gap-1 items-center'>
                             <p className='font-poppins text-[20px] font-semibold text-[#000000] leading-7 tracking-[0]'>FREE AND FAST DELIVERY</p>
                             <p className='font-poppins text-[14px] normal text-[#000000] leading-7 tracking-[0]'>Free delivery for all orders over $140</p>
                         </div>
                     </div>
                     <div className='flex flex-col items-center gap-6'>
-                        <img src={Services} alt="Services" className='w-20 h-20' />
+                        <motion.img
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1, rotate: 360, y: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            viewport={{ amount: 0.1 }}
+                            src={Services} alt="Services" className='w-20 h-20' />
                         <div className='flex flex-col gap-1 items-center'>
                             <p className='font-poppins text-[20px] font-semibold text-[#000000] leading-7 tracking-[0]'>FREE AND FAST DELIVERY</p>
                             <p className='font-poppins text-[14px] normal text-[#000000] leading-7 tracking-[0]'>Free delivery for all orders over $140</p>
                         </div>
                     </div>
                     <div className='flex flex-col items-center gap-6'>
-                        <img src={Services} alt="Services" className='w-20 h-20' />
+                        <motion.img
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1, rotate: 360, y: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            viewport={{ amount: 0.1 }}
+                            src={Services} alt="Services" className='w-20 h-20' />
                         <div className='flex flex-col gap-1 items-center'>
                             <p className='font-poppins text-[20px] font-semibold text-[#000000] leading-7 tracking-[0]'>FREE AND FAST DELIVERY</p>
                             <p className='font-poppins text-[14px] normal text-[#000000] leading-7 tracking-[0]'>Free delivery for all orders over $140</p>

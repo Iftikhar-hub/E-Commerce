@@ -8,11 +8,9 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from "react";
-import LoginPopup from './LoginPopup';
+import { FiUser } from "react-icons/fi";
 
-
-
-
+import {motion} from 'framer-motion';
 
 const Navbar = ({ userId }) => {
     const isAuth = localStorage.getItem('isAuth');
@@ -58,38 +56,46 @@ const Navbar = ({ userId }) => {
         }
     };
 
+    const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
+    const toggleUserProfile = () => {
+        setIsUserProfileOpen(!isUserProfileOpen);
+    }
+
 
     return(
         <div className="w-full  max-w-400 mx-auto px-26 pt-10 ">
-            {/* <LoginPopup className=''
-                show={showLoginPopup}
-                onClose={() => setShowLoginPopup(false)}
-            /> */}
+          
             <div className="flex flex-row  w-full  justify-between items-center ">
-                {userData && (
-                    <UserProfile />
-                )}
-               
-               
-                <div className="flex flex-row gap-25 items-center justify-center ">
-                    
+                
+                <div className="flex flex-row gap-25 items-center justify-center ">   
                     <p className="text-[#000000] font-inter text-2xl font-bold leading-6 tracking-[0.03em]
                      ">Exclusive</p>
                     
                     <div className="flex flex-row gap-8 items-center">
                         {navLinks.map((link, index) => (
-                            <a key={index} href={link.href} className={`text-[#000000] font-poppins text-base font-normal leading-6 tracking-normal text-center
-                             ${window.location.pathname === link.href ? "underline underline-offset-5" : ""}`}>
-                                {link.name}</a>
+                            <>
+                            <a key={index} href={link.href} className={`text-[#000000] font-poppins text-base font-normal leading-6 tracking-normal text-center group relative
+                             ${window.location.pathname === link.href ? "" : ""}`}>
+                                    {link.name}
+                                    <span className={`${window.location.pathname === link.href ? " " : "absolute w-0 h-0.5 left-0 bottom-0  insect-0 group-hover:w-full bg-[#DB4444] transition-all decoration-300 ease-in-out"}`}></span>
+                                    <span className={`${window.location.pathname === link.href ? "absolute w-full h-0.5 left-0 bottom-0  insect-0  bg-[#DB4444] " : " "}`}></span>
+                                </a>
+                            
+                            </>
        
                         ))}
 
                         {isAuth ? (
-                            <a href="#" onClick={handleLogout} className='text-[#000000] font-poppins text-base font-normal leading-6 tracking-normal text-center'>Log Out</a>
+                            <a href="#"  className='text-[#000000] font-poppins text-base font-normal leading-6 tracking-normal text-center'></a>
                         ) : (
                             <>
-                             <a href="/signup" className='text-[#000000] font-poppins text-base font-normal leading-6 tracking-normal text-center'>Sign Up</a>
-                             <a href="/login" className='text-[#000000] font-poppins text-base font-normal leading-6 tracking-normal text-center'>Login</a>
+                                    <a href="/signup" className='text-[#000000] group relative font-poppins text-base font-normal leading-6 tracking-normal text-center'>Sign Up
+                                        <span className='absolute w-0 h-0.5 left-0 bottom-0  insect-0 group-hover:w-full bg-[#DB4444] transition-all decoration-300 ease-in-out'></span>
+                                    </a>
+                                    
+                                    <a href="/login" className='text-[#000000] group relative font-poppins text-base font-normal leading-6 tracking-normal text-center'>Login
+                                        <span className='absolute w-0 h-0.5 left-0 bottom-0  insect-0 group-hover:w-full bg-[#DB4444] transition-all decoration-300 ease-in-out'></span>
+                                    </a>
                             </>
                         )}
                         
@@ -105,7 +111,7 @@ const Navbar = ({ userId }) => {
 
                     </div>
 
-                    <div className='flex flex-row gap-4'>
+                    <div className='flex flex-row gap-4 place-items-start  '>
                         <a href='/WhishLists' className='cursor-pointer relative'>
                             {isAuth && (
 
@@ -121,6 +127,31 @@ const Navbar = ({ userId }) => {
                             
                             <img src={cart} alt="cart" className='w-8 h-8' />
                         </div>
+                        {userData && (
+                            <div className='relative'>
+                                <div className='w-8 h-8 rounded-full bg-[#DB4444] flex items-center justify-center '>
+                                    <FiUser onClick={toggleUserProfile} className=' w-6 h-7 text-white cursor-pointer ' />
+
+                                </div> 
+                                {isUserProfileOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -30 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 30 }}
+                                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                                        className='p-5 absolute  right-0  top-9 bg-[#DB4444] rounded-sm  z-10'>
+                                        <UserProfile />
+
+                                    </motion.div>
+                                )}
+
+                            </div>
+                           
+                            
+                        )}
+                       
+                        
+                       
                     </div>
 
                 </div>

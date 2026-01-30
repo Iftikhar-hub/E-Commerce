@@ -1,5 +1,6 @@
 import iconsleft from '../assets/iconsleft.svg'
 import iconsright from '../assets/iconsright.svg'
+import {motion} from 'framer-motion'
 
 import { categoryItems } from '../utils/data.js'
 const Categor = () => {
@@ -8,7 +9,12 @@ const Categor = () => {
             <div className=" flex flex-col gap-15 py-20 border-t border-b border-[#d4d2d2]">
                 <div className=" w-full flex flex-row justify-between items-baseline-last 
                   gap-117.5">
-                    <div className="flex flex-row items-baseline-last gap-21.75">
+                    <motion.div
+                        initial={{ opacity: 0, x: -100 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ amount: 0.1 }}
+                        className="flex flex-row items-baseline-last gap-21.75">
                         <div className="flex flex-col gap-6">
                             <div className="flex flex-row items-center gap-6">
                                 <span className="w-5 h-10 bg-[#DB4444] rounded-sm"></span>
@@ -19,9 +25,14 @@ const Categor = () => {
                             <p className="font-inter text-4xl font-semibold leading-12 tracking-[0.04em]
                             text-[#000000]">Browse By Category</p>
                       </div>  
-                    </div>
+                    </motion.div>
 
-                    <div className='flex flex-row gap-2'>
+                    <motion.div
+                        initial={{ opacity: 0, x: 100 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ amount: 0.1 }}
+                        className='flex flex-row gap-2'>
                         <div className='w-11.5 h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
                             <img src={iconsleft} alt="iconsleft" />
                         </div>
@@ -29,14 +40,20 @@ const Categor = () => {
                             <img src={iconsright} alt="iconsright" />
                         </div>
 
-                    </div>
+                    </motion.div>
 
                 </div>
                 <div className='flex flex-row justify-between items-center'>
 
                     {categoryItems.map((category, index) => (
                         <div key={category.name?? index} className='w-42.5 h-36.25 flex flex-col items-center justify-center gap-4 rounded-sm border border-[#d4d2d2]'>
-                            <img src={category.categoryImage} alt="category" className='w-14 h-14' />
+                            <motion.img
+                                initial={{ opacity: 0}}
+                                whileInView={{ opacity: 1, rotate: 360 , y: 0 }}
+                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                viewport={{ amount: 0.1 }}
+                                
+                                src={category.categoryImage} alt="category" className='w-14 h-14' />
                             <p className='text-black'>{ category.categoryName}</p>
                         </div>
                         

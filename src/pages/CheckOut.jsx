@@ -7,6 +7,7 @@ import bankImage from '../assets/bankImage.png'
 
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import {motion} from 'framer-motion'
 
 
 
@@ -101,7 +102,12 @@ const CheckOut = () => {
                   '>Billing Details</p>
 
                 <div className='w-full flex flex-row  gap-45 justify-between  '>
-                    <form action="#" className='flex flex-col gap-6  py-1  rounded-sm'>
+                    <motion.form action="#"
+                        initial={{ opacity: 0, x: -100 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ amount: 0.1 }}
+                        className='flex flex-col gap-6  py-1  rounded-sm'>
                         <input type="text" required placeholder='Name' name='userName' value={userInfo.userName} onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
                         <input type="text" placeholder='Company Name (Optional)' maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
                         <input type="text" placeholder='Street Address (Optional)' maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
@@ -114,9 +120,14 @@ const CheckOut = () => {
 
                         </div>
 
-                    </form>
+                    </motion.form>
 
-                    <div className='w-full max-w-130 flex flex-col gap-6  py-1'>
+                    <motion.div
+                        initial={{ opacity: 0, x: 100 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ amount: 0.1 }}
+                        className='w-full max-w-130 flex flex-col gap-6  py-1'>
                         {cartItems.map((cart, index) => (
                             <div key={index} className=' w-full flex flex-row justify-between items-center'>
                                 <div key={index} className='flex flex-row gap-1 items-center'>
@@ -183,7 +194,7 @@ const CheckOut = () => {
 
 
 
-                    </div>
+                    </motion.div>
                 </div>
             </div>
             <div className="flex-1" />

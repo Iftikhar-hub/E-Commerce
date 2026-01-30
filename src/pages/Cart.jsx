@@ -6,6 +6,7 @@ import { useState } from "react";
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItemToCart, updateQuantity, removeItemFromCart } from '../services/adToCart';
+import {motion} from 'framer-motion'
 
 
 
@@ -36,7 +37,12 @@ const Cart = () => {
             ) : (
                 <div className="w-full max-w-400 px-36 flex flex-col gap-20 items-center justify-center mx-auto mt-20">
 
-                    <div className="w-full overflow-x-auto">
+                        <motion.div
+                            initial={{ opacity: 0, y: 60 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            viewport={{ amount: 0.1 }}
+                            className="w-full overflow-x-auto">
                        
                         <table className="w-full border-separate border-spacing-y-4">
                             <thead>
@@ -125,7 +131,7 @@ const Cart = () => {
 
 
                         </div>
-                    </div>
+                    </motion.div>
 
                     <div className='w-full flex flex-row justify-between'>
                         <div className='flex flex-row gap-4 h-12 items-center'>
