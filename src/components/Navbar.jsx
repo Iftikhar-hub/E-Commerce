@@ -8,7 +8,10 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from "react";
-import { FiUser } from "react-icons/fi";
+import { FiUser, } from "react-icons/fi";
+import { MdArrowDropDown } from "react-icons/md";
+
+
 
 
 import { motion, AnimatePresence } from 'framer-motion';
@@ -65,6 +68,21 @@ const Navbar = ({ userId }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+    }
+    const CategoryLinks = [
+        { name: "Electronics", href: "#" },
+        { name: "Electronics", href: "#" },
+        { name: "Home & Lifestyle", href: "#" },
+        { name: "Medicine", href: "#" },
+        { name: "Sports & Outdoor", href: "#" },
+        { name: "Baby’s & Toys", href: "#" },
+        { name: "Groceries & Pets", href: "#" },
+        { name: "Health & Beauty", href: "#" },
+    ]
+
+    const [iscategoryOpen, setIsCategoryOpen] = useState(false);
+    const toggleCategory = () => {
+        setIsCategoryOpen(!iscategoryOpen);
     }
 
 
@@ -200,6 +218,34 @@ const Navbar = ({ userId }) => {
                             </>
 
                         ))}
+
+                        <div className='w-full flex flex-col gap-3 items-start justify-center'>
+                            <p onClick={toggleCategory} className='text-[#ffffff] flex flex-row items-center gap-2 font-poppins text-[14px] font-normal leading-6 tracking-normal text-center'>Category
+                                {iscategoryOpen ? (
+                                    <MdArrowDropDown className='w-6 h-6' />
+                                ) : (
+                                    <MdArrowDropDown className='w-6 h-6 rotate-180' />
+                                )}
+                                
+
+                            </p>
+                            <AnimatePresence>
+                                {iscategoryOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: 'auto' }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                                        className='w-full flex flex-col gap-2 items-start justify-center pl-4 border-l border-white'>
+                                         {CategoryLinks.map((link, index) => (
+                                 <a key={index} href={link.href} className="text-[#ffffff] font-poppins text-[14px] font-normal leading-6 tracking-normal text-center">
+                                    {link.name}</a>))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                           
+                        </div>
+
                         <div className='w-full flex flex-row items-center justify-between gap-5'>
                             {isAuth ? (
                                 <a href="#"></a>
@@ -216,13 +262,14 @@ const Navbar = ({ userId }) => {
 
 
                         </div>
+                        
 
                     </motion.div>
                 )}
             </AnimatePresence>
 
-            <div className="mt-5  flex-row justify-between gap-2.5 bg-[#F5F5F5] py-1.75 pl-5 pr-3 rounded-sm hidden max-[862px]:flex">
-                <input type="text" placeholder="What are you looking for?" className="opacity-50 font-poppins text-xs font-normal leading-4.5 tracking-normal text-[#000000]" />
+            <div className="mt-5  flex-row justify-between gap-2.5 bg-[#F5F5F5] py-4 pl-5 pr-3 rounded-sm hidden max-[862px]:flex">
+                <input type="text" placeholder="What are you looking for?" className="opacity-50 font-poppins text-xs font-normal leading-4.5 tracking-normal text-[#000000] w-full outline-0" />
                 <img src={searchIcon} alt="searchIcon" className='w-6 h-6 cursor-pointer' />
 
             </div>

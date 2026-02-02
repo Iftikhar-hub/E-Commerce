@@ -11,10 +11,10 @@ const OurProducts = () => {
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
     return (
-        <div className="w-full max-w-400 px-36  mx-auto ">
+        <div className="w-full max-w-400 px-6 lg:px-26 xl:px-36  mx-auto ">
             <div className=" flex flex-col items-center gap-15 py-2 ">
                 <div className=" w-full flex flex-row justify-between items-baseline-last 
-                  gap-117.5">
+                  ">
                     <motion.div 
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -27,7 +27,7 @@ const OurProducts = () => {
                                 <p className="font-poppins text-base text-4 font-semibold leading-5 tracking-normal text-[#DB4444] ">Our Products</p>
 
                             </div>
-                            <p className="font-inter text-4xl font-semibold leading-12 tracking-[0.04em] text-[#000000]">Explore Our Products</p>
+                            <p className="font-inter whitespace-nowrap text-2xl lg:text-4xl font-semibold leading-12 tracking-[0.04em] text-[#000000]">Explore Our Products</p>
                         </div>
                     </motion.div>
 
@@ -36,7 +36,7 @@ const OurProducts = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         viewport={{ amount: 0.1 }}
-                        className='flex flex-row gap-2'>
+                        className='flex flex-row gap-2 max-[425px]:hidden'>
                         <div className='w-11.5 h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
                             <img src={iconsleft} alt="iconsleft" />
                         </div>
@@ -52,12 +52,12 @@ const OurProducts = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ amount: 0.1 }}
-                    className='grid grid-cols-4 gap-7.5 place-content-between place-items-center w-full max-w-350 overflow-x-auto'>
+                    className=' grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7.5 place-content-between place-items-center w-full max-w-350 overflow-x-hidden'>
                     {upperitems.map((upperIcon, index) => (
-                        <div key={index} className='w-full max-w-67.5 flex flex-col gap-4 '>
-                            < div className='ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex  
+                        <div key={index} className='w-full  flex flex-col gap-4 '>
+                            < div className='w-full ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex  
                                              flex-col justify-center'>
-                                <div className='flex flex-row justify-between items-start'>
+                                <div className=' flex flex-row justify-between items-start'>
                                     <div></div>
                                     <div className='flex flex-col gap-2'>
                                         <button className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
@@ -71,7 +71,7 @@ const OurProducts = () => {
                                 <img src={upperIcon.upperImage} alt="upperIcon" className='w-43 h-38 mx-auto' />
                             </div>
 
-                            <div className='ProductDetails flex flex-col gap-2'>
+                            <div className='w-full ProductDetails flex flex-col gap-2'>
                                 <p className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{upperIcon.upperName}</p>
                                 
                                 <div className="flex flex-row items-center space-x-1">
@@ -93,7 +93,7 @@ const OurProducts = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ amount: 0.1 }}
-                    className='w-58.5 h-14 relative group bg-[#DB4444] py-4 px-12 flex items-center justify-center text-[white] rounded-sm font-poppins font-bold cursor-pointer text-[16px]'>
+                    className='w-58.5 max-[425px]:w-full h-14 relative group bg-[#DB4444] py-4 px-12 flex items-center justify-center text-[white] rounded-sm font-poppins font-bold cursor-pointer text-[16px]'>
                     <span className='w-full z-10 text-white relative'>View All Products</span>
                     <div class="absolute inset-0 bg-[#b82525] h-0  group-hover:h-full   transition-all duration-300 ease-in-out rounded-sm "></div>
                 </motion.button>

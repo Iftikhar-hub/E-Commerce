@@ -50,9 +50,9 @@ const Products = () => {
 
 
     return (
-        <div className="w-full max-w-400 mx-auto px-36 mt-25 flex flex-col items-center gap-10">
-            <div className=" w-full max-w-400 flex flex-row justify-between items-baseline-last gap-117.5">
-                <div className="flex flex-row items-baseline-last gap-21.75">
+        <div className="w-full max-w-400 mx-auto px-6 lg:px-26 xl:px-36 mt-25 flex flex-col items-center gap-10">
+            <div className=" w-full max-w-400 flex flex-row justify-between items-baseline-last">
+                <div className="max-[380px]:w-full flex flex-row items-baseline-last justify-between gap-6 sm:gap-12 md:gap-21.75">
                     <motion.div
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -65,7 +65,7 @@ const Products = () => {
                               text-[#DB4444] ">Today’s</p>
 
                         </div>
-                        <p className="font-inter text-4xl font-semibold leading-12 tracking-[0.04em]
+                        <p className="font-inter whitespace-nowrap text-2xl lg:text-4xl font-semibold leading-12 tracking-[0.04em]
                           text-[#000000]">Flash Sales</p>
 
                     </motion.div>
@@ -74,28 +74,28 @@ const Products = () => {
                         <div className="flex flex-col gap-1">
                             <p className="font-poppins text-xs font-medium leading-4.5 tracking-normal
                               text-[#000000]">Days</p>
-                            <p className="font-inter text-3xl font-bold leading-7.5 tracking-[0.04em]
+                            <p className="font-inter lg:text-3xl font-bold leading-7.5 tracking-[0.04em]
                                text-[#000000]">03</p>
                         </div>
                         <img src={Semiclone} alt="Semiclone" className="w-1 h-4" />
                         <div className="flex flex-col  gap-1">
                             <p className="font-poppins text-xs font-medium leading-4.5 tracking-normal
                               text-[#000000]">Hours</p>
-                            <p className="font-inter text-3xl font-bold leading-7.5 tracking-[0.04em]
+                            <p className="font-inter lg:text-3xl font-bold leading-7.5 tracking-[0.04em]
                                text-[#000000]">23</p>
                         </div>
-                        <img src={Semiclone} alt="Semiclone" className="w-1 h-4" />
-                        <div className="flex flex-col  gap-1">
+                        <img src={Semiclone} alt="Semiclone" className="w-1 h-4 hidden sm:block" />
+                        <div className=" flex-col  gap-1 hidden sm:flex">
                             <p className="font-poppins text-xs font-medium leading-4.5 tracking-normal
                               text-[#000000]">Minutes</p>
-                            <p className="font-inter text-3xl font-bold leading-7.5 tracking-[0.04em]
+                            <p className="font-inter lg:text-3xl font-bold leading-7.5 tracking-[0.04em]
                                text-[#000000]">19</p>
                         </div>
-                        <img src={Semiclone} alt="Semiclone" className="w-1 h-4" />
-                        <div className="flex flex-col  gap-1">
+                        <img src={Semiclone} alt="Semiclone" className="w-1 h-4 hidden sm:block" />
+                        <div className=" flex-col  gap-1 hidden sm:flex">
                             <p className="font-poppins text-xs font-medium leading-4.5 tracking-normal
                               text-[#000000]">Seconds</p>
-                            <p className="font-inter text-3xl font-bold leading-7.5 tracking-[0.04em]
+                            <p className="font-inter lg:text-3xl font-bold leading-7.5 tracking-[0.04em]
                                text-[#000000]">56</p>
                         </div>
                     </div>
@@ -106,11 +106,11 @@ const Products = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ amount: 0.1 }}
-                    className='flex flex-row gap-2'>
-                    <div className='w-11.5 h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
+                    className='flex flex-row gap-2 max-[380px]:hidden'>
+                    <div className='lg:w-11.5 lg:h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
                         <img src={iconsleft} alt="iconsleft" />
                     </div>
-                    <div className='w-11.5 h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
+                    <div className='lg:w-11.5 lg:h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
                         <img src={iconsright} alt="iconsright" />
                     </div>
 
@@ -123,10 +123,10 @@ const Products = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 viewport={{ amount: 0.1 }}
-                className='flex flex-row gap-7.5 w-full max-w-350 overflow-x-auto'>
+                className=' flex flex-row gap-7.5 w-full max-w-350 no-scrollbar overflow-x-auto'>
                 {displayProducts && displayProducts.map((product, index) => (
                     <div key={product._id ?? index} className='w-full max-w-67.5 flex flex-col gap-4 '>
-                        < div className='ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
+                        < div className='w-64 ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
                           justify-center'>
                             <div className='flex flex-row justify-between items-start'>
                                 <p className='py-1 px-3 rounded-sm bg-[#DB4444] text-[#FAFAFA] text-[12px] font-normal leading-4.5 tracking-0 text-center'>-40%</p>

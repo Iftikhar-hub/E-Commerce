@@ -20,3 +20,7 @@ body {
     --swiper-navigation-color: #DB4444;
    
 }
+
+ .no-scrollbar::-webkit-scrollbar {
+     display: none;
+ }

@@ -5,10 +5,10 @@ import {motion} from 'framer-motion'
 import { categoryItems } from '../utils/data.js'
 const Categor = () => {
     return (
-        <div className="w-full max-w-400 px-36  mx-auto mt-15">
+        <div className="w-full max-w-400 px-6 lg:px-26 xl:px-36  mx-auto mt-15">
             <div className=" flex flex-col gap-15 py-20 border-t border-b border-[#d4d2d2]">
                 <div className=" w-full flex flex-row justify-between items-baseline-last 
-                  gap-117.5">
+                  ">
                     <motion.div
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -22,7 +22,7 @@ const Categor = () => {
                                               text-[#DB4444] ">Categories</p>
 
                             </div>
-                            <p className="font-inter text-4xl font-semibold leading-12 tracking-[0.04em]
+                            <p className="font-inter text-2xl lg:text-4xl whitespace-nowrap font-semibold leading-12 tracking-[0.04em]
                             text-[#000000]">Browse By Category</p>
                       </div>  
                     </motion.div>
@@ -32,7 +32,7 @@ const Categor = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         viewport={{ amount: 0.1 }}
-                        className='flex flex-row gap-2'>
+                        className='flex flex-row gap-2 max-[400px]:hidden'>
                         <div className='w-11.5 h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
                             <img src={iconsleft} alt="iconsleft" />
                         </div>
@@ -43,10 +43,10 @@ const Categor = () => {
                     </motion.div>
 
                 </div>
-                <div className='flex flex-row justify-between items-center'>
+                <div className='flex flex-row justify-between items-center w-full gap-6 overflow-x-auto no-scrollbar'>
 
                     {categoryItems.map((category, index) => (
-                        <div key={category.name?? index} className='w-42.5 h-36.25 flex flex-col items-center justify-center gap-4 rounded-sm border border-[#d4d2d2]'>
+                        <div key={category.name?? index} className='w-32 h-26 max-[425px]:px-4 px-3 lg:w-42.5 lg:h-36.25 flex flex-col items-center justify-center gap-4 rounded-sm border border-[#d4d2d2]'>
                             <motion.img
                                 initial={{ opacity: 0}}
                                 whileInView={{ opacity: 1, rotate: 360 , y: 0 }}
@@ -54,7 +54,7 @@ const Categor = () => {
                                 viewport={{ amount: 0.1 }}
                                 
                                 src={category.categoryImage} alt="category" className='w-14 h-14' />
-                            <p className='text-black'>{ category.categoryName}</p>
+                            <p className='text-black max-[425px]:text-[14px] '>{ category.categoryName}</p>
                         </div>
                         
                     ))}
