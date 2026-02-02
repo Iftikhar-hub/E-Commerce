@@ -28,6 +28,7 @@ function App() {
       
       <Route path='/CheckOut' element={<CheckOut />}/>
       <Route path='/Admin' element={<Admin />} />
+
       <Route path='/success' element={<Success />} />
       
 

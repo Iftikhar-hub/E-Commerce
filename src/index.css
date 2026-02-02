@@ -15,3 +15,8 @@ body {
     scroll-behavior: smooth;
   
 }
+
+:root {
+    --swiper-navigation-color: #DB4444;
+   
+}

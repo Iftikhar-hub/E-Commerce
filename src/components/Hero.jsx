@@ -1,6 +1,8 @@
 import RightArrow from '../assets/RightArrow.svg'
 import heroPicture from '../assets/heroPicture.svg'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
+import Slider from './Slider'
+
 const Hero = () => {
 
     const CategoryLinks = [
@@ -14,7 +16,7 @@ const Hero = () => {
         {name:"Health & Beauty", href:"#"},
     ]
     return (
-        <div className="w-full max-w-400 mx-auto flex flex-row gap-11 px-37 justify-center mt-4 border-t border-[#d4d2d2]">
+        <div className="w-full max-w-400 mx-auto flex items-center flex-row gap-11 px-37 justify-center mt-4 border-t border-[#d4d2d2] overflow-x-hidden">
             <div className="flex flex-col gap-4 pt-11 border-r border-[#d4d2d2] ">
                 <div className="flex flex-row gap-9  items-center justify-between ">
                     <a href="#" className="font-poppins text-base font-normal leading-6 tracking-normal text-center text-[#000000]">Woman’s Fashion</a>
@@ -28,15 +30,9 @@ const Hero = () => {
                   <a key={index} href={link.href} className="font-poppins text-start font-normal leading-6 tracking-normal text-[#000000]">
                         {link.name}</a>))}
             </div>
-            <motion.div
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                viewport={{ amount: 0.1 }}
-                className='pt-11'>
-                <img src={heroPicture} alt="heroPicture" className='w-223 h-86'/>
-
-            </motion.div>
+            <div className=" w-full max-w-200">
+                <Slider className='w-full'/>
+            </div>
         </div>
     )
 }
