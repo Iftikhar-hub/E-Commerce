@@ -33,6 +33,7 @@ const UserProfile = ({ userId }) => {
         return <div className='text-red-500'> <p>Failed To Load</p>
             Error: {error.status}</div>;
     }
+    console.log("User ID Data:", userData);
     
 
     if (userData) {
