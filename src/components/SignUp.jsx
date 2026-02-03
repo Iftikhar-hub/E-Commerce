@@ -55,7 +55,7 @@ const SignUp = () => {
               formData.append("pass", registerForm.pass);
               formData.append("cpass", registerForm.cpass);
               formData.append("file", registerForm.file);
-            const res = await axios.post("https://e-commerce-nu-five-82.vercel.app/api/user/user-insert", formData,
+            const res = await axios.post("http://localhost:8000/api/user/user-insert", formData,
                 {
                 headers: {
                     "Content-Type": "multipart/form-data",
@@ -63,15 +63,11 @@ const SignUp = () => {
             });
             setMessage(res.data.msg); 
             navigate('/login')
-            if (!res.data.success) {
-                alert("Registration failed. Please try again.");
-                return;
-            }
             
             
         } catch (err) {
             
-            setMessage(err.response?.data?.msg || "Something Wrong, Please try again...");
+            setMessage(err.response?.data?.msg || "Something Wrong, Please try again");
         }
     };
     return (
