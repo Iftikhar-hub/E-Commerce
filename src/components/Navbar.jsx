@@ -46,7 +46,7 @@ const Navbar = ({ userId }) => {
     const handleLogout = async () => {
         try {
             await axios.post(
-                'http://e-commerce-backend-production-6436.up.railway.app/api/user/user-logout',
+                'https://e-commerce-backend-production-6436.up.railway.app/api/user/user-logout',
                 {},
                 { withCredentials: true }
             );
