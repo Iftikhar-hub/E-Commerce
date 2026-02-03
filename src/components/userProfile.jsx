@@ -8,7 +8,7 @@ const UserProfile = ({ userId }) => {
      const handleLogout = async () => {
             try {
                 await axios.post(
-                    'http://localhost:8000/api/user/user-logout',
+                    'http://e-commerce-backend-production-6436.up.railway.app/api/user/user-logout',
                     {},
                     { withCredentials: true }
                 );

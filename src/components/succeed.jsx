@@ -13,7 +13,7 @@ const Success = () => {
 
     useEffect(() => {
         if (sessionId) {
-            axios.get(`http://localhost:8000/get-invoice/${sessionId}`)
+            axios.get(`http://e-commerce-backend-production-6436.up.railway.app/get-invoice/${sessionId}`)
                 .then(res => setInvoiceUrl(res.data.invoice_url))
                 .catch(err => console.error(err));
         }
