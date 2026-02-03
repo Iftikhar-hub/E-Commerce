@@ -67,7 +67,7 @@ const SignUp = () => {
             
         } catch (err) {
             
-            setMessage(err.response?.data?.msg || "Something Wrong, Please try again");
+            setMessage(err.response?.data?.msg || "Something Wrong, Please try again...");
         }
     };
     return (
