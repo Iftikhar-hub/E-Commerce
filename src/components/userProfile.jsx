@@ -35,7 +35,7 @@ const UserProfile = ({ userId }) => {
     }
    
 
-    console.log("User ID Data:", userData._id);
+    console.log("User ID Data:", userData.id);
     
 
     if (userData) {
