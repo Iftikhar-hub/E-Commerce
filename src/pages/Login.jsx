@@ -56,7 +56,7 @@ const Login = () => {
             setMessage(err.response?.data?.msg || "Something Wrong, Please try agian");
             
         }
-        console.log("User Id :", res.data.user._id);
+        
     }
 
 
