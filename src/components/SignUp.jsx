@@ -63,6 +63,10 @@ const SignUp = () => {
             });
             setMessage(res.data.msg); 
             navigate('/login')
+            if (!res.data.success) {
+                alert("Registration failed. Please try again.");
+                return;
+            }
             
             
         } catch (err) {
