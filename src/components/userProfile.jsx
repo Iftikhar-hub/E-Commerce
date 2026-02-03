@@ -12,6 +12,8 @@ const UserProfile = ({ userId }) => {
                     {},
                     { withCredentials: true }
                 );
+                
+                localStorage.removeItem(userId);
     
                 localStorage.removeItem('isAuth');
                 navigate('/')
