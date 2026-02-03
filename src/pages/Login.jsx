@@ -44,7 +44,7 @@ const Login = () => {
         try {
             const res = await axios.post('https://e-commerce-backend-production-6436.up.railway.app/api/user/user-login', loginForm, { withCredentials: true });
             localStorage.setItem('isAuth', 'true');
-            const userId = res.data?._id || res.data.id;
+            // const userId = res.data?._id || res.data.id;
             localStorage.setItem("userId", userId);
            
            
