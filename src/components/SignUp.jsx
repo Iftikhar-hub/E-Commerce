@@ -55,7 +55,7 @@ const SignUp = () => {
               formData.append("pass", registerForm.pass);
               formData.append("cpass", registerForm.cpass);
               formData.append("file", registerForm.file);
-            const res = await axios.post("https://e-commerce-nu-five-82.vercel.app/api/user/user-insert", formData,
+            const res = await axios.post("https://e-commerce-backend-production-6436.up.railway.app/api/user/user-insert", formData,
                 {
                 headers: {
                     "Content-Type": "multipart/form-data",
