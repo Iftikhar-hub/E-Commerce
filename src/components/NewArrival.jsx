@@ -7,7 +7,7 @@ import {motion} from 'framer-motion'
 
 const NewArrival = () => {
     return (
-        <div className="w-full max-w-400 px-36  mx-auto mt-20 ">
+        <div className="w-full max-w-400 px-6 lg:px-26 xl:px-36  mx-auto mt-20 ">
             <div className=" flex flex-col items-center gap-15 py-2 ">
                 <motion.div
                     initial={{ opacity: 0, x: -100 }}
@@ -33,8 +33,9 @@ const NewArrival = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ amount: 0.1 }}
-                    className="flex flex-row justify-between items-center w-full">
-                    <div className="relative bg-[#000000] pt-22.25 px-7 rounded-sm w-142.5 h-150">
+                    className="flex flex-row justify-between items-center gap-12 w-full">
+                    
+                    <div className="relative bg-[#000000] hidden xl:flex items-end xl:pt-22.25 px-7 rounded-sm w-full max-w-142.5 h-150">
                         <img src={PowerBank} alt="PowerBank" />
                         <div className=' absolute top-110 flex flex-col gap-4'>
                             <p className='font-inter text-[24px] font-semibold leading-6 tracking-[0.03em] 
@@ -48,7 +49,7 @@ const NewArrival = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-8 rounded-sm w-142.5 h-150">
+                    <div className="flex flex-col gap-8 rounded-sm w-full xl:w-142.5 h-150">
                         <div className='relative bg-[#000000] rounded-sm w-full h-71 flex items-end justify-end'>
                             <img src={women} alt="women" />
                             <div className=' absolute bottom-6 left-6 flex flex-col gap-4'>
@@ -60,9 +61,21 @@ const NewArrival = () => {
                             </div>
                         </div>
 
-                        <div className='flex flex-row gap-7.5 w-full h-71'>
-                            <div className='relative bg-[#000000] flex items-center justify-center rounded-sm w-67.5'>
-                                <img src={amazonEcho} alt="amazonEcho" />
+                        <div className='flex flex-row max-[1280px]:items-center max-[1280px]:justify-between gap-7.5 w-full h-71'>
+
+                            <div className='relative bg-[#000000] flex xl:hidden items-center py-5 xl:py-0 justify-center rounded-sm w-full xl:w-67.5'>
+                                <img src={PowerBank} alt="amazonEcho" className='h-60'/>
+                                <div className=' absolute bottom-6 left-6 flex flex-col gap-1'>
+                                    <p className='font-inter text-[24px] font-semibold leading-6 tracking-[0.03em] text-[#FAFAFA]'>PlayStation 5</p>
+                                    <p className='font-inter text-[14px] font-regular leading-6 tracking-[0.03em] 
+                                     text-[#FAFAFA]'>Black and White version of the PS5</p>
+                                    <a href="#" className='font-inter underline-offset-3 underline text-[14px] font-semibold leading-6 tracking-[0.03em] 
+                                    text-[#FAFAFA]'>Shop Now</a>
+                                 </div>
+                                
+                            </div>
+                            <div className='relative bg-[#000000] flex items-center justify-center py-5 xl:py-0 rounded-sm w-full xl:w-67.5 '>
+                                <img src={amazonEcho} alt="amazonEcho" className='max-[1280px]:h-60'/>
                                 <div className=' absolute bottom-6 left-6 flex flex-col gap-1'>
                                     <p className='font-inter text-[24px] font-semibold leading-6 tracking-[0.03em] text-[#FAFAFA]'>Speakers</p>
                                     <p className='font-inter text-[14px] font-regular leading-6 tracking-[0.03em] 
@@ -72,8 +85,8 @@ const NewArrival = () => {
                                  </div>
                                 
                             </div>
-                            <div className='relative bg-[#000000] flex items-center justify-center rounded-sm w-67.5'>
-                                <img src={gocci} alt="gocci" />
+                            <div className='relative bg-[#000000] flex items-center justify-center rounded-sm py-5 xl:py-0 w-full xl:w-67.5'>
+                                <img src={gocci} alt="gocci" className='max-[1280px]:h-60' />
                                 <div className=' absolute bottom-6 left-6 flex flex-col gap-1'>
                                     <p className='font-inter text-[24px] font-semibold leading-6 tracking-[0.03em] text-[#FAFAFA]'>Perfume</p>
                                     <p className='font-inter text-[14px] font-regular leading-6 tracking-[0.03em] 

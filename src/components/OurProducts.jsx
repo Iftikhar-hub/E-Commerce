@@ -95,7 +95,7 @@ const OurProducts = () => {
                     viewport={{ amount: 0.1 }}
                     className='w-58.5 max-[425px]:w-full h-14 relative group bg-[#DB4444] py-4 px-12 flex items-center justify-center text-[white] rounded-sm font-poppins font-bold cursor-pointer text-[16px]'>
                     <span className='w-full z-10 text-white relative'>View All Products</span>
-                    <div class="absolute inset-0 bg-[#b82525] h-0  group-hover:h-full   transition-all duration-300 ease-in-out rounded-sm "></div>
+                    <div className="absolute inset-0 bg-[#b82525] h-0  group-hover:h-full   transition-all duration-300 ease-in-out rounded-sm "></div>
                 </motion.button>
             </div>
         </div>

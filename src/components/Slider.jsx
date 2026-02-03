@@ -13,10 +13,10 @@ const Slider = () =>{
                 autoplay={{delay: 2200,disableOnInteraction: false,
             }} className="mySwiper w-full">
                 <SwiperSlide className='w-full'>
-                    <img src={heroPicture} alt="heroPicture" className=' ' /> 
+                    <img src={heroPicture} alt="heroPicture" /> 
                 </SwiperSlide>
                 <SwiperSlide className='w-full'>
-                    <img src={heroaPicture} alt="heroPicture" className=' ' /> 
+                    <img src={heroaPicture} alt="heroPicture"  /> 
                 </SwiperSlide>
         </Swiper>
         </>
