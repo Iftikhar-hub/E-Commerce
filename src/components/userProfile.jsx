@@ -33,7 +33,7 @@ const UserProfile = ({ userId }) => {
         return <div className='text-red-500'> <p>Failed To Load</p>
             Error: {error.status}</div>;
     }
-    localStorage.setItem("userId", res.data.user._id);
+   
 
     console.log("User ID Data:", userData._id);
     
