@@ -42,7 +42,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://e-commerce-backend-production-6436.up.railway.app/api/user/user-login', loginForm, { withCredentials: true });
+            const res = await axios.post('https://e-commerce-backend-production-6436.up.railway.app/api/user/user-login', loginForm, { withCredentials: true });
             localStorage.setItem('isAuth', 'true');
             setMessage(res.data.msg);
             navigate('/')
