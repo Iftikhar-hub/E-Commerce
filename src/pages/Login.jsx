@@ -48,11 +48,13 @@ const Login = () => {
 
             setMessage(res.data.msg);
             navigate('/')
+            console.log("User Id :", res.data.user._id);
             
         } catch (err) {
             setMessage(err.response?.data?.msg || "Something Wrong, Please try agian");
             
         }
+        console.log("User Id :", res.data.user._id);
     }
 
 
