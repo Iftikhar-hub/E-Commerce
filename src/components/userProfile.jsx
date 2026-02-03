@@ -33,7 +33,9 @@ const UserProfile = ({ userId }) => {
         return <div className='text-red-500'> <p>Failed To Load</p>
             Error: {error.status}</div>;
     }
-    console.log("User ID Data:", userData);
+    localStorage.setItem("userId", res.data.user._id);
+
+    console.log("User ID Data:", userData._id);
     
 
     if (userData) {
@@ -42,6 +44,7 @@ const UserProfile = ({ userId }) => {
             <div className='text-black flex flex-col gap-4 items-center justify-center'>
                 <img src={userData.file} alt="PNG" className='w-15 h-15 rounded-full'/>
                 <div className='text-black flex flex-col items-center justify-center'>
+                    <p>{userData._id}</p>
                     <h1 className='text-[18px] text-[#FAFAFA] font-bold'>{userData.name}</h1>
                     <p className='text-[15px] text-[#FAFAFA]'>{userData.email}</p>
 
