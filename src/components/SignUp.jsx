@@ -109,14 +109,14 @@ const SignUp = () => {
 
                         <form onSubmit={handleSubmit} encType="multipart/form-data" className="w-full max-w-80 flex flex-col gap-4">
                             <input type="text" name='fname' value={registerForm.fname}
-                                onChange={handleChange} placeholder="Name" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
+                                onChange={handleChange} placeholder="Name" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required autoComplete="fname"/>
                             
                             <input type="email" name='email' value={registerForm.email}
-                                onChange={handleChange} placeholder="Email" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
-                            <input onChange={handleChange} type="file" name="file" className="border-b h-12 p-2 border-[#ccc9c9] outline-0 text-[#6e6d6d]"
+                                onChange={handleChange} placeholder="Email" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required autoComplete="email" />
+                            <input onChange={handleChange} autocomplete="file" type="file" name="file" className="border-b h-12 p-2 border-[#ccc9c9] outline-0 text-[#6e6d6d]"
                                 id="file"  />
                             <div className="w-full flex flex-row justify-between">
-                                <input type={type} name='pass' value={registerForm.pass}
+                                <input type={type} name='pass' value={registerForm.pass} autoComplete="pass"
                                     onChange={(e) => {
                                         handleChange(e);
                                         setPassword(e.target.value);
@@ -130,7 +130,7 @@ const SignUp = () => {
                            
 
                             <input type="password" name='cpass' value={registerForm.cpass}
-                                onChange={handleChange} placeholder="Confirm Password" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
+                                onChange={handleChange} placeholder="Confirm Password" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required autoComplete="cpass"/>
                             
                         
                             <button className="w-full relative group bg-[#DB4444] py-4 flex items-center justify-center  
