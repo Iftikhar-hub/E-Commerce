@@ -46,12 +46,12 @@ const Login = () => {
             localStorage.setItem('isAuth', 'true');
             const userId = res.data?._id || res.data.id;
             localStorage.setItem("userId", userId);
-            console.log("User ID :", userId);
+           
            
 
             setMessage(res.data.msg);
             navigate('/')
-            console.log("User Id :", res.data.user._id);
+        
             
         } catch (err) {
             setMessage(err.response?.data?.msg || "Something Wrong, Please try agian");

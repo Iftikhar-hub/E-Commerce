@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const getUserId = () => localStorage.getItem("userId");
+console.log("Cart User ID :", getUserId());
 
 const initialState = {
     items: JSON.parse(localStorage.getItem(`cartItems_${getUserId()}`)) || [],
@@ -14,6 +15,7 @@ const cartSlice = createSlice({
 
         loadUserCart: (state) => {
             const userId = getUserId();
+            console.log("Cart userId ID :", userId);
             state.items = JSON.parse(localStorage.getItem(`cartItems_${userId}`)) || [];
         },
 
@@ -28,6 +30,7 @@ const cartSlice = createSlice({
             }
 
             const userId = getUserId();
+            console.log("Add to Cart User ID :", userId);
             localStorage.setItem(`cartItems_${userId}`, JSON.stringify(state.items));
         },
 
