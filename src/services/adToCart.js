@@ -1,72 +1,66 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const getUserId = () => localStorage.getItem("userId");
-console.log("Cart User ID :", getUserId());
-
-const initialState = {
-    items: [],
-};
-
-
-const cartSlice = createSlice({
-    name: 'cart',
-    initialState,
-    reducers: {
-
-        loadUserCart: (state) => {
-            const userId = getUserId();
-            console.log("Cart userId ID :", userId);
-            state.items = JSON.parse(localStorage.getItem(`cartItems_${userId}`)) || [];
-        },
-
-        addItemToCart: (state, action) => {
-            const newItem = action.payload;
-            const existing = state.items.find(item => item._id === newItem._id);
-
-            if (existing) {
-                existing.quantity += 1;
-            } else {
-                state.items.push({ ...newItem, quantity: 1 });
-            }
-
-            const userId = getUserId();
-            console.log("Add to Cart User ID :", userId);
-            localStorage.setItem(`cartItems_${userId}`, JSON.stringify(state.items));
-        },
-
-        removeItemFromCart: (state, action) => {
-            state.items = state.items.filter(item => item._id !== action.payload);
-
-            const userId = getUserId();
-            localStorage.setItem(`cartItems_${userId}`, JSON.stringify(state.items));
-        },
-
-        updateQuantity: (state, action) => {
-            const { id, quantity } = action.payload;
-            const item = state.items.find(item => item._id === id);
-
-            if (item) {
-                item.quantity = quantity;
-            }
-
-            const userId = getUserId();
-            localStorage.setItem(`cartItems_${userId}`, JSON.stringify(state.items));
-        },
-
-        clearCart: (state) => {
-            const userId = getUserId();
-            state.items = [];
-            localStorage.removeItem(`cartItems_${userId}`);
-        },
-    },
+// ======== Async Thunks ========
+export const loadUserCart = createAsyncThunk("cart/loadUserCart", async () => {
+    const res = await axios.get("https://e-commerce-backend-production-6436.up.railway.app/api/user/cart", { withCredentials: true });
+    return res.data.cart.items.map(item => ({
+        _id: item.productId._id,
+        pname: item.productId.pname,
+        image: item.productId.image,
+        discountedPrice: item.productId.discountedPrice,
+        orignalPrice: item.productId.orignalPrice,
+        quantity: item.quantity
+    }));
 });
 
-export const {
-    addItemToCart,
-    removeItemFromCart,
-    updateQuantity,
-    loadUserCart,
-    clearCart
-} = cartSlice.actions;
+export const addToCartBackend = createAsyncThunk("cart/addToCartBackend", async ({ productId, quantity }) => {
+    await axios.post("https://e-commerce-backend-production-6436.up.railway.app/api/user/cart/add", { productId, quantity }, { withCredentials: true });
+    return { productId, quantity };
+});
 
-export default cartSlice.reducer;
+export const removeFromCartBackend = createAsyncThunk("cart/removeFromCartBackend", async ({ productId }) => {
+    await axios.post("https://e-commerce-backend-production-6436.up.railway.app/api/user/cart/remove", { productId }, { withCredentials: true });
+    return productId;
+});
+
+export const updateQuantityBackend = createAsyncThunk("cart/updateQuantityBackend", async ({ productId, quantity }) => {
+    await axios.post("https://e-commerce-backend-production-6436.up.railway.app/api/user/cart/update", { productId, quantity }, { withCredentials: true });
+    return { productId, quantity };
+});
+
+// ======== Slice ========
+const cartSlice = createSlice({
+    name: "cart",
+    initialState: {
+        items: [],
+        status: "idle"
+    },
+    reducers: {},
+    extraReducers: builder => {
+        builder
+            .addCase(loadUserCart.fulfilled, (state, action) => {
+                state.items = action.payload;
+            })
+            .addCase(addToCartBackend.fulfilled, (state, action) => {
+                const { productId, quantity } = action.payload;
+                const existing = state.items.find(item => item._id === productId);
+                if (existing) {
+                    existing.quantity += quantity;
+                } else {
+                    // you can fetch product info from backend if needed
+                    state.items.push({ _id: productId, quantity });
+                }
+            })
+            .addCase(removeFromCartBackend.fulfilled, (state, action) => {
+                state.items = state.items.filter(item => item._id !== action.payload);
+            })
+            .addCase(updateQuantityBackend.fulfilled, (state, action) => {
+                const { productId, quantity } = action.payload;
+                const item = state.items.find(i => i._id === productId);
+                if (item) item.quantity = quantity;
+            });
+    }
+});
+
+export default cartSlice.reducer; // ✅ default export

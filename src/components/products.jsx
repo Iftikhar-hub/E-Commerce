@@ -13,9 +13,10 @@ import { useGetProductDataQuery } from '../services/productApi'
 import LoginPopup from './LoginPopup';
 
 import { useDispatch } from 'react-redux';
-import { addItemToCart } from '../services/adToCart';
+// import { addItemToCart } from '../services/adToCart';
 
 import { motion } from 'framer-motion';
+import { addToCartBackend } from "../services/adToCart";
 
 
 
@@ -34,7 +35,21 @@ const Products = () => {
             setShowLoginPopup(true);
             return;
         }
-        dispatch(addItemToCart(product));
+
+        // dispatch backend cart action
+        dispatch(
+            addToCartBackend({
+                productId: product._id,
+                quantity: 1, // default add 1
+            })
+        )
+            .unwrap() // optional: to handle promise result
+            .then(() => {
+                console.log("Product added to cart in backend!");
+            })
+            .catch((err) => {
+                console.error("Failed to add product to cart:", err);
+            });
     };
 
     const { data } = useGetProductDataQuery();
