@@ -74,9 +74,24 @@ const Cart = () => {
                         </tbody>
                     </table>
 
-                    <div className="flex justify-between w-full max-w-117.5 border p-4 rounded">
-                        <p>Subtotal: ${subtotal}</p>
-                        <a href="/CheckOut" className="bg-[#DB4444] text-white px-4 py-2 rounded">Proceed to Checkout</a>
+                        <div className="border w-full max-w-117.5 border-[#000000] rounded-sm flex flex-col px-4 py-6 gap-6">
+                            <p className='text-[#000000] text-[20px] font-poppins font-medium'>Cart Total</p>
+                            <div className='border-b border-[#a3a3a3] pb-2 w-full flex flex-row justify-between'>
+                                <p className='text-[16px] font-poppins font-normal'>Subtotal</p>
+                                <p className='text-[16px] font-poppins font-normal'>${subtotal}</p>
+
+                            </div>
+                            <div className='border-b border-[#a3a3a3] pb-2 w-full flex flex-row justify-between'>
+                                <p className='text-[16px] font-poppins font-normal'>Shipping:</p>
+                                <p className='text-[16px] font-poppins font-normal'>Free</p>
+
+                            </div>
+                            <div className=' w-full flex flex-row justify-between'>
+                                <p className='text-[16px] font-poppins font-normal'>Total:</p>
+                                <p className='text-[16px] font-poppins font-normal'>${subtotal}</p>
+
+                            </div>
+                        <a href="/CheckOut" className="bg-[#DB4444] text-white px-4 text-center py-2 rounded">Proceed to Checkout</a>
                     </div>
                 </div>
             )}
