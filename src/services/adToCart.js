@@ -24,15 +24,20 @@ export const addToCartBackend = createAsyncThunk(
         );
 
         // Get the added/updated item from backend cart
-        const addedItem = res.data.cart.items.find(item => item.productId._id === productId);
+       
+        const addedItem = res.data.item;
+
+        if (!addedItem) {
+            throw new Error("Added item not found in backend response");
+        }
 
         return {
-            _id: addedItem.productId._id,
-            pname: addedItem.productId.pname,
-            image: addedItem.productId.image,
-            discountedPrice: addedItem.productId.discountedPrice,
-            orignalPrice: addedItem.productId.orignalPrice,
-            quantity: addedItem.quantity
+            _id: addedItem._id ?? "",
+            pname: addedItem.pname ?? "",
+            image: addedItem.image ?? "",
+            discountedPrice: addedItem.discountedPrice ?? "0",
+            orignalPrice: addedItem.orignalPrice ?? "0",
+            quantity: addedItem.quantity ?? 1
         };
     }
 );

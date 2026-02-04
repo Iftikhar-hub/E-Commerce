@@ -39,7 +39,7 @@ const Products = () => {
         // dispatch backend cart action
         dispatch(
             addToCartBackend({
-                productId: product._id,
+                productId: product._id ?? product.id,
                 quantity: 1, // default add 1
             })
         )
