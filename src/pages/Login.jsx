@@ -11,7 +11,9 @@ import { useState } from "react";
 import {useNavigate} from "react-router-dom"
 
 import signupImage from '../assets/signupImage.png'
-import {motion} from "framer-motion"
+import { motion } from "framer-motion"
+import { useDispatch } from "react-redux";
+import { loadUserCart } from "../services/adToCart";
 
 const Login = () => {
     const [loginForm, setloginForm] = useState({
@@ -38,20 +40,23 @@ const Login = () => {
         setloginForm({ ...loginForm, [e.target.name]: e.target.value });
         
     };
+    const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const res = await axios.post('https://e-commerce-backend-production-6436.up.railway.app/api/user/user-login', loginForm, { withCredentials: true });
             localStorage.setItem('isAuth', 'true');
-            const userId = res.data?._id || res.data.id;
+
+            const userId = res.data.id;
             localStorage.setItem("userId", userId);
-            console.log("User ID :", userId);
+      
+            dispatch(loadUserCart());
            
 
             setMessage(res.data.msg);
             navigate('/')
-            console.log("User Id :", res.data.user._id);
+          
             
         } catch (err) {
             setMessage(err.response?.data?.msg || "Something Wrong, Please try again");

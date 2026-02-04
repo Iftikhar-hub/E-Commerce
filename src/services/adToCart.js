@@ -4,7 +4,7 @@ const getUserId = () => localStorage.getItem("userId");
 console.log("Cart User ID :", getUserId());
 
 const initialState = {
-    items: JSON.parse(localStorage.getItem(`cartItems_${getUserId()}`)) || [],
+    items: [],
 };
 
 

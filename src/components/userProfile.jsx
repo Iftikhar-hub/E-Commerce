@@ -4,9 +4,9 @@ import { useGetUserDataQuery } from '../services/userApi';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { clearCart } from '../services/adToCart';
-import { useDispatch } from 'react-redux';
+
 const UserProfile = ({ userId }) => {
-    const dispatch = useDispatch();
+    
      const navigate = useNavigate();
      const handleLogout = async () => {
             try {
@@ -15,7 +15,7 @@ const UserProfile = ({ userId }) => {
                     {},
                     { withCredentials: true }
                 );
-                dispatch(clearCart());
+               
                 localStorage.removeItem(userId);
     
                 localStorage.removeItem('isAuth');
