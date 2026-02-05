@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// ======== Async Thunks ========
+
 export const loadUserCart = createAsyncThunk("cart/loadUserCart", async () => {
     const res = await axios.get("https://e-commerce-backend-production-6436.up.railway.app/api/user/cart", { withCredentials: true });
     return res.data.cart.items.map(item => ({
@@ -22,8 +22,6 @@ export const addToCartBackend = createAsyncThunk(
             { productId, quantity },
             { withCredentials: true }
         );
-
-        // Get the added/updated item from backend cart
        
         const addedItem = res.data.item;
 
@@ -52,7 +50,6 @@ export const updateQuantityBackend = createAsyncThunk("cart/updateQuantityBacken
     return { productId, quantity };
 });
 
-// ======== Slice ========
 const cartSlice = createSlice({
     name: "cart",
     initialState: {
@@ -85,4 +82,4 @@ const cartSlice = createSlice({
     }
 });
 
-export default cartSlice.reducer; // ✅ default export
+export default cartSlice.reducer; 

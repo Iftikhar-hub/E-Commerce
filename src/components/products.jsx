@@ -13,7 +13,6 @@ import { useGetProductDataQuery } from '../services/productApi'
 import LoginPopup from './LoginPopup';
 
 import { useDispatch } from 'react-redux';
-// import { addItemToCart } from '../services/adToCart';
 
 import { motion } from 'framer-motion';
 import { addToCartBackend } from "../services/adToCart";
@@ -35,15 +34,13 @@ const Products = () => {
             setShowLoginPopup(true);
             return;
         }
-
-        // dispatch backend cart action
         dispatch(
             addToCartBackend({
                 productId: product._id ?? product.id,
-                quantity: 1, // default add 1
+                quantity: 1, 
             })
         )
-            .unwrap() // optional: to handle promise result
+            .unwrap() 
             .then(() => {
                 console.log("Product added to cart in backend!");
             })
