@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BASE_URL } from "../utils/data";
 
 
 export const loadUserCart = createAsyncThunk("cart/loadUserCart", async () => {
-    const res = await axios.get("https://e-commerce-backend-production-6436.up.railway.app/api/user/cart", { withCredentials: true });
+    const res = await axios.get(`${BASE_URL}/api/user/cart`, { withCredentials: true });
     return res.data.cart.items.map(item => ({
         _id: item.productId._id,
         pname: item.productId.pname,
@@ -18,7 +19,7 @@ export const addToCartBackend = createAsyncThunk(
     "cart/addToCartBackend",
     async ({ productId, quantity }) => {
         const res = await axios.post(
-            "https://e-commerce-backend-production-6436.up.railway.app/api/user/cart/add",
+            `${BASE_URL}/api/user/cart/add`,
             { productId, quantity },
             { withCredentials: true }
         );
@@ -41,12 +42,12 @@ export const addToCartBackend = createAsyncThunk(
 );
 
 export const removeFromCartBackend = createAsyncThunk("cart/removeFromCartBackend", async ({ productId }) => {
-    await axios.post("https://e-commerce-backend-production-6436.up.railway.app/api/user/cart/remove", { productId }, { withCredentials: true });
+    await axios.post(`${BASE_URL}/api/user/cart/remove`, { productId }, { withCredentials: true });
     return productId;
 });
 
 export const updateQuantityBackend = createAsyncThunk("cart/updateQuantityBackend", async ({ productId, quantity }) => {
-    await axios.post("https://e-commerce-backend-production-6436.up.railway.app/api/user/cart/update", { productId, quantity }, { withCredentials: true });
+    await axios.post(`${BASE_URL}/api/user/cart/update`, { productId, quantity }, { withCredentials: true });
     return { productId, quantity };
 });
 

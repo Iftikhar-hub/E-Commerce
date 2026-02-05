@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
+import { BASE_URL } from '../utils/data';
 
 const Success = () => {
     const [searchParams] = useSearchParams();
@@ -13,7 +14,7 @@ const Success = () => {
 
     useEffect(() => {
         if (sessionId) {
-            axios.get(`https://e-commerce-backend-production-6436.up.railway.app/get-invoice/${sessionId}`)
+            axios.get(`${BASE_URL}/get-invoice/${sessionId}`)
                 .then(res => setInvoiceUrl(res.data.invoice_url))
                 .catch(err => console.error(err));
         }

@@ -8,6 +8,7 @@ import bankImage from '../assets/bankImage.png'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import {motion} from 'framer-motion'
+import { BASE_URL } from '../utils/data';
 
 
 
@@ -43,7 +44,7 @@ const CheckOut = () => {
         if (Option === 'BANK') {
             try {
                 const res = await axios.post(
-                    "http://localhost:8000/create-checkout-session",
+                    `${BASE_URL}/create-checkout-session`,
                     { cartItems },
                     {userInfo: userInfo},
                     { headers: { 'Content-Type': 'application/json' } }

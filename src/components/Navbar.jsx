@@ -15,6 +15,7 @@ import { MdArrowDropDown } from "react-icons/md";
 
 
 import { motion, AnimatePresence } from 'framer-motion';
+import { BASE_URL } from '../utils/data';
 
 const Navbar = ({ userId }) => {
     const isAuth = localStorage.getItem('isAuth');
@@ -46,7 +47,7 @@ const Navbar = ({ userId }) => {
     const handleLogout = async () => {
         try {
             await axios.post(
-                'https://e-commerce-backend-production-6436.up.railway.app/api/user/user-logout',
+                `${BASE_URL}/api/user/user-logout`,
                 {},
                 { withCredentials: true }
             );

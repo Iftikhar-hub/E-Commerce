@@ -2,6 +2,7 @@ import Header from "../components/Header"
 
 import axios from "axios";
 import { useState } from "react";
+import { BASE_URL } from "../utils/data";
 
 const Admin = () => {
 
@@ -29,7 +30,7 @@ const Admin = () => {
                   productData.append("orignalPrice", productForm.orignalPrice);
                   productData.append("discountedPrice", productForm.discountedPrice);
                   productData.append("image", productForm.image);
-                const res = await axios.post("http://localhost:8000/api/product/product-insert", productData,
+                const res = await axios.post(`${BASE_URL}/api/product/product-insert`, productData,
                     {
                     headers: {
                         "Content-Type": "multipart/form-data",

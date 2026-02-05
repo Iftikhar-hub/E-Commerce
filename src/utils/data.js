@@ -197,3 +197,5 @@ export const socialMediaIcons = [FaFacebook, FaTwitter, FaInstagram, FaLinkedin]
 //     },
     
 // ]
+
+export const BASE_URL = import.meta.env.VITE_BASE_URL ;

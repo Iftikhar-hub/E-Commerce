@@ -14,6 +14,7 @@ import signupImage from '../assets/signupImage.png'
 import { motion } from "framer-motion"
 import { useDispatch } from "react-redux";
 import { loadUserCart } from "../services/adToCart";
+import { BASE_URL } from "../utils/data";
 
 const Login = () => {
     const [loginForm, setloginForm] = useState({
@@ -45,7 +46,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('https://e-commerce-backend-production-6436.up.railway.app/api/user/user-login', loginForm, { withCredentials: true });
+            const res = await axios.post(`${BASE_URL}/api/user/user-login`, loginForm, { withCredentials: true });
             localStorage.setItem('isAuth', 'true');
 
             const userId = res.data.id;

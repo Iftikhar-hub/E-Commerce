@@ -11,6 +11,7 @@ import signupImage from '../assets/signupImage.png'
 import hide from '../assets/hide.png'
 import visible from '../assets/visible.png'
 import {motion} from 'framer-motion'
+import { BASE_URL } from "../utils/data";
 
 // import { Icon } from 'react-icons-kit';
 // import { eyeOff } from 'react-icons-kit/feather/eyeOff';
@@ -55,7 +56,7 @@ const SignUp = () => {
               formData.append("pass", registerForm.pass);
               formData.append("cpass", registerForm.cpass);
               formData.append("file", registerForm.file);
-            const res = await axios.post("https://e-commerce-backend-production-6436.up.railway.app/api/user/user-insert", formData,
+            const res = await axios.post(`${BASE_URL}/api/user/user-insert`, formData,
                 {
                 headers: {
                     "Content-Type": "multipart/form-data",

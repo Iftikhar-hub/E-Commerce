@@ -5,13 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 import { useDispatch } from 'react-redux';
+import { BASE_URL } from '../utils/data';
 const UserProfile = ({ userId }) => {
     
      const navigate = useNavigate();
      const handleLogout = async () => {
             try {
                 await axios.post(
-                    'https://e-commerce-backend-production-6436.up.railway.app/api/user/user-logout',
+                    `${BASE_URL}/api/user/user-logout`,
                     {},
                     { withCredentials: true }
                 );
