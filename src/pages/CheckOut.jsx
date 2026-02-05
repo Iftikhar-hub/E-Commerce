@@ -97,11 +97,11 @@ const CheckOut = () => {
         <div className="flex flex-col h-screen">
             <Header />
             <Navbar />
-            <div className="w-full max-w-400 px-59 flex flex-col items-start gap-5 mx-auto mt-20">
-                <p className='text-[#000000] font-inter font-medium text-[36px] leading-7.5 tracking-[4%] 
+            <div className="w-full max-w-400 px-6 lg:px-26 xl:px-36  flex flex-col text-center lg:items-start gap-5 mx-auto mt-20">
+                <p className='text-[#000000] t font-inter font-medium text-[36px] leading-7.5 tracking-[4%] 
                   '>Billing Details</p>
 
-                <div className='w-full flex flex-row  gap-45 justify-between  '>
+                <div className='w-full flex flex-col  lg:flex-row gap-24 xl:gap-45 justify-between items-center  '>
                     <motion.form action="#"
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}

@@ -177,7 +177,7 @@ const Navbar = ({ userId }) => {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: 30 }}
                                         transition={{ duration: 0.5, ease: "easeInOut" }}
-                                        className='p-5 absolute  right-0  top-9 bg-[#DB4444] rounded-sm  z-10'>
+                                        className='p-5 absolute  right-0  top-9 bg-[#e9e9e9] rounded-sm  z-10'>
                                         <UserProfile />
 
                                     </motion.div>

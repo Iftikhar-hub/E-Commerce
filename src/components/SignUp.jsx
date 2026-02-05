@@ -74,14 +74,14 @@ const SignUp = () => {
         <div className="flex flex-col h-full">
             <Header />
             <Navbar />
-            <div className="w-full px-36 max-w-400 border-t mx-auto border-[#ccc9c9] mt-4 flex-1">
+            <div className="w-full px-6 lg:px-26 xl:px-36 max-w-400 border-t mx-auto border-[#ccc9c9] mt-4 flex-1">
                 <div className="flex flex-row items-center justify-between gap-32.25 mt-15">
                     <motion.div
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         viewport={{ amount: 0.1 }}
-                        className="w-full max-w-201.25 rounded-sm h-195.25 bg-[#CBE4E8]">
+                        className="w-full max-w-201.25 rounded-sm h-120 xl:h-195.25 max-[800px]:hidden bg-[#CBE4E8]">
                         <img src={signupImage} alt="signupImage" className=" w-229.75"/>
                     </motion.div>
 
@@ -92,8 +92,8 @@ const SignUp = () => {
                         viewport={{ amount: 0.1 }}
                         className="w-full max-w-92.75 flex flex-col gap-8">
                         <div className="flex flex-col gap-4 items-start">
-                            <p className="font-inter font-medium text-[36px] leading-7.5 tracking-[4%] text-[#000000]">Create an account</p>
-                            <p className="font-inter font-regular text-[16px] leading-6 tracking-[0] text-[#000000]">Enter your details below</p>
+                            <p className="font-inter font-medium text-[28px] sm:text-[36px] leading-7.5 tracking-[4%] text-[#000000]">Create an account</p>
+                            <p className="font-inter font-regular text-[14px] sm:text-[16px] leading-6 tracking-[0] text-[#000000]">Enter your details below</p>
                             {message && (
                                 <div
                                     style={{

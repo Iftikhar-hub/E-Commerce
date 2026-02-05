@@ -18,19 +18,19 @@ const WhishList = () => {
         <div className="flex flex-col h-screen">
             <Header />
             <Navbar />
-            <div className="w-full px-36 max-w-400 border-t mx-auto border-[#ccc9c9] mt-4 pt-20 flex-1">
+            <div className="w-full px-6 lg:px-26 xl:px-36 max-w-400 border-t mx-auto border-[#ccc9c9] mt-4 pt-20 flex-1">
                 <div className=" w-full max-w-400 flex flex-col gap-15">
                     <div className="w-full flex flex-row items-center justify-between">
                         <p className="font-poppins text-2xl font-semibold leading-12 tracking-[0.04em]
                          ">WhishList (4)
                         </p>
-                        <button className='px-4 py-2 border border-[#ccc9c9] rounded-sm cursor-pointer text-center hover:bg-[#DB4444] transition-colors duration-500 ease-in-out hover:text-white'>Move All to Bag</button>
+                        <button className='px-4  py-2 max-[500px]:hidden border border-[#ccc9c9] rounded-sm cursor-pointer text-center hover:bg-[#DB4444] transition-colors duration-500 ease-in-out hover:text-white'>Move All to Bag</button>
                     </div>
 
-                    <div className='flex flex-row gap-7.5 w-full max-w-350 overflow-x-auto'>
+                    <div className='grid grid-cols-2 max-[436px]:grid-cols-1 lg:flex lg:flex-row gap-7.5 w-full max-w-350 overflow-x-scroll'>
                         {ProductIcons.map((icon, index) => (
-                            <div className='w-full max-w-67.5 flex flex-col gap-4 '>
-                                < div className='ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
+                            <div className='w-full flex flex-col gap-4 '>
+                                < div className='w-full ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
                                               justify-center'>
                                     <div className='flex flex-row justify-between items-start'>
                                         <p></p>
@@ -43,7 +43,7 @@ const WhishList = () => {
                                     <button className='mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] transition-colors duration-600 hover:bg-[#c12424] rounded-sm'>Add To Cart</button>
                                 </div>
 
-                                <div className='ProductDetails flex flex-col gap-2'>
+                                <div className='w-full ProductDetails flex flex-col gap-2'>
                                     <p key={index} className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{icon.name}</p>
                                     <p key={index} className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>{icon.price}
                                         <span key={index} className='text-[#000000] line-through opacity-50'>
@@ -55,6 +55,7 @@ const WhishList = () => {
                             </div>
                         ))}
                     </div>
+                        <button className='px-4  py-2 hidden max-[500px]:block border border-[#ccc9c9] rounded-sm cursor-pointer text-center hover:bg-[#DB4444] transition-colors duration-500 ease-in-out hover:text-white'>Move All to Bag</button>
 
                     <div className="w-full flex mt-15 flex-row items-center justify-between">
                         <div className="flex flex-row items-center gap-6">
@@ -63,13 +64,13 @@ const WhishList = () => {
                               ">Just for You</p>
 
                         </div>
-                        <button className='px-4 py-2 border border-[#ccc9c9] rounded-sm cursor-pointer text-center hover:bg-[#DB4444] transition-colors duration-500 ease-in-out hover:text-white'>See All</button>
+                        <button className='px-4 py-2 max-[500px]:hidden border border-[#ccc9c9] rounded-sm cursor-pointer text-center hover:bg-[#DB4444] transition-colors duration-500 ease-in-out hover:text-white'>See All</button>
                     </div>
 
-                    <div className='flex flex-row gap-7.5 w-full max-w-350 overflow-x-auto'>
+                    <div className='grid grid-cols-2 max-[436px]:grid-cols-1 lg:flex lg:flex-row gap-7.5 w-full max-w-350 overflow-x-auto'>
                         {ProductIcons.map((icon, index) => (
-                            <div className='w-full max-w-67.5 flex flex-col gap-4 '>
-                                < div className='ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
+                            <div className='w-full  flex flex-col gap-4 '>
+                                < div className='w-full ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
                                               justify-center'>
                                     <div className='flex flex-row justify-between items-start'>
                                         <p></p>
@@ -100,6 +101,7 @@ const WhishList = () => {
                             </div>
                         ))}
                     </div>
+                    <button className='px-4 py-2 hidden max-[500px]:block border border-[#ccc9c9] rounded-sm cursor-pointer text-center hover:bg-[#DB4444] transition-colors duration-500 ease-in-out hover:text-white'>See All</button>
 
                 </div>
             </div>

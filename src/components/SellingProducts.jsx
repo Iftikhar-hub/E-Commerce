@@ -12,7 +12,7 @@ const SellingProducts = () => {
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
     return (
-        <div className="w-full max-w-400 px-6 lg:px-26 xl:px-36  mx-auto">
+        <div className="w-full overflow-hidden max-w-400 px-6 lg:px-26 xl:px-36  mx-auto">
             <div className=" flex flex-col gap-15 py-20 ">
                 <div className=" w-full flex flex-row justify-between items-baseline-last 
                           ">

@@ -62,7 +62,7 @@ const Products = () => {
 
 
     return (
-        <div className="w-full max-w-400 mx-auto px-6 lg:px-26 xl:px-36 mt-25 flex flex-col items-center gap-10">
+        <div className="w-full max-w-400 overflow-hidden mx-auto px-6 lg:px-26 xl:px-36 mt-25 flex flex-col items-center gap-10">
             <div className=" w-full max-w-400 flex flex-row justify-between items-baseline-last">
                 <div className="max-[380px]:w-full flex flex-row items-baseline-last justify-between gap-6 sm:gap-12 md:gap-21.75">
                     <motion.div

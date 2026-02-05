@@ -46,17 +46,17 @@ const UserProfile = ({ userId }) => {
     if (userData) {
         return (
             
-            <div className='text-black flex flex-col gap-4 items-center justify-center'>
+            <div className='text-black flex  flex-col gap-4 items-center justify-center'>
                 <img src={userData.file} alt="PNG" className='w-15 h-15 rounded-full'/>
                 <div className='text-black flex flex-col items-center justify-center'>
                     <p>{userData._id}</p>
-                    <h1 className='text-[18px] text-[#FAFAFA] font-bold'>{userData.name}</h1>
-                    <p className='text-[15px] text-[#FAFAFA]'>{userData.email}</p>
+                    <h1 className='text-[18px] text-black font-bold'>{userData.name}</h1>
+                    <p className='text-[15px] text-black'>{userData.email}</p>
 
                 </div>
                 
                 
-                <a href="#" onClick={handleLogout} className='group relative overflow-hidden font-bold font-poppins text-[#FAFAFA] text-base w-full py-1 border border-[#FAFAFA] leading-6 tracking-normal text-center rounded-sm hover:border-none'>
+                <a href="#" onClick={handleLogout} className='group relative overflow-hidden font-bold font-poppins text-black text-base w-full py-1 border border-black leading-6 tracking-normal text-center rounded-sm hover:border-none'>
                     <span class="relative z-10 group-hover:text-white transition-colors duration-300">
                         Log Out
                     </span>

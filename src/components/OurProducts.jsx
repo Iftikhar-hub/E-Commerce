@@ -11,7 +11,7 @@ const OurProducts = () => {
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
     return (
-        <div className="w-full max-w-400 px-6 lg:px-26 xl:px-36  mx-auto ">
+        <div className="w-full max-w-400 overflow-hidden px-6 lg:px-26 xl:px-36  mx-auto ">
             <div className=" flex flex-col items-center gap-15 py-2 ">
                 <div className=" w-full flex flex-row justify-between items-baseline-last 
                   ">

@@ -5,7 +5,7 @@ import {motion} from 'framer-motion'
 import { categoryItems } from '../utils/data.js'
 const Categor = () => {
     return (
-        <div className="w-full max-w-400 px-6 lg:px-26 xl:px-36  mx-auto mt-15">
+        <div className="w-full overflow-hidden max-w-400 px-6 lg:px-26 xl:px-36  mx-auto mt-15">
             <div className=" flex flex-col gap-15 py-20 border-t border-b border-[#d4d2d2]">
                 <div className=" w-full flex flex-row justify-between items-baseline-last 
                   ">

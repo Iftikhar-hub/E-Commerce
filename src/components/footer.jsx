@@ -5,8 +5,8 @@ import { socialMediaIcons } from '../utils/data.js'
 const Footer = () => {
     return (
         
-        <footer className="w-full pt-20 items-center justify-center flex flex-col  mx-auto mt-25 bg-[#000000]  pb-5">
-            <div className="flex flex-row gap-21.75">
+        <footer className=" w-full px-6 lg:px-26 xl:px-36 pt-20 items-center justify-center flex flex-col  mx-auto mt-25 bg-[#000000]  pb-5">
+            <div className="flex flex-wrap gap-21.75">
                 <div className="flex flex-col gap-4">
                     <p className="text-[#FAFAFA] font-inter text-[24px] font-bold leading-6 tracking-[0.03em]">Exclusive
 
