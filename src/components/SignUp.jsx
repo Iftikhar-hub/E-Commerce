@@ -140,10 +140,10 @@ const SignUp = () => {
                             </button>
                     
                         </form>
-                        <button className="w-full relative group max-w-80 border border-[#DB4444] py-4 flex flex-row gap-4 items-center justify-center rounded-sm text-[#000000]  text-[16px] font-medium font-poppins cursor-pointer"><FaGoogle className="w-6 h-6 text-[#DB4444] group-hover:text-white z-10" /> 
+                        {/* <button className="w-full relative group max-w-80 border border-[#DB4444] py-4 flex flex-row gap-4 items-center justify-center rounded-sm text-[#000000]  text-[16px] font-medium font-poppins cursor-pointer"><FaGoogle className="w-6 h-6 text-[#DB4444] group-hover:text-white z-10" /> 
                             <span className='z-10 relative group-hover:text-white'>Sign up with Google</span>
                             <div class="absolute inset-0 bg-[#DB4444] w-0 group-hover:w-full  transition-all duration-300 ease-in-out rounded-sm "></div>
-                        </button>
+                        </button> */}
 
                         <div className="w-full max-w-80 flex flex-row gap-1 justify-center items-center"> 
                             <p className="font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#424242]">Already have account?</p>
