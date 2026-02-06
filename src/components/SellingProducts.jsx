@@ -6,8 +6,10 @@ import heroaPicture from '../assets/heroaPicture.png'
 
 import { sellingItems } from '../utils/data.js'
 import { motion } from 'framer-motion'
+import { useNavigate } from "react-router-dom";
 
 const SellingProducts = () => {
+    const navigate = useNavigate();
 
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
@@ -68,7 +70,7 @@ const SellingProducts = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <img src={sellingIcon.sellingImage} alt="sellingIcon" className='w-43 h-38 mx-auto' />
+                                <img onClick={() => navigate(`/productDetails/${sellingIcon.id}`)} src={sellingIcon.sellingImage} alt="sellingIcon" className='w-43 h-38 mx-auto cursor-pointer' />
                             </div>
 
                             <div className='w-full ProductDetails flex flex-col gap-2'>

@@ -22,6 +22,8 @@ const Cart = () => {
     }, [dispatch]);
 
     const handleQuantityChange = (productId, value) => {
+        if (value < 1) return; // Prevent quantity less than 1
+        if (value > 10) return; // Prevent quantity greater than 10
         dispatch(updateQuantityBackend({ productId, quantity: Number(value) }));
     };
 
@@ -85,6 +87,7 @@ const Cart = () => {
                                             <input
                                                 type="number"
                                                 min={1}
+                                                max={10}
                                                 value={cart.quantity}
                                                 onChange={(e) => handleQuantityChange(cart._id, e.target.value)}
                                                 className="border block sm:hidden border-[#87878a] w-12 h-6 pl-2 rounded-sm"

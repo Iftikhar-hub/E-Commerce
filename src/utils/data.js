@@ -98,6 +98,7 @@ export const categoryItems = [
 // Selling Products Array
 export const sellingItems = [
     {
+        id: "1",
         sellingImage: redCoat,
         sellingName: 'The north coat',
         sellingPrice: '$120',
@@ -105,18 +106,21 @@ export const sellingItems = [
     },
 
     {
+        id: "2",
         sellingImage: bag,
         sellingName: 'Gucci duffle bag',
         sellingPrice: '$960',
         sellingDiscounted: '$1160'
     },
     {
+        id: "3",
         sellingImage: cooler,
         sellingName: 'RGB liquid CPU Cooler ',
         sellingPrice: '$335',
         sellingDiscounted: '$430'
     },
     {
+        id: "4",
         sellingImage: bookSelf,
         sellingName: 'Small BookSelf ',
         sellingPrice: '$375',
@@ -179,23 +183,6 @@ export const upperitems = [
 
 export const socialMediaIcons = [FaFacebook, FaTwitter, FaInstagram, FaLinkedin]
 
-// carts items array
 
-// export const cartItems = [
-//     {
-//         image: HAVIT,
-//         name: 'HV Gamepad',
-//         price: 120,
-//         quantity: 1
-        
-//     },
-//     {
-//         image: keyboard,
-//         name: 'Wired Keyboard',
-//         price: 90,
-//         quantity: 1
-//     },
-    
-// ]
 
 export const BASE_URL = import.meta.env.VITE_BASE_URL ;

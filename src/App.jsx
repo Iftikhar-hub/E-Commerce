@@ -14,6 +14,7 @@ import Success from './components/succeed.jsx'
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loadUserCart } from "./services/adToCart";
+import  ProductDetails  from './pages/productDetails';
 
 
 
@@ -22,7 +23,6 @@ import { loadUserCart } from "./services/adToCart";
 function App() {
   const dispatch = useDispatch();
 
-  // ✅ LOAD USER CART ON PAGE REFRESH
   useEffect(() => {
     const userId = localStorage.getItem("userId");
 
@@ -44,6 +44,10 @@ function App() {
       <Route path='/Admin' element={<Admin />} />
 
       <Route path='/success' element={<Success />} />
+      {/* <Route path='/ProductDetails/:id' element={<ProductDetails />} /> */}
+      <Route path="/productDetails/:id" element={<ProductDetails />} />
+
+  
       
 
    </Routes>

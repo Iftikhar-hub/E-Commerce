@@ -12,9 +12,11 @@ import { BASE_URL } from '../utils/data';
 
 
 
-const CheckOut = () => {
 
-    const [Option, setOption] = useState('');
+const CheckOut = () => {
+    const navigate = useNavigate();
+
+    const [Option, setOption] = useState('BANK');
 
     const [userInfo, setUserInfo] = useState({
         userName: '',
@@ -67,7 +69,10 @@ const CheckOut = () => {
         }
         if (Option === 'COD') {
             alert('Order placed successfully');
+            
+            
         }
+        
 
 
 
@@ -109,12 +114,21 @@ const CheckOut = () => {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         viewport={{ amount: 0.1 }}
                         className='flex flex-col gap-6  py-1  rounded-sm'>
-                        <input type="text" required placeholder='Name' name='userName' value={userInfo.userName} onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
+                        
+                        <input type="text" required placeholder='Name' name='userName' value={userInfo.userName}
+                            onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
+                        
                         <input type="text" placeholder='Company Name (Optional)' maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
+
                         <input type="text" placeholder='Street Address (Optional)' maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
-                        <input type="text" required placeholder='City' name='userCity' value={userInfo.userCity} onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
+
+                        <input type="text" required placeholder='City' name='userCity' value={userInfo.userCity}
+                            onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
+                        
                         <input type="tex" inputMode="numeric" required pattern="[0-9]*" name='userNumber' value={userInfo.userNumber} onChange={userInfoChange} placeholder='Phone Number' maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
+
                         <input type="email" required placeholder='Email Address' name='userEmail' value={userInfo.userEmail} onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
+
                         <div className='flex flex-row gap-1 items-center' >
                             <input type="checkbox" className='w-4 h-4 cursor-pointer accent-[#DB4444]' />
                             <p className='text-[16px] font-normal tracking-0 font-poppins'>Save this information for faster check-out next time</p>
@@ -164,7 +178,7 @@ const CheckOut = () => {
                         <form className='flex flex-col gap-6'>
                             <div className='w-full flex flex-row justify-between items-center '>
                                 <div className='flex flex-row gap-2 items-center'>
-                                    <input type="radio" name="gg" id="ff" className='w-4 h-4 accent-[#DB4444] cursor-pointer' onChange={(e) => setOption(e.target.value)} value="BANK" />
+                                    <input type="radio" name="gg" id="ff" defaultChecked className='w-4 h-4 accent-[#DB4444] cursor-pointer' onChange={(e) => setOption(e.target.value)} value="BANK" />
                                     <p className='text-[16px] font-normal tracking-0 font-poppins'>Bank</p>
                                 </div>
 

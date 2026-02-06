@@ -16,10 +16,12 @@ import { useDispatch } from 'react-redux';
 
 import { motion } from 'framer-motion';
 import { addToCartBackend } from "../services/adToCart";
+import { useNavigate } from 'react-router-dom'
 
 
 
 const Products = () => {
+    const navigate = useNavigate();
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
 
@@ -59,6 +61,8 @@ const Products = () => {
     }, [data])
 
     const cartItems = useSelector((state) => state.cart.items);
+
+    
 
 
     return (
@@ -151,7 +155,7 @@ const Products = () => {
                                     </button>
                                 </div>
                             </div>
-                            <img src={product.image} alt="icon" className='w-43 h-38 mx-auto' />
+                            <img onClick={() => navigate(`/productDetails/${product._id}`)} src={product.image} alt="icon" className='w-43 h-38 mx-auto cursor-pointer' />
                             {
                                 userData ? (
                                     cartItems.find((item) => item._id === product._id) ? (
