@@ -14,7 +14,8 @@ import Success from './components/succeed.jsx'
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loadUserCart } from "./services/adToCart";
-import  ProductDetails  from './pages/productDetails';
+import ProductDetails from './pages/productDetails';
+
 
 
 

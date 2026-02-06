@@ -1,9 +1,16 @@
 import iconsleft from '../assets/iconsleft.svg'
 import iconsright from '../assets/iconsright.svg'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import { SwiperSlide, Swiper } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css/navigation';
+import 'swiper/css';
+import React, { useRef } from 'react';
 
 import { categoryItems } from '../utils/data.js'
 const Categor = () => {
+    const swiperRef = useRef(null);
     return (
         <div className="w-full overflow-hidden max-w-400 px-6 lg:px-26 xl:px-36  mx-auto mt-15">
             <div className=" flex flex-col gap-15 py-20 border-t border-b border-[#d4d2d2]">
@@ -24,41 +31,52 @@ const Categor = () => {
                             </div>
                             <p className="font-inter text-2xl lg:text-4xl whitespace-nowrap font-semibold leading-12 tracking-[0.04em]
                             text-[#000000]">Browse By Category</p>
-                      </div>  
+                        </div>
                     </motion.div>
 
                     <motion.div
+
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         viewport={{ amount: 0.1 }}
                         className='flex flex-row gap-2 max-[400px]:hidden'>
-                        <div className='w-11.5 h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
+                        <div onClick={() => { swiperRef.current?.slidePrev() }} className='w-11.5 h-11.5 cursor-pointer flex items-center justify-center rounded-full bg-[#F5F5F5] '>
                             <img src={iconsleft} alt="iconsleft" />
                         </div>
-                        <div className='w-11.5 h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
+                        <div onClick={() => { swiperRef.current?.slideNext() }} className='cursor-pointer w-11.5 h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
                             <img src={iconsright} alt="iconsright" />
                         </div>
 
                     </motion.div>
 
                 </div>
-                <div className='flex flex-row justify-between items-center w-full gap-6 overflow-x-auto no-scrollbar'>
 
-                    {categoryItems.map((category, index) => (
-                        <div key={category.name?? index} className='w-32 h-26 max-[425px]:px-4 px-3 lg:w-42.5 lg:h-36.25 flex flex-col items-center justify-center gap-4 rounded-sm border border-[#d4d2d2]'>
-                            <motion.img
-                                initial={{ opacity: 0}}
-                                whileInView={{ opacity: 1, rotate: 360 , y: 0 }}
-                                transition={{ duration: 0.8, ease: "easeOut" }}
-                                viewport={{ amount: 0.1 }}
-                                
-                                src={category.categoryImage} alt="category" className='w-14 h-14' />
-                            <p className='text-black max-[425px]:text-[14px] '>{ category.categoryName}</p>
-                        </div>
-                        
-                    ))}
-                </div>
+                <Swiper modules={[Navigation]} loop={true} spaceBetween={0}
+                    slidesPerView={4} allowTouchMove={false}
+                    onBeforeInit={(swiper) => {
+                        swiperRef.current = swiper;
+                    }
+
+                    }
+                    className="mySwiper w-full">
+                    <div className='flex flex-row justify-between items-center w-full gap-6 overflow-x-auto no-scrollbar'>
+
+                        {categoryItems.map((category, index) => (
+                            <SwiperSlide key={category.name ?? index} className='w-32 h-26 max-[425px]:px-4 px-3 lg:w-42.5 lg:h-36.25 flex flex-col items-center justify-center gap-4 rounded-sm border border-[#d4d2d2]'>
+                                <motion.img
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1, rotate: 360, y: 0 }}
+                                    transition={{ duration: 0.8, ease: "easeOut" }}
+                                    viewport={{ amount: 0.1 }}
+
+                                    src={category.categoryImage} alt="category" className='w-14 h-14' />
+                                <p className='text-black max-[425px]:text-[14px] '>{category.categoryName}</p>
+                            </SwiperSlide>
+
+                        ))}
+                    </div>
+                </Swiper>
             </div>
         </div>
     )

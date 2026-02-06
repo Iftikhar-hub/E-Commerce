@@ -31,7 +31,7 @@ const OurProducts = () => {
                         </div>
                     </motion.div>
 
-                    <motion.div
+                    {/* <motion.div
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -44,7 +44,7 @@ const OurProducts = () => {
                             <img src={iconsright} alt="iconsright" />
                         </div>
 
-                    </motion.div>
+                    </motion.div> */}
                 </div>
 
                 <motion.div

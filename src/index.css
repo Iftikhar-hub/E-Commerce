@@ -24,3 +24,12 @@ body {
  .no-scrollbar::-webkit-scrollbar {
      display: none;
  }
+
+ .swiper-wrapper {
+     align-items: stretch;
+ }
+
+ .swiper-slide {
+     height: auto;
+    width: auto ;
+ }
