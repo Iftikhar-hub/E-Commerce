@@ -15,11 +15,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loadUserCart } from "./services/adToCart";
 import ProductDetails from './pages/productDetails';
-
-
-
-
-
+import AllProducts from './pages/AllProducts.jsx'
+import AllSellingProducts from './pages/AllSellingProducts.jsx'
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +44,8 @@ function App() {
       <Route path='/success' element={<Success />} />
       {/* <Route path='/ProductDetails/:id' element={<ProductDetails />} /> */}
       <Route path="/productDetails/:id" element={<ProductDetails />} />
+      <Route path="/AllProducts" element={<AllProducts />} />
+      <Route path="/AllSellingProducts" element={<AllSellingProducts />} />
 
   
       

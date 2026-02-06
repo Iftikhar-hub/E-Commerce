@@ -30,21 +30,6 @@ const OurProducts = () => {
                             <p className="font-inter whitespace-nowrap text-2xl lg:text-4xl font-semibold leading-12 tracking-[0.04em] text-[#000000]">Explore Our Products</p>
                         </div>
                     </motion.div>
-
-                    {/* <motion.div
-                        initial={{ opacity: 0, x: 100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ amount: 0.1 }}
-                        className='flex flex-row gap-2 max-[425px]:hidden'>
-                        <div className='w-11.5 h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
-                            <img src={iconsleft} alt="iconsleft" />
-                        </div>
-                        <div className='w-11.5 h-11.5 flex items-center justify-center rounded-full bg-[#F5F5F5] '>
-                            <img src={iconsright} alt="iconsright" />
-                        </div>
-
-                    </motion.div> */}
                 </div>
 
                 <motion.div

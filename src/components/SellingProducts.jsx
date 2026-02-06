@@ -14,7 +14,7 @@ const SellingProducts = () => {
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
     return (
-        <div className="w-full overflow-hidden max-w-400 px-6 lg:px-26 xl:px-36  mx-auto">
+        <div className="w-full  overflow-hidden max-w-400 px-6 lg:px-26 xl:px-36  mx-auto">
             <div className=" flex flex-col gap-15 py-20 ">
                 <div className=" w-full flex flex-row justify-between items-baseline-last 
                           ">
@@ -41,10 +41,10 @@ const SellingProducts = () => {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         viewport={{ amount: 0.1 }}
                         className=' flex-row gap-2 hidden sm:flex'>
-                        <button className='w-39.75 h-14 relative group whitespace-nowrap bg-[#DB4444] py-4 px-12 flex items-center justify-center text-[white] rounded-sm font-poppins font-bold cursor-pointer text-[16px]'>
+                        <a href='/AllSellingProducts' className='w-39.75 h-14 relative group whitespace-nowrap bg-[#DB4444] py-4 px-12 flex items-center justify-center text-[white] rounded-sm font-poppins font-bold cursor-pointer text-[16px]'>
                             <span className='w-full z-10 text-white relative'>View All</span>
                             <div class="absolute inset-0 bg-[#b82525] w-0 group-hover:w-full  transition-all duration-300 ease-in-out rounded-sm "></div>
-                        </button>
+                        </a>
                     </motion.div>
 
                 </div>
@@ -97,10 +97,10 @@ const SellingProducts = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ amount: 0.1 }}
                     className='flex flex-row gap-2  sm:hidden'>
-                    <button className='w-full h-14 relative group whitespace-nowrap bg-[#DB4444] py-4 px-12 flex items-center justify-center text-[white] rounded-sm font-poppins font-bold cursor-pointer text-[16px]'>
+                    <a href='/AllSellingProducts' className='w-full h-14 relative group whitespace-nowrap bg-[#DB4444] py-4 px-12 flex items-center justify-center text-[white] rounded-sm font-poppins font-bold cursor-pointer text-[16px]'>
                         <span className='w-full z-10 text-white relative'>View All</span>
                         <div class="absolute inset-0 bg-[#b82525] w-0 group-hover:w-full  transition-all duration-300 ease-in-out rounded-sm "></div>
-                    </button>
+                    </a>
                 </motion.div>
                 <motion.img
                     initial={{ opacity: 0, y: 60 }}
@@ -110,6 +110,8 @@ const SellingProducts = () => {
                     src={heroaPicture} alt="heroaPicture" />
 
             </div>
+
+
         </div>
 
     )

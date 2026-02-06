@@ -244,11 +244,11 @@ const Products = () => {
                 />
             </motion.div>
 
-            <button className='w-58.5 relative group h-14 bg-[#DB4444] py-4 px-12 flex items-center justify-center text-[white] rounded-sm font-poppins font-bold cursor-pointer text-[16px]'>
+            <a href='/AllProducts' className='w-58.5 relative group h-14 bg-[#DB4444] py-4 px-12 flex items-center justify-center text-[white] rounded-sm font-poppins font-bold cursor-pointer text-[16px]'>
                 <span className='z-10 relative'>View All Products</span>
                 <div className="absolute inset-0 bg-[#b82525]   w-0 group-hover:w-full  transition-all duration-300 ease-in-out rounded-sm
                 group-hover:scale-103  "></div>
-            </button>
+            </a>
 
         </div>
 
