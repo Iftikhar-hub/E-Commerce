@@ -15,6 +15,7 @@ import { motion } from "framer-motion"
 import { useDispatch } from "react-redux";
 import { loadUserCart } from "../services/adToCart";
 import { BASE_URL } from "../utils/data";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
     const [loginForm, setloginForm] = useState({
@@ -55,12 +56,19 @@ const Login = () => {
             dispatch(loadUserCart());
            
 
-            setMessage(res.data.msg);
+           
+            toast.success(res.data.msg, {
+                position: 'top-right',
+                autoClose: 3000,
+            });
             navigate('/')
           
             
         } catch (err) {
-            setMessage(err.response?.data?.msg || "Something Wrong, Please try again");
+       
+            toast.error(err.response?.data?.msg || "Something Wrong, Please try again", {
+                position: 'top-right',
+            });
             
         }
         
@@ -132,6 +140,8 @@ const Login = () => {
                        
 
                     </motion.div>
+                    <ToastContainer position="top-right"
+                        autoClose={5000} />
                 </div>
                 <div className="flex-1" />
             </div>

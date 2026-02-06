@@ -12,6 +12,7 @@ import hide from '../assets/hide.png'
 import visible from '../assets/visible.png'
 import {motion} from 'framer-motion'
 import { BASE_URL } from "../utils/data";
+import { ToastContainer, toast } from 'react-toastify';
 
 // import { Icon } from 'react-icons-kit';
 // import { eyeOff } from 'react-icons-kit/feather/eyeOff';
@@ -55,20 +56,27 @@ const SignUp = () => {
               formData.append("email", registerForm.email);
               formData.append("pass", registerForm.pass);
               formData.append("cpass", registerForm.cpass);
-              formData.append("file", registerForm.file);
+            //   formData.append("file", registerForm.file);
             const res = await axios.post(`${BASE_URL}/api/user/user-insert`, formData,
                 {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
+                });
+            toast.success(res.data.msg, {
+                position: 'top-right',
+                autoClose: 3000,
             });
-            setMessage(res.data.msg); 
+            // setMessage(res.data.msg); 
             navigate('/login')
             
             
         } catch (err) {
-            
-            setMessage(err.response?.data?.msg || "Something Wrong, Please try again");
+            toast.error(err.response?.data?.msg || "Something Wrong, Please try again", {
+                position: 'top-right',
+                autoClose: 3000,
+            });
+           
         }
     };
     return (
@@ -114,8 +122,8 @@ const SignUp = () => {
                             
                             <input type="email" name='email' value={registerForm.email}
                                 onChange={handleChange} placeholder="Email" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required autoComplete="email" />
-                            <input onChange={handleChange} autocomplete="file" type="file" name="file" className="border-b h-12 p-2 border-[#ccc9c9] outline-0 text-[#6e6d6d]"
-                                id="file"  />
+                            {/* <input onChange={handleChange} autocomplete="file" type="file" name="file" className="border-b h-12 p-2 border-[#ccc9c9] outline-0 text-[#6e6d6d]"
+                                id="file"  /> */}
                             <div className="w-full flex flex-row justify-between">
                                 <input type={type} name='pass' value={registerForm.pass} autoComplete="pass"
                                     onChange={(e) => {

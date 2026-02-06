@@ -18,6 +18,10 @@ import ProductDetails from './pages/productDetails';
 import AllProducts from './pages/AllProducts.jsx'
 import AllSellingProducts from './pages/AllSellingProducts.jsx'
 
+
+import { ToastContainer } from 'react-toastify';
+
+
 function App() {
   const dispatch = useDispatch();
 
@@ -31,6 +35,7 @@ function App() {
 
 
   return (
+    <>
     <Routes>
       <Route path='/' element={<HomePage />} />
       <Route path='/signup' element={<Signup />} />
@@ -50,7 +55,24 @@ function App() {
   
       
 
-   </Routes>
+    </Routes>
+    <div>
+      
+      <ToastContainer 
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      </div>
+    </>
+    
   )
 }
 
