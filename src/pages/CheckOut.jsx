@@ -9,7 +9,7 @@ import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import {motion} from 'framer-motion'
 import { BASE_URL } from '../utils/data';
-
+import { useNavigate } from 'react-router-dom';
 
 
 

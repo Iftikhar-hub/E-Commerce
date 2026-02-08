@@ -2,6 +2,11 @@ import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import Footer from '../components/footer'
 import { RxCross1 } from "react-icons/rx";
+import { useMemo } from "react";
+import { shallowEqual } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import { updateLocalQuantity } from "../services/adToCart";
+
 
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,21 +15,39 @@ import {
     updateQuantityBackend,
     removeFromCartBackend,
 } from "../services/adToCart";
+import { useRef } from "react";
+
 
 const Cart = () => {
     const dispatch = useDispatch();
-    const cartItems = useSelector((state) => state.cart.items);
 
-    const subtotal = cartItems.reduce((acc, item) => acc + (item.discountedPrice ?? item.orignalPrice) * item.quantity, 0);
+    const cartItems = useSelector(state => state.cart.items, shallowEqual);
+
+
+    const subtotal = useMemo(() =>
+        cartItems.reduce((acc, item) => acc + (item.discountedPrice ?? item.orignalPrice) * item.quantity, 0)
+        , [cartItems]);
+
 
     useEffect(() => {
-        dispatch(loadUserCart());
-    }, [dispatch]);
+        if (cartItems.length === 0) {
+            dispatch(loadUserCart());
+        }
+    }, []);
 
+    const qtyTimers = useRef({});
     const handleQuantityChange = (productId, value) => {
-        if (value < 1) return; // Prevent quantity less than 1
-        if (value > 10) return; // Prevent quantity greater than 10
-        dispatch(updateQuantityBackend({ productId, quantity: Number(value) }));
+        if (value < 1 || value > 10) return;
+
+        dispatch(updateLocalQuantity({ productId, quantity: Number(value) }));
+
+        if (qtyTimers.current[productId]) {
+            clearTimeout(qtyTimers.current[productId]);
+        }
+
+        qtyTimers.current[productId] = setTimeout(() => {
+            dispatch(updateQuantityBackend({ productId, quantity: Number(value) }));
+        }, 400);
     };
 
     const handleRemove = (productId) => {
@@ -72,7 +95,7 @@ const Cart = () => {
                                         </td>
                                         <td className='hidden sm:block'>${(cart.discountedPrice ?? cart.orignalPrice) * cart.quantity}</td>
                                         <td>
-                                            <RxCross1 onClick={() => handleRemove(cart._id)} className='text-red-600 font-bold w-6 h-6'/>
+                                            <RxCross1 onClick={() => handleRemove(cart._id)} className='cursor-pointer text-red-600 font-bold w-6 h-6'/>
                                             {/* <button className="bg-red-600  text-white px-2 py-1 rounded-sm" onClick={() => handleRemove(cart._id)}>Remove</button> */}
                                         </td>
                                     </tr>

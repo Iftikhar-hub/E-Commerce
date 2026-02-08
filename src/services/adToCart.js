@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../utils/data";
+// import { addLocalItem } from "./adToCart";
 
 
 export const loadUserCart = createAsyncThunk("cart/loadUserCart", async () => {
@@ -17,10 +18,14 @@ export const loadUserCart = createAsyncThunk("cart/loadUserCart", async () => {
 
 export const addToCartBackend = createAsyncThunk(
     "cart/addToCartBackend",
-    async ({ productId, quantity }) => {
+    async ({ product }, { dispatch }) => {
+        dispatch(addLocalItem(product));
+
         const res = await axios.post(
             `${BASE_URL}/api/user/cart/add`,
-            { productId, quantity },
+            {
+                productId: product._id,
+                quantity: 1 },
             { withCredentials: true }
         );
        
@@ -57,23 +62,37 @@ const cartSlice = createSlice({
         items: [],
         status: "idle"
     },
-    reducers: {},
+    reducers: {
+        addLocalItem: (state, action) => {
+            const existing = state.items.find(i => i._id === action.payload._id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                state.items.push({ ...action.payload, quantity: 1 });
+            }
+        },
+        updateLocalQuantity: (state, action) => {
+            const { productId, quantity } = action.payload;
+            const item = state.items.find(i => i._id === productId);
+            if (item) item.quantity = quantity;
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(loadUserCart.fulfilled, (state, action) => {
                 state.items = action.payload;
             })
             .addCase(addToCartBackend.fulfilled, (state, action) => {
-                const newItem = action.payload;
-                const existing = state.items.find(item => item._id === newItem._id);
-                if (existing) {
-                    existing.quantity += newItem.quantity;
-                } else {
-                    state.items.push(newItem);
-                }
+                // const newItem = action.payload;
+                // const existing = state.items.find(item => item._id === newItem._id);
+                // if (existing) {
+                //     existing.quantity += newItem.quantity;
+                // } else {
+                //     state.items.push(newItem);
+                // }
             })
-            .addCase(removeFromCartBackend.fulfilled, (state, action) => {
-                state.items = state.items.filter(item => item._id !== action.payload);
+            .addCase(removeFromCartBackend.pending, (state, action) => {
+                state.items = state.items.filter(item => item._id !== action.meta.arg.productId);
             })
             .addCase(updateQuantityBackend.fulfilled, (state, action) => {
                 const { productId, quantity } = action.payload;
@@ -83,4 +102,5 @@ const cartSlice = createSlice({
     }
 });
 
+export const { addLocalItem, updateLocalQuantity } = cartSlice.actions;
 export default cartSlice.reducer; 

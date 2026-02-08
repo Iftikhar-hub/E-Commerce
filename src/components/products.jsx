@@ -43,20 +43,14 @@ const Products = () => {
             setShowLoginPopup(true);
             return;
         }
-        dispatch(
-            addToCartBackend({
-                productId: product._id ?? product.id,
-                quantity: 1,
-            })
-        )
+
+        dispatch(addToCartBackend({ product }))
             .unwrap()
-            .then(() => {
-                console.log("Product added to cart in backend!");
-            })
-            .catch((err) => {
-                console.error("Failed to add product to cart:", err);
-            });
+            .then(() => toast.success("Added to cart! 🛒"))
+            .catch(() => toast.error("Failed to add"));
+
     };
+
 
     const { data } = useGetProductDataQuery();
     const [displayProducts, setDisplayedProducts] = useState([]);

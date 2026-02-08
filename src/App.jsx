@@ -11,6 +11,9 @@ import CheckOut from './pages/CheckOut'
 import Admin from './pages/admin'
 import Success from './components/succeed.jsx'
 
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loadUserCart } from "./services/adToCart";
 import ProductDetails from './pages/productDetails';
 import AllProducts from './pages/AllProducts.jsx'
 import AllSellingProducts from './pages/AllSellingProducts.jsx'
@@ -20,7 +23,15 @@ import { ToastContainer } from 'react-toastify';
 
 
 function App() {
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+
+    if (userId) {
+      dispatch(loadUserCart());
+    }
+  }, []);
 
 
   return (
