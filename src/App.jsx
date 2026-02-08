@@ -20,6 +20,7 @@ import AllSellingProducts from './pages/AllSellingProducts.jsx'
 
 
 import { ToastContainer } from 'react-toastify';
+import AllProductCategory from "./pages/AllProductCategory";
 
 
 function App() {
@@ -50,7 +51,8 @@ function App() {
       {/* <Route path='/ProductDetails/:id' element={<ProductDetails />} /> */}
       <Route path="/productDetails/:id" element={<ProductDetails />} />
       <Route path="/AllProducts" element={<AllProducts />} />
-      <Route path="/AllSellingProducts" element={<AllSellingProducts />} />
+        <Route path="/AllSellingProducts" element={<AllSellingProducts />} />
+        <Route path="/category/:category" element={<AllProductCategory />} />
 
   
       

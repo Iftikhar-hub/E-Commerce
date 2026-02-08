@@ -70,7 +70,7 @@ const ProductDetails = () => {
                         {sellingProduct.sellingPrice}
                         <span className="line-through text-gray-500 ml-3">{sellingProduct.sellingDiscounted}</span>
                     </p>
-                    <p className="text-gray-700">{sellingProduct.description}</p>
+                    <p className="text-gray-700">{sellingProduct.sellingDescription}</p>
                     <button
                         onClick={() => handleAddToCart(sellingProduct)}
                         className="mt-4 bg-[#DB4444] text-white px-8 py-3 cursor-pointer rounded-md hover:bg-[#b82525] transition"

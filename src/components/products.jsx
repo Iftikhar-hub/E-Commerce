@@ -175,7 +175,7 @@ const Products = () => {
 
                     }
                     className="mySwiper w-full">
-                    {displayProducts && displayProducts.map((product, index) => (
+                    {displayProducts && displayProducts?.slice(0,8).map((product, index) => (
                         <SwiperSlide key={product._id ?? index} className=' flex flex-col gap-4 '>
                             <div className='w-full max-w-67 ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
                           justify-center'>

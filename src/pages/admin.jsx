@@ -7,7 +7,7 @@ import { BASE_URL } from "../utils/data";
 const Admin = () => {
 
     const [productForm, setproductForm] = useState({
-        pname: "", description: "", orignalPrice: "", discountedPrice:"", image: null
+        category:"", pname: "", description: "", orignalPrice: "", discountedPrice:"", image: null
     });
     const [message, setMessage] = useState("");
     
@@ -25,6 +25,7 @@ const Admin = () => {
     
             try {
                 const productData = new FormData();
+                productData.append("category", productForm.category);
                   productData.append("pname", productForm.pname);
                   productData.append("description", productForm.description);
                   productData.append("orignalPrice", productForm.orignalPrice);
@@ -73,6 +74,8 @@ const Admin = () => {
 
 
                     <form onSubmit={handleProductSubmit} encType="multipart/form-data" className="w-full flex flex-col gap-4">
+                        
+                        <input type="text" onChange={handleProductChange} name='category' placeholder="Category" className="border-b h-12 p-2 border-amber-700 outline-0 w-100" required />
                         <input type="text" onChange={handleProductChange} name='pname' placeholder="Product Name" className="border-b h-12 p-2 border-amber-700 outline-0 w-100" required />
 
                         <textarea name="description" onChange={handleProductChange} placeholder="Product Description" className="border-b h-12 p-2 border-amber-700 outline-0" required></textarea>

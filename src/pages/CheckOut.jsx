@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {motion} from 'framer-motion'
 import { BASE_URL } from '../utils/data';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -35,11 +36,18 @@ const CheckOut = () => {
 
     const handleSubmit = async () => {
         if (!userInfo.userName || !userInfo.userCity || !userInfo.userNumber || !userInfo.userEmail) {
-            alert('Please fill in all required billing details');
+            // alert('Please fill in all required billing details');
+            toast.error("Please fill in all required billing details", {
+                position: 'top-right',
+            });
             return;
         }
         if (!Option) {
-            alert('Please select a payment method');
+            // alert('Please select a payment method');
+            toast.error("Please fill in all required billing details", {
+                position: 'top-right',
+            });
+            
             return;
         }
 
@@ -57,13 +65,19 @@ const CheckOut = () => {
                 if (res.data.url) {
                     window.location.href = res.data.url;
                 } else {
-                    alert("Stripe session creation failed");
+                  
+                    toast.error("Stripe session creation failed", {
+                        position: 'top-right',
+                    });
                 }
 
                
             } catch (err) {
                 console.error(err);
-                alert("Payment failed");
+                // alert("Payment failed");
+                toast.error("Payment failed", {
+                    position: 'top-right',
+                });
             }
 
         }
@@ -211,6 +225,8 @@ const CheckOut = () => {
 
                     </motion.div>
                 </div>
+                <ToastContainer position="top-right"
+                    autoClose={5000} />
             </div>
             <div className="flex-1" />
             <Footer />

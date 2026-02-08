@@ -102,7 +102,8 @@ export const sellingItems = [
         sellingImage: redCoat,
         sellingName: 'The north coat',
         sellingPrice: '$120',
-        sellingDiscounted: '$160'
+        sellingDiscounted: '$160',
+        sellingDescription:'Description Will show here'
     },
 
     {
@@ -110,21 +111,25 @@ export const sellingItems = [
         sellingImage: bag,
         sellingName: 'Gucci duffle bag',
         sellingPrice: '$960',
-        sellingDiscounted: '$1160'
+        sellingDiscounted: '$1160',
+        sellingDescription: 'Brera combines effortless elegance and versatility. Crafted from structured yet lightweight GG canvas'
     },
     {
         id: "3",
         sellingImage: cooler,
         sellingName: 'RGB liquid CPU Cooler ',
         sellingPrice: '$335',
-        sellingDiscounted: '$430'
+        sellingDiscounted: '$430',
+        sellingDescription: 'Description Will show here'
+
     },
     {
         id: "4",
         sellingImage: bookSelf,
         sellingName: 'Small BookSelf ',
         sellingPrice: '$375',
-        sellingDiscounted: '$450'
+        sellingDiscounted: '$450',
+        sellingDescription:'Description Will show here'
     },
 ]
 
