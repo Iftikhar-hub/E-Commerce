@@ -66,7 +66,7 @@ const SellingProducts = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ amount: 0.1 }}
                     className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7.5  max-w-350 overflow-x-hidden no-scrollbar'>
-                    {displayProducts && displayProducts?.map((product, index) => (
+                    {displayProducts && displayProducts?.slice(0,4).map((product, index) => (
                         <div key={product._id ?? index} className='w-full  flex flex-col gap-4 '>
                             < div className='w-ful ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex  
                              flex-col justify-center'>

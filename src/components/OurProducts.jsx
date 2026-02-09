@@ -5,11 +5,23 @@ import view from '../assets/view.svg'
 import YelowStar from '../assets/YelowStar.svg'
 
 import { upperitems } from '../utils/data.js'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
+import { useGetProductDataQuery } from '../services/productApi.js'
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const OurProducts = () => {
+    const navigate = useNavigate();
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
+    const { data } = useGetProductDataQuery("ourProducts");
+        const [displayProducts, setDisplayedProducts] = useState([]);
+        useEffect(() => {
+            if (data && data.data) {
+                setDisplayedProducts(data.data)
+            }
+    
+        }, [data])
     return (
         <div className="w-full max-w-400 overflow-hidden px-6 lg:px-26 xl:px-36  mx-auto ">
             <div className=" flex flex-col items-center gap-15 py-2 ">
@@ -38,8 +50,8 @@ const OurProducts = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ amount: 0.1 }}
                     className=' grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7.5 place-content-between place-items-center w-full max-w-350 overflow-x-hidden'>
-                    {upperitems.map((upperIcon, index) => (
-                        <div key={index} className='w-full  flex flex-col gap-4 '>
+                    {displayProducts && displayProducts?.map((product, index) => (
+                        <div key={product._id ?? index} className='w-full  flex flex-col gap-4 '>
                             < div className='w-full ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex  
                                              flex-col justify-center'>
                                 <div className=' flex flex-row justify-between items-start'>
@@ -53,15 +65,17 @@ const OurProducts = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <img src={upperIcon.upperImage} alt="upperIcon" className='w-43 h-38 mx-auto' />
+                                <img onClick={() => navigate(`/productDetails/${product._id}`)} src={product.image} alt="product" className='w-43 cursor-pointer h-38 mx-auto' />
                             </div>
 
                             <div className='w-full ProductDetails flex flex-col gap-2'>
-                                <p className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{upperIcon.upperName}</p>
+                                <p className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{product.pname}</p>
+                                <p className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>${product.orignalPrice}
+                                    <span className='line-through text-gray-500'>${product.discountedPrice}</span>
+                                </p>
                                 
                                 <div className="flex flex-row items-center space-x-1">
-                                    <p className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>{upperIcon.upperPrice}
-                                    </p>
+                                   
                                     {iconsArray.map((_, index) => (
                                         <img src={YelowStar} className="h-4 w-4" alt="YelowStar" key={index}>
                                         </img>
