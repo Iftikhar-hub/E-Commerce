@@ -55,100 +55,102 @@ const Cart = () => {
     };
 
     return (
-        <div className="flex flex-col  h-screen">
+        <div className="flex flex-col min-h-screen">
             <Header />
             <Navbar />
+            <div className='flex-1'>
 
-            {cartItems.length === 0 ? (
-                <p className="text-[22px]  text-red-900 font-bold text-center mt-6">Your cart is empty</p>
-            ) : (
-                <div className="w-full max-w-400 px-6 lg:px-26 xl:px-36 flex flex-col gap-20 items-center justify-center mx-auto mt-20">
-                    <table className="w-full border-separate border-spacing-y-4">
-                        <thead>
-                            <tr className="bg-white/5   shadow-sm backdrop-blur-sm">
-                                <th className="px-2 py-2  text-left font-poppins font-normal text-[18px] leading-6 text-black">Product</th>
-                                <th className="px-2 py-2  text-left font-poppins font-normal text-[18px] leading-6 text-black">Price</th>
-                                <th className="hidden sm:block px-2 py-2 text-left font-poppins font-normal text-[18px] leading-6 text-black">Quantity</th>
-                                <th className="px-2 max-[640px]:hidden  py-2 text-left font-poppins font-normal text-[18px] leading-6 text-black">Subtotal</th>
-                                <th className="px-2 hidden py-2 w-full text-end font-poppins font-normal text-[18px] leading-6 text-black">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {cartItems.map((cart) => (
-                                <>
-                                    <tr key={cart._id}>
-                                        <td className="px-2 py-2">
-                                            <div className="flex items-center gap-3">
-                                                <img src={cart.image} alt={cart.pname} className="w-13.5 h-13.5 object-cover" />
-                                                <p className='max-[557px]:hidden'>{cart.pname}</p>
-                                            </div>
-                                        </td>
-                                        <td className="px-2 py-2 font-poppins font-normal text-[16px] leading-6 text-black">${cart.discountedPrice ?? cart.orignalPrice}</td>
-                                        <td>
-                                            <input
-                                                type="number"
-                                                min={1}
-                                                value={cart.quantity}
-                                                onChange={(e) => handleQuantityChange(cart._id, e.target.value)}
-                                                className="border hidden sm:block border-[#87878a] w-12 pl-2 rounded-sm"
-                                            />
-                                        </td>
-                                        <td className='hidden sm:block'>${(cart.discountedPrice ?? cart.orignalPrice) * cart.quantity}</td>
-                                        <td>
-                                            <RxCross1 onClick={() => handleRemove(cart._id)} className='cursor-pointer text-red-600 font-bold w-6 h-6'/>
-                                            {/* <button className="bg-red-600  text-white px-2 py-1 rounded-sm" onClick={() => handleRemove(cart._id)}>Remove</button> */}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className='hidden max-[557px]:block text-[16px] font-bold whitespace-nowrap'>
-                                            {cart.pname}
-                                        </td>
-                                    </tr>
-                                    <tr className='w-full mt-3 sm:hidden flex justify-center flex-col items-start gap-2 '>
-                                        <td className='flex flex-row gap-4 items-center'>
-                                            <p className="block sm:hidden  font-poppins font-normal text-[15px] leading-6 text-black">Quantity</p>
-                                            <input
-                                                type="number"
-                                                min={1}
-                                                max={10}
-                                                value={cart.quantity}
-                                                onChange={(e) => handleQuantityChange(cart._id, e.target.value)}
-                                                className="border block sm:hidden border-[#87878a] w-12 h-6 pl-2 rounded-sm"
-                                            />
-                                        </td>
-                                        <td className='flex flex-row items-center gap-4'>
-                                            <p className="block sm:hidden   font-poppins font-normal text-[15px] leading-6 text-black">Subtotal</p>
-                                            <p className="block sm:hidden text-[15px]">${(cart.discountedPrice ?? cart.orignalPrice) * cart.quantity}</p>
-                                        </td>
-                                        
-                                    </tr>
-                                </>
-                            ))}
-                        </tbody>
-                    </table>
+                {cartItems.length === 0 ? (
+                    <p className="text-[22px]  text-red-900 font-bold text-center mt-6">Your cart is empty</p>
+                ) : (
+                    <div className=" w-full max-w-400 px-6 lg:px-26 xl:px-36 flex flex-col gap-20 items-end justify-center mx-auto mt-20">
+                        <table className="w-full border-separate border-spacing-y-4">
+                            <thead>
+                                <tr className="bg-white/5   shadow-sm backdrop-blur-sm">
+                                    <th className="px-2 py-2  text-left font-poppins font-normal text-[18px] leading-6 text-black">Product</th>
+                                    <th className="px-2 py-2  text-left font-poppins font-normal text-[18px] leading-6 text-black">Price</th>
+                                    <th className="hidden sm:block px-2 py-2 text-left font-poppins font-normal text-[18px] leading-6 text-black">Quantity</th>
+                                    <th className="px-2 max-[640px]:hidden  py-2 text-left font-poppins font-normal text-[18px] leading-6 text-black">Subtotal</th>
+                                    <th className="px-2 hidden py-2 w-full text-end font-poppins font-normal text-[18px] leading-6 text-black">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {cartItems.map((cart) => (
+                                    <>
+                                        <tr key={cart._id} className=''>
+                                            <td className="px-2 py-2">
+                                                <div className="flex items-center gap-3">
+                                                    <img src={cart.image} alt={cart.pname} className="w-13.5 h-13.5 object-cover" />
+                                                    <p className='max-[557px]:hidden'>{cart.pname}</p>
+                                                </div>
+                                            </td>
+                                            <td className="px-2 py-2 font-poppins font-normal text-[16px] leading-6 text-black">${cart.discountedPrice ?? cart.orignalPrice}</td>
+                                            <td>
+                                                <input
+                                                    type="number"
+                                                    min={1}
+                                                    value={cart.quantity}
+                                                    onChange={(e) => handleQuantityChange(cart._id, e.target.value)}
+                                                    className="border hidden sm:block border-[#87878a] w-12 pl-2 rounded-sm"
+                                                />
+                                            </td>
+                                            <td className='hidden sm:block px-2 py-5 font-poppins font-normal text-[16px] leading-6 text-black'>${(cart.discountedPrice ?? cart.orignalPrice) * cart.quantity}</td>
+                                            <td>
+                                                <RxCross1 onClick={() => handleRemove(cart._id)} className='cursor-pointer text-red-600 font-bold w-6 h-6' />
+                                                {/* <button className="bg-red-600  text-white px-2 py-1 rounded-sm" onClick={() => handleRemove(cart._id)}>Remove</button> */}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className='hidden max-[557px]:block text-[16px] font-bold whitespace-nowrap'>
+                                                {cart.pname}
+                                            </td>
+                                        </tr>
+                                        <tr className='w-full mt-3 sm:hidden flex justify-center flex-col items-start gap-2 '>
+                                            <td className='flex flex-row gap-4 items-center'>
+                                                <p className="block sm:hidden  font-poppins font-normal text-[15px] leading-6 text-black">Quantity</p>
+                                                <input
+                                                    type="number"
+                                                    min={1}
+                                                    max={10}
+                                                    value={cart.quantity}
+                                                    onChange={(e) => handleQuantityChange(cart._id, e.target.value)}
+                                                    className="border block sm:hidden border-[#87878a] w-12 h-6 pl-2 rounded-sm"
+                                                />
+                                            </td>
+                                            <td className='flex flex-row items-center gap-4'>
+                                                <p className="block sm:hidden   font-poppins font-normal text-[15px] leading-6 text-black">Subtotal</p>
+                                                <p className="block sm:hidden text-[15px]">${(cart.discountedPrice ?? cart.orignalPrice) * cart.quantity}</p>
+                                            </td>
 
-                    <div className="border w-full max-w-117.5 border-[#000000] rounded-sm flex flex-col px-4 py-6 gap-6">
-                        <p className='text-[#000000] text-[20px] font-poppins font-medium'>Cart Total</p>
-                        <div className='border-b border-[#a3a3a3] pb-2 w-full flex flex-row justify-between'>
-                            <p className='text-[16px] font-poppins font-normal'>Subtotal</p>
-                            <p className='text-[16px] font-poppins font-normal'>${subtotal}</p>
+                                        </tr>
+                                    </>
+                                ))}
+                            </tbody>
+                        </table>
 
+                        <div className="border w-full max-w-117.5 border-[#000000] rounded-sm flex flex-col px-4 py-6 gap-6">
+                            <p className='text-[#000000] text-[20px] font-poppins font-medium'>Cart Total</p>
+                            <div className='border-b border-[#a3a3a3] pb-2 w-full flex flex-row justify-between'>
+                                <p className='text-[16px] font-poppins font-normal'>Subtotal</p>
+                                <p className='text-[16px] font-poppins font-normal'>${subtotal}</p>
+
+                            </div>
+                            <div className='border-b border-[#a3a3a3] pb-2 w-full flex flex-row justify-between'>
+                                <p className='text-[16px] font-poppins font-normal'>Shipping:</p>
+                                <p className='text-[16px] font-poppins font-normal'>Free</p>
+
+                            </div>
+                            <div className=' w-full flex flex-row justify-between'>
+                                <p className='text-[16px] font-poppins font-normal'>Total:</p>
+                                <p className='text-[16px] font-poppins font-normal'>${subtotal}</p>
+
+                            </div>
+                            <a href="/CheckOut" className="bg-[#DB4444] text-white px-4 text-center py-2 rounded">Proceed to Checkout</a>
                         </div>
-                        <div className='border-b border-[#a3a3a3] pb-2 w-full flex flex-row justify-between'>
-                            <p className='text-[16px] font-poppins font-normal'>Shipping:</p>
-                            <p className='text-[16px] font-poppins font-normal'>Free</p>
-
-                        </div>
-                        <div className=' w-full flex flex-row justify-between'>
-                            <p className='text-[16px] font-poppins font-normal'>Total:</p>
-                            <p className='text-[16px] font-poppins font-normal'>${subtotal}</p>
-
-                        </div>
-                        <a href="/CheckOut" className="bg-[#DB4444] text-white px-4 text-center py-2 rounded">Proceed to Checkout</a>
                     </div>
-                </div>
-            )}
-            <Footer />
+                )}
+            </div>
+            <Footer className="mt-auto" />
         </div>
     );
 };

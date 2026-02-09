@@ -9,10 +9,14 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCartBackend } from "../services/adToCart";
 import { useGetUserDataQuery } from '../services/userApi';
+import { ToastContainer, toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+
 
 const ProductDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
+     const cartItems = useSelector((state) => state.cart.items);
     const [showLoginPopup, setShowLoginPopup] = useState(false);
 
     const { data: productData, isLoading: productLoading, isError: productError } = useGetProductDataQuery();
@@ -22,20 +26,20 @@ const ProductDetails = () => {
     const product = products.find(item => item._id === id || item.id === id);
     const sellingProduct = sellingItems.find(item => item.id === id);
 
-    const handleAddToCart = (prod) => {
+    const handleAddToCart = (product) => {
         if (!userData) {
-            setShowLoginPopup(true);
+            // setShowLoginPopup(true);
+            toast.error("Please Login to Proceed", {
+                position: 'top-right',
+            });
             return;
         }
-        dispatch(
-            addToCartBackend({
-                productId: prod._id ?? prod.id,
-                quantity: 1,
-            })
-        )
+
+        dispatch(addToCartBackend({ product }))
             .unwrap()
-            .then(() => console.log("Product added to cart in backend!"))
-            .catch(err => console.error("Failed to add product to cart:", err));
+            .then(() => toast.success("Added to cart! 🛒"))
+            .catch(() => toast.error("Failed to add"));
+
     };
 
     let content;
@@ -47,37 +51,45 @@ const ProductDetails = () => {
         content = <p className="text-center mt-20 text-xl">Product not found</p>;
     } else if (product) {
         content = (
-            <div className="flex-grow p-4">
+            <div className="w-full max-w-100 flex-grow p-4 mt-10 px-6">
+                <img src={product.image} alt={product.pname || product.name} className="" />
                 <h1 className="text-2xl font-bold mb-4">{product.pname || product.name}</h1>
-                <img src={product.image} alt={product.pname || product.name} className="w-64 h-64 object-cover mb-4" />
-                <p className="text-lg mb-2">Price: ${product.discountedPrice || product.price}</p>
+                <p className="text-lg mb-2 font-bold text-[#DB4444]">Price: ${product.orignalPrice}
+                    <span className="line-through text-gray-500 ml-3">${product.discountedPrice}</span>
+                </p>
                 <p className="text-gray-700">{product.description}</p>
-                <button
-                    onClick={() => handleAddToCart(product)}
-                    className="mt-4 bg-[#DB4444] cursor-pointer text-white px-8 py-3 rounded-md hover:bg-[#b82525] transition"
-                >
-                    Add to Cart
-                </button>
+                {
+                    userData ? (
+                        cartItems.find((item) => item._id === product._id) ? (
+                            <button className='mt-3 font-medium font-poppins cursor-not-allowed px-2 py-2 text-[white] text-center w-full bg-gray-400 rounded-sm ' disabled>Added to Cart</button>
+                        ) : (
+                            <button onClick={() => handleAddToCart(product)} className=' mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
+                        )
+                    ) : (
+                        <button onClick={() => handleAddToCart(product)} className='relative group mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>
+                            <span className='w-full z-10 text-white relative'>Add To Cart</span>
+                            <div class="absolute inset-0 bg-[#b82525] h-0 group-hover:h-full  transition-all duration-300 ease-in-out rounded-sm "></div>
+                        </button>
+                    )
+                }
             </div>
         );
     } else if (sellingProduct) {
         content = (
-            <div className="flex-grow p-6 flex flex-col md:flex-row gap-8">
-                <img src={sellingProduct.sellingImage} alt={sellingProduct.sellingName} className="w-80 h-80 object-cover rounded-md" />
-                <div className="flex flex-col gap-4">
-                    <h1 className="text-2xl font-bold">{sellingProduct.sellingName}</h1>
-                    <p className="text-lg text-[#DB4444]">
-                        {sellingProduct.sellingPrice}
-                        <span className="line-through text-gray-500 ml-3">{sellingProduct.sellingDiscounted}</span>
-                    </p>
-                    <p className="text-gray-700">{sellingProduct.sellingDescription}</p>
-                    <button
-                        onClick={() => handleAddToCart(sellingProduct)}
-                        className="mt-4 bg-[#DB4444] text-white px-8 py-3 cursor-pointer rounded-md hover:bg-[#b82525] transition"
-                    >
-                        Add to Cart
-                    </button>
-                </div>
+            <div className="w-full max-w-100 flex-grow p-4 mt-10 px-6">
+                <img src={sellingProduct.sellingImage} alt={sellingProduct.sellingName} className="" />
+                <h1 className="text-2xl font-bold">{sellingProduct.sellingName}</h1>
+                <p className="text-lg font-bold text-[#DB4444]">
+                    {sellingProduct.sellingPrice}
+                    <span className="line-through text-gray-500 ml-3">{sellingProduct.sellingDiscounted}</span>
+                </p>
+                <p className="text-gray-700">{sellingProduct.sellingDescription}</p>
+                <button
+                    onClick={() => handleAddToCart(sellingProduct)}
+                    className="mt-4 w-full bg-[#DB4444] text-white px-8 py-3 cursor-pointer rounded-md hover:bg-[#b82525] transition"
+                >
+                    Add to Cart
+                </button>
             </div>
         );
     }
@@ -87,7 +99,7 @@ const ProductDetails = () => {
             <Header />
             <Navbar />
             {content}
-            <LoginPopup show={showLoginPopup} onClose={() => setShowLoginPopup(false)} />
+            <LoginPopup className='absolute top-0' show={showLoginPopup} onClose={() => setShowLoginPopup(false)} />
             <Footer />
         </div>
     );

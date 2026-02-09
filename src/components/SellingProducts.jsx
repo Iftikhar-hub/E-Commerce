@@ -4,15 +4,26 @@ import YelowStar from '../assets/YelowStar.svg'
 
 import heroaPicture from '../assets/heroaPicture.png'
 
-import { sellingItems } from '../utils/data.js'
 import { motion } from 'framer-motion'
 import { useNavigate } from "react-router-dom";
+import { useGetProductDataQuery } from '../services/productApi.js'
+import { useEffect, useState } from "react";
+
 
 const SellingProducts = () => {
     const navigate = useNavigate();
 
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
+
+    const { data } = useGetProductDataQuery("bestSelling");
+        const [displayProducts, setDisplayedProducts] = useState([]);
+        useEffect(() => {
+            if (data && data.data) {
+                setDisplayedProducts(data.data)
+            }
+    
+        }, [data])
     return (
         <div className="w-full  overflow-hidden max-w-400 px-6 lg:px-26 xl:px-36  mx-auto">
             <div className=" flex flex-col gap-15 py-20 ">
@@ -55,8 +66,8 @@ const SellingProducts = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ amount: 0.1 }}
                     className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7.5  max-w-350 overflow-x-hidden no-scrollbar'>
-                    {sellingItems.map((sellingIcon, index) => (
-                        <div key={index} className='w-full  flex flex-col gap-4 '>
+                    {displayProducts && displayProducts?.map((product, index) => (
+                        <div key={product._id ?? index} className='w-full  flex flex-col gap-4 '>
                             < div className='w-ful ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex  
                              flex-col justify-center'>
                                 <div className='flex flex-row justify-between items-start'>
@@ -70,14 +81,15 @@ const SellingProducts = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <img onClick={() => navigate(`/productDetails/${sellingIcon.id}`)} src={sellingIcon.sellingImage} alt="sellingIcon" className='w-43 h-38 mx-auto cursor-pointer' />
+                                <img onClick={() => navigate(`/productDetails/${product._id}`)} src={product.image} alt="product" className='w-43 h-38 mx-auto cursor-pointer' />
                             </div>
 
                             <div className='w-full ProductDetails flex flex-col gap-2'>
-                                <p className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{sellingIcon.sellingName}</p>
-                                <p className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>{sellingIcon.sellingPrice}
+                                <p className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>
+                                    {product.pname}</p>
+                                <p className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>${product.orignalPrice}
                                     <span className='text-[#000000] line-through opacity-50'>
-                                        {sellingIcon.sellingDiscounted}</span>
+                                        ${product.discountedPrice}</span>
                                 </p>
                                 <div className="flex flex-row items-center space-x-1">
                                     {iconsArray.map((_, index) => (
