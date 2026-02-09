@@ -51,6 +51,7 @@ const ProductDetails = () => {
         content = <p className="text-center mt-20 text-xl">Product not found</p>;
     } else if (product) {
         content = (
+            
             <div className="w-full max-w-100 flex-grow p-4 mt-10 px-6">
                 <img src={product.image} alt={product.pname || product.name} className="" />
                 <h1 className="text-2xl font-bold mb-4">{product.pname || product.name}</h1>
@@ -73,6 +74,8 @@ const ProductDetails = () => {
                     )
                 }
             </div>
+                
+
         );
     } else if (sellingProduct) {
         content = (

@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux'
 import { useEffect, useState } from "react";
 import { FiUser, } from "react-icons/fi";
 import { MdArrowDropDown } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -30,7 +31,7 @@ const Navbar = ({ userId }) => {
 
     const navLinks = [
         { name: "Home", href: "/" },
-        { name: "Contact", href: "#" },
+        { name: "Contact", href: "/Contact" },
         { name: "About", href: "#" },
 
     ]
@@ -39,7 +40,9 @@ const Navbar = ({ userId }) => {
 
     const handleTpaddedCart = () => {
         if (!userData) {
-            alert("Please login to view your cart");
+             toast.error("Please Login To View Your Cart", {
+                            position: 'top-right',
+                        });
             return;
         }
         navigate('/Cart');

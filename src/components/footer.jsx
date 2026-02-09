@@ -16,7 +16,7 @@ const Footer = () => {
                     <a href="#" className="font-poppins text-[#FAFAFA] text-[16px] font-normal font-regular leading-6
                     tracking-0">Get 10% off your first order</a>
                     <div className='flex flex-row gap-8 border border-[#FAFAFA] py-3 pl-4 pr-2 items-center rounded-sm'>
-                        <input className='text-[#FAFAFA]' type="text" placeholder='Enter Your Email' />
+                        <input className='text-[#FAFAFA] outline-0' type="text" placeholder='Enter Your Email' />
                         <img src={iconSend} alt="iconSend" className='cursor-pointer' />
                     </div>
 

@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { addToCartBackend } from "../services/adToCart";
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const AllProducts = () => {
@@ -38,7 +39,10 @@ const AllProducts = () => {
         const dispatch = useDispatch();
         const handleAddToCart = (product) => {
             if (!userData) {
-                setShowLoginPopup(true);
+                // setShowLoginPopup(true);
+                 toast.error("Please Login To Proceed", {
+                                position: 'top-right',
+                            });
                 return;
             }
             dispatch(
