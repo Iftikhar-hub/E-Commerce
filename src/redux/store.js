@@ -5,6 +5,7 @@ import { productApi } from '../services/productApi';
 
 import { setupListeners } from '@reduxjs/toolkit/query';
 import cartReducer from '../services/adToCart';
+import wishlistReducer from '../services/adToWishlist'
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     
         [productApi.reducerPath]: productApi.reducer,
         cart: cartReducer,
+        wishlist: wishlistReducer,
     },
 
     middleware: (getDefaultMiddleware) =>

@@ -16,12 +16,17 @@ import { useDispatch } from 'react-redux';
 
 import { motion } from 'framer-motion';
 import { addToCartBackend } from "../services/adToCart";
+import { addToWishlistBackend } from "../services/adToWishlist";
+import { removeFromWishlistBackend } from "../services/adToWishlist";
 import { useNavigate } from 'react-router-dom'
 import { SwiperSlide, Swiper } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css/navigation';
 import 'swiper/css';
 import React, { useRef } from 'react';
+import { toast } from 'react-toastify';
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa6";
 
 
 
@@ -46,10 +51,33 @@ const Products = () => {
 
         dispatch(addToCartBackend({ product }))
             .unwrap()
-            .then(() => toast.success("Added to cart! 🛒"))
+            .then(() => toast.success("Added to cart! "))
             .catch(() => toast.error("Failed to add"));
 
     };
+
+    const handleAddToWishlist = (product) => {
+        if (!userData) {
+            setShowLoginPopup(true);
+            return;
+        }
+
+        dispatch(addToWishlistBackend({ product }))
+            .unwrap()
+            .then(() => toast.success("Added to wishlist! "))
+            .catch(() => toast.error("Failed to add"));
+
+    };
+
+     const handleRemoveWishlist = (productId) => {
+         dispatch(removeFromWishlistBackend({ productId }))
+             .unwrap()
+             .then(() => toast.success("Item Removed from wishlist"))
+             .catch(() => toast.error("Failed To Remove")); 
+         
+
+    };
+    
 
 
     const { data } = useGetProductDataQuery();
@@ -62,6 +90,8 @@ const Products = () => {
     }, [data])
 
     const cartItems = useSelector((state) => state.cart.items);
+    const wishlistItems = useSelector((state) => state.wishlist.items);
+    
 
     // Counter
     const initialTime = 2 * 24 * 60 * 60;
@@ -106,7 +136,7 @@ const Products = () => {
                         </div>
                         <p className="font-inter whitespace-nowrap text-2xl lg:text-4xl font-semibold leading-12 tracking-[0.04em]
                           text-[#000000]">Flash Sales</p>
-                     
+
 
                     </motion.div>
 
@@ -175,18 +205,29 @@ const Products = () => {
 
                     }
                     className="mySwiper w-full">
-                    {displayProducts && displayProducts?.slice(0,8).map((product, index) => (
+                    {displayProducts && displayProducts?.slice(0, 8).map((product, index) => (
                         <SwiperSlide key={product._id ?? index} className=' flex flex-col gap-4 '>
                             <div className='w-full max-w-67 ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
                           justify-center'>
                                 <div className='flex flex-row justify-between items-start'>
                                     <p className='py-1 px-3 rounded-sm bg-[#DB4444] text-[#FAFAFA] text-[12px] font-normal leading-4.5 tracking-0 text-center'>-40%</p>
                                     <div className='flex flex-col gap-2'>
-                                        <button className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
-                                            <img src={Wishlist} alt="Wishlist" />
-                                        </button>
-                                        <button className=' w-8.5 h-8.5 rounded-full bg-white flex items-center justify-center'>
-                                            <img src={view} alt="view" />
+                                        {
+                                            userData ? (
+                                                wishlistItems.find((item) => item._id === product._id) ? (
+                                                    <button onClick={() => handleRemoveWishlist(product) } className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
+                                                        <FaHeart className='text-[20px] text-[#DB4444]'/>
+                                                    </button>
+                                                ) : (
+                                                        <button onClick={() => handleAddToWishlist(product)} className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
+                                                            <FaRegHeart className='text-[18px] ' />
+                                                        </button>  
+                                                )   
+
+                                            ) : null
+                                        }
+                                        <button className=' w-8.5 h-8.5 rounded-full flex items-center justify-center'>
+                                            <img src={view} alt="view" className='hidden' />
                                         </button>
                                     </div>
                                 </div>

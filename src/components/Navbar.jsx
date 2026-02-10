@@ -25,6 +25,8 @@ const Navbar = ({ userId }) => {
     });
     const cartItems = useSelector((state) => state.cart.items);
     const totalCartItems = cartItems.length;
+    const wishlistItems = useSelector((state) => state.wishlist.items)
+    const totalwishlistitems = wishlistItems.length;
     console.log("User Data in Navbar:", userData);
 
 
@@ -145,7 +147,7 @@ const Navbar = ({ userId }) => {
                         <a href='/WhishLists' className='cursor-pointer relative'>
                             {isAuth && (
 
-                                <p className='absolute right-0 -top-1 text-[12px] flex items-center justify-center bg-red-800 text-white font-bold rounded-full w-4 h-4 '>2</p>
+                                <p className='absolute right-0 -top-1 text-[12px] flex items-center justify-center bg-red-800 text-white font-bold rounded-full w-4 h-4 '>{totalwishlistitems}</p>
                             )}
                             <img src={Wishlist} alt="Wishlist" className='w-8 h-8' />
                         </a>

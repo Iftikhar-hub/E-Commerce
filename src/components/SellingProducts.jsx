@@ -76,8 +76,8 @@ const SellingProducts = () => {
                                         <button className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
                                             <img src={Wishlist} alt="Wishlist" />
                                         </button>
-                                        <button className=' w-8.5 h-8.5 rounded-full bg-white flex items-center justify-center'>
-                                            <img src={view} alt="view" />
+                                        <button className=' w-8.5 h-8.5 rounded-full  flex items-center justify-center'>
+                                            <img src={view} alt="view" className="hidden"/>
                                         </button>
                                     </div>
                                 </div>
