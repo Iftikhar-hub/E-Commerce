@@ -1,8 +1,42 @@
 import iconSend from '../assets/iconSend.svg'
 import scanner from '../assets/scanner.png'
+import { useState } from 'react'
 import { socialMediaIcons } from '../utils/data.js'
+import { BASE_URL } from "../utils/data";
+import axios from "axios";
+import { toast } from 'react-toastify'
 // import { FaTwitter } from 'react-icons/fa';
 const Footer = () => {
+
+    const [sendEmail, setsendEmail] = useState({
+            email: '',
+    
+        });
+    
+        const handleChange = (e) => {
+            const { name, value } = e.target;
+            setsendEmail({
+                ...sendEmail, [name]: value
+    
+            });
+    }
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await axios.post(`${BASE_URL}/api/user/sendEmail`, sendEmail);
+        if (res.status === 200) {
+            toast.success("Email Sent", {
+                position: 'top-right',
+                autoClose: 3000,
+            });
+        } else {
+            toast.error("Error in sending email", {
+                position: 'top-right',
+                autoClose: 3000,
+            });
+        }
+
+    }
     return (
         
         <footer className=" w-full px-6 lg:px-26 xl:px-36 pt-20 items-center justify-center flex flex-col  mx-auto mt-25 bg-[#000000]  pb-5">
@@ -15,10 +49,13 @@ const Footer = () => {
                     tracking-0">Subscribe</a>
                     <a href="#" className="font-poppins text-[#FAFAFA] text-[16px] font-normal font-regular leading-6
                     tracking-0">Get 10% off your first order</a>
-                    <div className='flex flex-row gap-8 border border-[#FAFAFA] py-3 pl-4 pr-2 items-center rounded-sm'>
-                        <input className='text-[#FAFAFA] outline-0' type="text" placeholder='Enter Your Email' />
-                        <img src={iconSend} alt="iconSend" className='cursor-pointer' />
-                    </div>
+                    <form onSubmit={handleSubmit} className='flex flex-row gap-8 border border-[#FAFAFA] py-3 pl-4 pr-2 items-center rounded-sm'>
+                        <input className='text-[#FAFAFA] outline-0' type="email" required name='email' placeholder='Enter Your Email' onChange={handleChange} />
+                        <button type='submit' className='cursor-pointer'>
+                            <img  src={iconSend} alt="iconSend" className='cursor-pointer' />
+                        </button>
+                        
+                    </form>
 
                     
                 </div>

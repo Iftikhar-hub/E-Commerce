@@ -52,7 +52,7 @@ const ProductDetails = () => {
     } else if (product) {
         content = (
             
-            <div className="w-full max-w-100 flex-grow p-4 mt-10 px-6">
+            <div className="w-full max-w-100 grow p-4 mt-10 px-6">
                 <img src={product.image} alt={product.pname || product.name} className="" />
                 <h1 className="text-2xl font-bold mb-4">{product.pname || product.name}</h1>
                 <p className="text-lg mb-2 font-bold text-[#DB4444]">Price: ${product.orignalPrice}
@@ -79,7 +79,7 @@ const ProductDetails = () => {
         );
     } else if (sellingProduct) {
         content = (
-            <div className="w-full max-w-100 flex-grow p-4 mt-10 px-6">
+            <div className="w-full max-w-100 grow p-4 mt-10 px-6">
                 <img src={sellingProduct.sellingImage} alt={sellingProduct.sellingName} className="" />
                 <h1 className="text-2xl font-bold">{sellingProduct.sellingName}</h1>
                 <p className="text-lg font-bold text-[#DB4444]">
