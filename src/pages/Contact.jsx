@@ -1,9 +1,49 @@
+import { useState } from "react";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Footer from "../components/footer";
 import { IoCallOutline } from "react-icons/io5";
 import { MdOutlineMail } from "react-icons/md";
+import { BASE_URL } from "../utils/data";
+import axios from "axios";
+import { toast } from 'react-toastify'
 const Contact = () => {
+
+    const [contactForm, setContactForm] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setContactForm({
+            ...contactForm, [name]: value
+
+        });
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await axios.post(`${BASE_URL}/api/user/send-email`, contactForm);
+        if (res.status === 200) {
+            toast.success("Email has been sent successfully", {
+                position: 'top-right',
+                autoClose: 3000,
+            });
+        } else {
+            toast.error("Error in sending email", {
+                position: 'top-right',
+                autoClose: 3000,
+            });
+        }
+
+    }
+
+
+
     return (
         <div className="flex flex-col min-h-screen">
             <Header />
@@ -39,31 +79,31 @@ const Contact = () => {
 
                         </div>
 
-                        <div className="flex flex-col p-4 gap-6 shadow-[0px_1px_13px_0px_#0000000D] rounded-lg">
-                            
+                        <form onSubmit={handleSubmit} className="flex flex-col p-4 gap-6 shadow-[0px_1px_13px_0px_#0000000D] rounded-lg">
+
                             <div className="flex flex-row items-center gap-4 justify-between">
                                 <div className="flex flex-row gap-2 py-2 pl-4 bg-[#F5F5F5] rounded-sm">
                                     <p className="text-[red]">*</p>
-                                    <input type="text" required name="name" placeholder="Your Name" className="outline-0 text-[14px]"/>
+                                    <input type="text" required name="name" onChange={handleChange} placeholder="Your Name" className="outline-0 text-[14px]" />
 
                                 </div>
                                 <div className="flex flex-row gap-2 py-2 pl-4 bg-[#F5F5F5] rounded-sm">
                                     <p className="text-[red]">*</p>
-                                    <input type="email" required name="email" placeholder="Your Name" className="outline-0 text-[14px]"/>
+                                    <input type="email" required name="email" onChange={handleChange} placeholder="Your Email" className="outline-0 text-[14px]" />
 
                                 </div>
                                 <div className="flex flex-row gap-2 py-2 pl-4 bg-[#F5F5F5] rounded-sm">
                                     <p className="text-[red]">*</p>
-                                    <input type="text" required name="phone" placeholder="Your Name" className="outline-0 text-[14px]"/>
+                                    <input type="text" required name="phone" onChange={handleChange} placeholder="Your Number" className="outline-0 text-[14px]" />
 
                                 </div>
 
                             </div>
 
-                            <textarea type="text" name="message" className="w-full h-51.75 pt-2 px-2 bg-[#F5F5F5] rounded-sm outline-0 text-start text-[14px]" placeholder="Message" />
+                            <textarea type="text" name="message" onChange={handleChange} className="w-full h-51.75 pt-2 px-2 bg-[#F5F5F5] rounded-sm outline-0 text-start text-[14px]" placeholder="Message" />
 
                             <div className="w-full flex justify-end">
-                                <button className="px-4 py-3 flex items-center justify-center bg-[#DB4444] rounded-sm text-[14px] font-bold text-white cursor-pointer">
+                                <button type="submit" className="px-4 py-3 flex items-center justify-center bg-[#DB4444] rounded-sm text-[14px] font-bold text-white cursor-pointer">
                                     Send Message
                                 </button>
 
@@ -71,7 +111,7 @@ const Contact = () => {
 
 
 
-                        </div>
+                        </form>
 
                     </div>
 

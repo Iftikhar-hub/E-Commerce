@@ -139,7 +139,7 @@ const CheckOut = () => {
                         <input type="text" required placeholder='City' name='userCity' value={userInfo.userCity}
                             onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
                         
-                        <input type="tex" inputMode="numeric" required pattern="[0-9]*" name='userNumber' value={userInfo.userNumber} onChange={userInfoChange} placeholder='Phone Number' maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
+                        <input type="text" inputMode="numeric" required pattern="[0-9]*" name='userNumber' value={userInfo.userNumber} onChange={userInfoChange} placeholder='Phone Number' maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
 
                         <input type="email" required placeholder='Email Address' name='userEmail' value={userInfo.userEmail} onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
 
