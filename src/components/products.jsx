@@ -52,7 +52,7 @@ const Products = () => {
         dispatch(addToCartBackend({ product }))
             .unwrap()
             .then(() => toast.success("Added to cart! "))
-            .catch(() => toast.error("Failed to add"));
+            .catch(() => toast.error("Failed to add Cart"));
 
     };
 
@@ -69,14 +69,14 @@ const Products = () => {
 
     };
 
-     const handleRemoveWishlist = (productId) => {
-         dispatch(removeFromWishlistBackend({ productId }))
-             .unwrap()
-             .then(() => toast.success("Item Removed from wishlist"))
-             .catch(() => toast.error("Failed To Remove")); 
+    //  const handleRemoveWishlist = (productId) => {
+    //      dispatch(removeFromWishlistBackend({ productId }))
+    //          .unwrap()
+    //          .then(() => toast.success("Item Removed from wishlist"))
+    //          .catch(() => toast.error("Failed To Remove")); 
          
 
-    };
+    // };
     
 
 
@@ -215,7 +215,7 @@ const Products = () => {
                                         {
                                             userData ? (
                                                 wishlistItems.find((item) => item._id === product._id) ? (
-                                                    <button onClick={() => handleRemoveWishlist(product) } className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
+                                                    <button  className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
                                                         <FaHeart className='text-[20px] text-[#DB4444]'/>
                                                     </button>
                                                 ) : (

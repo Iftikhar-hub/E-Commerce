@@ -124,14 +124,14 @@ const SignUp = () => {
                                 onChange={handleChange} placeholder="Email" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required autoComplete="email" />
                             {/* <input onChange={handleChange} autocomplete="file" type="file" name="file" className="border-b h-12 p-2 border-[#ccc9c9] outline-0 text-[#6e6d6d]"
                                 id="file"  /> */}
-                            <div className="w-full flex flex-row justify-between">
+                            <div className="w-full flex border-b border-[#ccc9c9] flex-row justify-between">
                                 <input type={type} name='pass' value={registerForm.pass} autoComplete="pass"
                                     onChange={(e) => {
                                         handleChange(e);
                                         setPassword(e.target.value);
                                     }}
-                                    placeholder="Password" className="w-full border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
-                                <span className="flex justify-around items-center" onClick={handleToggle}>
+                                    placeholder="Password" className="w-full  h-12 p-2  outline-0" required />
+                                <span className="flex justify-around cursor-pointer items-center" onClick={handleToggle}>
                                     <img src={icon} alt="PNG" className="w-6 h-6" />
                                 </span>
 
@@ -156,7 +156,7 @@ const SignUp = () => {
 
                         <div className="w-full max-w-80 flex flex-row gap-1 justify-center items-center"> 
                             <p className="font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#424242]">Already have account?</p>
-                            <a href='/Login' className=" cursor-pointer font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#424242] underline underline-offset-4">Login</a>
+                            <a href='/login' className=" cursor-pointer font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#424242] underline underline-offset-4">Login</a>
                         </div>
 
                     </motion.div>

@@ -79,7 +79,7 @@ export const categoryItems = [
      },
     {
         categoryImage: watch,
-        categoryName: 'Phones'
+        categoryName: 'Smart Watch'
      },
     {
         categoryImage : camera,

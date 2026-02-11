@@ -64,7 +64,7 @@ const Categor = () => {
 
                         {categoryItems.map((category, index) => (
                             <SwiperSlide key={category.name ?? index} className='w-32 h-26 max-[425px]:px-4 px-3 lg:w-42.5 lg:h-36.25 flex flex-col items-center justify-center gap-4 rounded-sm border border-[#d4d2d2]'>
-                                <motion.img
+                                <img
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1, rotate: 360, y: 0 }}
                                     transition={{ duration: 0.8, ease: "easeOut" }}

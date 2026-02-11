@@ -53,7 +53,7 @@ const WhishList = () => {
             dispatch(addToCartBackend({ product }))
                 .unwrap()
                 .then(() => toast.success("Added to cart! "))
-                .catch(() => toast.error("Failed to add"));
+                .catch(() => toast.error("Failed to add Cart"));
     
         };
     return (
@@ -74,27 +74,27 @@ const WhishList = () => {
                             wishlistItems.length === 0 ? (
                                 <p className="text-[22px]  text-red-900 font-bold text-center mt-6">Your wishlist is empty</p>
                             ) : (
-                                wishlistItems.map((icon, index) => (
+                                    wishlistItems.map((product, index) => (
                                     <div className='w-full flex flex-col gap-4 '>
                                         < div className='w-full ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
                                               justify-center'>
                                             <div className='flex flex-row justify-between items-start'>
                                                 <p></p>
-                                                <button onClick={() => handleRemoveWishlist(icon._id)} className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
+                                                    <button onClick={() => handleRemoveWishlist(product._id)} className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
                                                     <img src={delet} alt="delet" />
                                                 </button>
 
                                             </div>
-                                            <img key={index} src={icon.image} alt="icon" className='w-43 h-38 mx-auto' />
+                                                <img key={index} src={product.image} alt="icon" className='w-43 h-38 mx-auto' />
                                             {
                                                 userData ? (
-                                                    cartItems.find((item) => item._id === icon._id) ? (
+                                                        cartItems.find((item) => item._id === product._id) ? (
                                                         <button className='mt-3 font-medium font-poppins cursor-not-allowed px-2 py-2 text-[white] text-center w-full bg-gray-400 rounded-sm ' disabled>Added to Cart</button>
                                                     ) : (
-                                                        <button onClick={() => handleAddToCart(product)} className=' mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
+                                                            <button onClick={() => handleAddToCart(product)} className=' mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
                                                     )
                                                 ) : (
-                                                    <button onClick={() => handleAddToCart(product)} className='relative group mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>
+                                                            <button onClick={() => handleAddToCart(product)} className='relative group mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>
                                                         <span className='w-full z-10 text-white relative'>Add To Cart</span>
                                                         <div class="absolute inset-0 bg-[#b82525] h-0 group-hover:h-full  transition-all duration-300 ease-in-out rounded-sm "></div>
                                                     </button>
@@ -103,10 +103,10 @@ const WhishList = () => {
                                         </div>
 
                                         <div className='w-full ProductDetails flex flex-col gap-2'>
-                                            <p key={index} className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{icon.pname}</p>
-                                            <p key={index} className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>${icon.orignalPrice}
-                                                <span key={index} className='text-[#000000] line-through opacity-50'>
-                                                    $ {icon.discountedPrice}</span>
+                                                <p className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{product.pname}</p>
+                                                <p className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>${product.orignalPrice}
+                                                <span className='text-[#000000] line-through opacity-50'>
+                                                        $ {product.discountedPrice}</span>
                                             </p>
 
 

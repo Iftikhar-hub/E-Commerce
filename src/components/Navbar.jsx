@@ -114,12 +114,12 @@ const Navbar = ({ userId }) => {
                             <a href="#" className='text-[#000000] font-poppins text-base font-normal leading-6 tracking-normal text-center'></a>
                         ) : (
                             <>
-                                    <a href="/signup" className='text-[#000000] max-[435px]:hidden group relative font-poppins text-base font-normal leading-6 tracking-normal text-center'>Sign Up
+                                    <a href="/signup" className={`${window.location.pathname === "/login" ? "hidden" : "text-[#000000] max-[435px]:hidden group relative font-poppins text-base font-normal leading-6 tracking-normal text-center"} `}>Sign Up
                                         <span className="absolute w-0 h-0.5 left-0 bottom-0  insect-0 group-hover:w-full bg-[#DB4444] transition-all decoration-300 ease-in-out"></span>
                                         <span className={`${window.location.pathname === "/signup" ? "absolute w-full h-0.5 left-0 bottom-0  insect-0  bg-[#DB4444] " : " "}`}></span>
                                 </a>
 
-                                <a href="/login" className='text-[#000000] max-[435px]:hidden group relative font-poppins text-base font-normal leading-6 tracking-normal text-center'>Login
+                                    <a href="/login" className={`${window.location.pathname === "/signup" ? "hidden" : "text-[#000000] max-[435px]:hidden group relative font-poppins text-base font-normal leading-6 tracking-normal text-center"} `}>Login
                                         <span className='absolute w-0 h-0.5 left-0 bottom-0  insect-0 group-hover:w-full bg-[#DB4444] transition-all decoration-300 ease-in-out'></span>
                                         <span className={`${window.location.pathname === "/login" ? "absolute w-full h-0.5 left-0 bottom-0  insect-0  bg-[#DB4444] " : " "}`}></span>
                                 </a>

@@ -10,24 +10,51 @@ import { useGetProductDataQuery } from '../services/productApi.js'
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { addToWishlistBackend } from "../services/adToWishlist";
+import { toast } from 'react-toastify';
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa6";
+import { useDispatch } from 'react-redux';
+import { useGetUserDataQuery } from '../services/userApi.js';
+import { useSelector } from 'react-redux';
+
 const OurProducts = () => {
     const navigate = useNavigate();
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
+    const dispatch = useDispatch();
+    const wishlistItems = useSelector((state) => state.wishlist.items);
+    const { data: userData } = useGetUserDataQuery();
+
     const { data } = useGetProductDataQuery("ourProducts");
-        const [displayProducts, setDisplayedProducts] = useState([]);
-        useEffect(() => {
-            if (data && data.data) {
-                setDisplayedProducts(data.data)
-            }
-    
-        }, [data])
+    const [displayProducts, setDisplayedProducts] = useState([]);
+    useEffect(() => {
+        if (data && data.data) {
+            setDisplayedProducts(data.data)
+        }
+
+    }, [data])
+
+    const handleAddToWishlist = (product) => {
+        if (!userData) {
+            toast.error("Please Login to wishlist", {
+                position: 'top-right',
+            });
+            return;
+        }
+
+        dispatch(addToWishlistBackend({ product }))
+            .unwrap()
+            .then(() => toast.success("Added to wishlist! "))
+            .catch(() => toast.error("Failed to add"));
+
+    };
     return (
         <div className="w-full max-w-400 overflow-hidden px-6 lg:px-26 xl:px-36  mx-auto ">
             <div className=" flex flex-col items-center gap-15 py-2 ">
                 <div className=" w-full flex flex-row justify-between items-baseline-last 
                   ">
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -57,11 +84,25 @@ const OurProducts = () => {
                                 <div className=' flex flex-row justify-between items-start'>
                                     <div></div>
                                     <div className='flex flex-col gap-2'>
-                                        <button className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
-                                            <img src={Wishlist} alt="Wishlist" />
-                                        </button>
+                                        {
+                                            userData ? (
+                                                wishlistItems.find((item) => item._id === product._id) ? (
+                                                    <button onClick={() => handleRemoveWishlist(product)} className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
+                                                        <FaHeart className='text-[20px] text-[#DB4444]' />
+                                                    </button>
+                                                ) : (
+                                                    <button onClick={() => handleAddToWishlist(product)} className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
+                                                        <FaRegHeart className='text-[18px] ' />
+                                                    </button>
+                                                )
+
+                                            ) :
+                                                <button onClick={() => handleAddToWishlist(product)} className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
+                                                    <FaRegHeart className='text-[18px] ' />
+                                                </button>
+                                        }
                                         <button className=' w-8.5 h-8.5 rounded-full flex items-center justify-center'>
-                                            <img src={view} alt="view" className="hidden"/>
+                                            <img src={view} alt="view" className="hidden" />
                                         </button>
                                     </div>
                                 </div>
@@ -73,9 +114,9 @@ const OurProducts = () => {
                                 <p className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>${product.orignalPrice}
                                     <span className='line-through text-gray-500'>${product.discountedPrice}</span>
                                 </p>
-                                
+
                                 <div className="flex flex-row items-center space-x-1">
-                                   
+
                                     {iconsArray.map((_, index) => (
                                         <img src={YelowStar} className="h-4 w-4" alt="YelowStar" key={index}>
                                         </img>

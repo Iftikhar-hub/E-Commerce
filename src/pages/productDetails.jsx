@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useGetProductDataQuery } from "../services/productApi";
 import { sellingItems } from "../utils/data";
 import LoginPopup from '../components/LoginPopup';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addToCartBackend } from "../services/adToCart";
 import { useGetUserDataQuery } from '../services/userApi';
@@ -14,6 +14,10 @@ import { useSelector } from 'react-redux';
 
 
 const ProductDetails = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+    
     const { id } = useParams();
     const dispatch = useDispatch();
      const cartItems = useSelector((state) => state.cart.items);
@@ -37,7 +41,7 @@ const ProductDetails = () => {
 
         dispatch(addToCartBackend({ product }))
             .unwrap()
-            .then(() => toast.success("Added to cart! 🛒"))
+            .then(() => toast.success("Added to cart! "))
             .catch(() => toast.error("Failed to add"));
 
     };

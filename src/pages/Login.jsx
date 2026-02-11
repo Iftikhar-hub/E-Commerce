@@ -113,11 +113,11 @@ const Login = () => {
                         </div>
 
                         <form onSubmit={handleSubmit} className="w-full max-w-80 flex flex-col gap-4">
-                            <input type="email" name="email" onChange={handleChange} value={loginForm.email} placeholder="tester@gmail.com" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required />
+                            <input type="email" name="email" onChange={handleChange} value={loginForm.email} placeholder="tester@gmail.com" className="border-b  h-12 p-2 border-[#ccc9c9] outline-0" required />
                              
-                            <div className="w-full flex flex-row justify-between">
+                            <div className="w-full flex flex-row border-b border-[#ccc9c9] justify-between">
                                 <input type={type} name="password" onChange={handleChange}
-                                    value={loginForm.password} placeholder="tester1234" className="border-b h-12 p-2 border-[#ccc9c9] outline-0 w-full" required />
+                                    value={loginForm.password} placeholder="tester1234" className="h-12 p-2 border-[#ccc9c9] outline-0 w-full" required />
                                 <span className="flex justify-around items-center" onClick={handleToggle}>
                                     <img src={icon} alt="PNG" className="w-5 h-5 cursor-pointer" />
                                 </span>
@@ -135,6 +135,10 @@ const Login = () => {
                             </div>
 
                         </form>
+                        <div className="w-full max-w-80 flex flex-row gap-1 justify-start items-center">
+                            <p className="font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#424242]">New User? </p>
+                            <a href='/signup' className=" cursor-pointer font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#424242] underline underline-offset-4">Create Account</a>
+                        </div>
                        
 
                        

@@ -36,14 +36,12 @@ const CheckOut = () => {
 
     const handleSubmit = async () => {
         if (!userInfo.userName || !userInfo.userCity || !userInfo.userNumber || !userInfo.userEmail) {
-            // alert('Please fill in all required billing details');
             toast.error("Please fill in all required billing details", {
                 position: 'top-right',
             });
             return;
         }
         if (!Option) {
-            // alert('Please select a payment method');
             toast.error("Please fill in all required billing details", {
                 position: 'top-right',
             });
@@ -74,7 +72,7 @@ const CheckOut = () => {
                
             } catch (err) {
                 console.error(err);
-                // alert("Payment failed");
+
                 toast.error("Payment failed", {
                     position: 'top-right',
                 });

@@ -24,6 +24,7 @@ import { ToastContainer } from 'react-toastify';
 import AllProductCategory from "./pages/AllProductCategory";
 import Contact from './pages/Contact.jsx'
 import Search from './pages/Search.jsx'
+import Account from './pages/userAccount.jsx'
 
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
         <Route path="/AllSellingProducts" element={<AllSellingProducts />} />
         <Route path="/category/:category" element={<AllProductCategory />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/Account" element={<Account />} />
 
 
   

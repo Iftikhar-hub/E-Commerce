@@ -103,7 +103,7 @@ const NewArrival = () => {
 
                 <div className='grid place-items-start  sm:flex sm:flex-row mt-15 sm:justify-center sm:items-center w-full gap-6 sm:gap-6 md:gap-16 lg:gap-22'>
                     <div className='flex sm:flex-col items-center gap-16 sm:gap-6'>
-                        <motion.img
+                        <img
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1, rotate: 360, y: 0 }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -115,7 +115,7 @@ const NewArrival = () => {
                         </div>
                     </div>
                     <div className='flex sm:flex-col items-center gap-16 sm:gap-6'>
-                        <motion.img
+                        <img
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1, rotate: 360, y: 0 }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -127,7 +127,7 @@ const NewArrival = () => {
                         </div>
                     </div>
                     <div className='flex sm:flex-col items-center gap-16 sm:gap-6'>
-                        <motion.img
+                        <img
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1, rotate: 360, y: 0 }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
