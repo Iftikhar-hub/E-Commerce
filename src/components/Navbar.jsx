@@ -49,22 +49,17 @@ const Navbar = ({ userId }) => {
         }
         navigate('/Cart');
     };
-    const handleLogout = async () => {
-        try {
-            await axios.post(
-                `${BASE_URL}/api/user/user-logout`,
-                {},
-                { withCredentials: true }
-            );
 
-            localStorage.removeItem('isAuth');
-            navigate('/')
-            window.location.reload();
-
-        } catch (error) {
-            console.error("Logout failed", error);
+    const handleToaddedWishlist = () => {
+        if (!userData) {
+            toast.error("Please Login To View Your Wishlists", {
+                position: 'top-right',
+            });
+            return;
         }
-    };
+        navigate('/WhishLists');
+    }
+    
 
     const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
     const toggleUserProfile = () => {
@@ -138,19 +133,19 @@ const Navbar = ({ userId }) => {
 
                 <div className="flex flex-row gap-6 items-center justify-between">
                     <div className="flex max-[862px]:hidden flex-row gap-2.5 bg-[#F5F5F5] py-1.75 pl-5 pr-3 rounded-sm ">
-                        <input type="text" placeholder="What are you looking for?" className="opacity-50 font-poppins text-xs font-normal leading-4.5 tracking-normal text-[#000000]" />
+                        <input type="search" placeholder="What are you looking for?" className="opacity-50 font-poppins text-xs font-normal leading-4.5 tracking-normal text-[#000000]" />
                         <img src={searchIcon} alt="searchIcon" className='w-6 h-6 cursor-pointer' />
 
                     </div>
 
                     <div className='flex flex-row gap-4 place-items-start  '>
-                        <a href='/WhishLists' className='cursor-pointer relative'>
+                        <div onClick={handleToaddedWishlist} className='cursor-pointer relative'>
                             {isAuth && (
 
                                 <p className='absolute right-0 -top-1 text-[12px] flex items-center justify-center bg-red-800 text-white font-bold rounded-full w-4 h-4 '>{totalwishlistitems}</p>
                             )}
                             <img src={Wishlist} alt="Wishlist" className='w-8 h-8' />
-                        </a>
+                        </div>
                         <div onClick={handleTpaddedCart} className='cursor-pointer relative'>
                             {isAuth && (
 

@@ -14,6 +14,7 @@ import Success from './components/succeed.jsx'
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loadUserCart } from "./services/adToCart";
+import { loadUserWishlist } from "./services/adToWishlist";
 import ProductDetails from './pages/productDetails';
 import AllProducts from './pages/AllProducts.jsx'
 import AllSellingProducts from './pages/AllSellingProducts.jsx'
@@ -22,6 +23,7 @@ import AllSellingProducts from './pages/AllSellingProducts.jsx'
 import { ToastContainer } from 'react-toastify';
 import AllProductCategory from "./pages/AllProductCategory";
 import Contact from './pages/Contact.jsx'
+import Search from './pages/Search.jsx'
 
 
 function App() {
@@ -32,7 +34,9 @@ function App() {
 
     if (userId) {
       dispatch(loadUserCart());
+      dispatch(loadUserWishlist());
     }
+    
   }, []);
 
 
@@ -55,6 +59,8 @@ function App() {
       <Route path="/Contact" element={<Contact />} />
         <Route path="/AllSellingProducts" element={<AllSellingProducts />} />
         <Route path="/category/:category" element={<AllProductCategory />} />
+        <Route path="/search" element={<Search />} />
+
 
   
       

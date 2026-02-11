@@ -2,6 +2,7 @@ import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import Footer from '../components/footer'
 import { RxCross1 } from "react-icons/rx";
+import { TiDeleteOutline } from "react-icons/ti";
 import { useMemo } from "react";
 import { shallowEqual } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
@@ -96,7 +97,7 @@ const Cart = () => {
                                             </td>
                                             <td className='hidden sm:block px-2 py-5 font-poppins font-normal text-[16px] leading-6 text-black'>${(cart.discountedPrice ?? cart.orignalPrice) * cart.quantity}</td>
                                             <td>
-                                                <RxCross1 onClick={() => handleRemove(cart._id)} className='cursor-pointer text-red-600 font-bold w-6 h-6' />
+                                                <TiDeleteOutline onClick={() => handleRemove(cart._id)} className='cursor-pointer text-red-600 font-bold w-6 h-6' />
                                                 {/* <button className="bg-red-600  text-white px-2 py-1 rounded-sm" onClick={() => handleRemove(cart._id)}>Remove</button> */}
                                             </td>
                                         </tr>
