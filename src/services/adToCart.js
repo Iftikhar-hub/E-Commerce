@@ -83,13 +83,6 @@ const cartSlice = createSlice({
                 state.items = action.payload;
             })
             .addCase(addToCartBackend.fulfilled, (state, action) => {
-                // const newItem = action.payload;
-                // const existing = state.items.find(item => item._id === newItem._id);
-                // if (existing) {
-                //     existing.quantity += newItem.quantity;
-                // } else {
-                //     state.items.push(newItem);
-                // }
             })
             .addCase(removeFromCartBackend.pending, (state, action) => {
                 state.items = state.items.filter(item => item._id !== action.meta.arg.productId);

@@ -11,6 +11,8 @@ import { addToCartBackend } from "../services/adToCart";
 import { useGetUserDataQuery } from '../services/userApi';
 import { ToastContainer, toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import RecommendedProducts from "../components/RecommendedItems"
+import Loader from "../components/Loader";
 
 
 const ProductDetails = () => {
@@ -48,13 +50,19 @@ const ProductDetails = () => {
 
     let content;
     if (productLoading) {
-        content = <p>Loading...</p>;
+        content = <div class="flex mt-70 justify-center items-center">
+                <Loader/>
+            </div>;
     } else if (productError) {
         content = <p>Error loading product</p>;
     } else if (!product && !sellingProduct) {
         content = <p className="text-center mt-20 text-xl">Product not found</p>;
     } else if (product) {
         content = (
+
+            <div className="w-full">
+
+           
             
             <div className="w-full max-w-100 grow p-4 mt-10 px-6">
                 <img src={product.image} alt={product.pname || product.name} className="" />
@@ -77,6 +85,10 @@ const ProductDetails = () => {
                         </button>
                     )
                 }
+
+
+            </div>
+                <RecommendedProducts className="mt-6"/>
             </div>
                 
 
@@ -106,6 +118,7 @@ const ProductDetails = () => {
             <Header />
             <Navbar />
             {content}
+           
             <LoginPopup className='absolute top-0' show={showLoginPopup} onClose={() => setShowLoginPopup(false)} />
             <Footer />
         </div>

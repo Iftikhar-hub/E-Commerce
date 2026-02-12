@@ -27,6 +27,7 @@ import React, { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
+import Loader from "../components/Loader"
 
 
 
@@ -37,7 +38,7 @@ const Products = () => {
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
 
-    const { data: userData } = useGetUserDataQuery();
+    const { data: userData , isLoading } = useGetUserDataQuery();
 
     const [showLoginPopup, setShowLoginPopup] = useState(false);
 
@@ -96,6 +97,7 @@ const Products = () => {
     // Counter
     const initialTime = 2 * 24 * 60 * 60;
     const [timeRemaining, setTimeRemaining] = useState(initialTime);
+     
 
     useEffect(() => {
         const timerInterval = setInterval(() => {
@@ -117,6 +119,9 @@ const Products = () => {
     const minutes = Math.floor((timeRemaining % 3600) / 60);
     const hours = Math.floor((timeRemaining % 86400) / 3600);
     const days = Math.floor(timeRemaining / 86400);
+    if (isLoading) return <div class="flex mt-70 justify-center items-center">
+        <Loader />
+    </div>;
 
     return (
         <div className="w-full max-w-400 overflow-hidden mx-auto px-6 lg:px-26 xl:px-36 mt-25 flex flex-col items-center gap-10">

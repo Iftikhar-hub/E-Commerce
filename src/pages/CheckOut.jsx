@@ -16,6 +16,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const CheckOut = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [Option, setOption] = useState('BANK');
 
@@ -57,17 +58,18 @@ const CheckOut = () => {
                     {userInfo: userInfo},
                     { headers: { 'Content-Type': 'application/json' } }
 
-
                 );
                 console.log("Stripe session response:", res.data);
                 if (res.data.url) {
                     window.location.href = res.data.url;
+                  
                 } else {
                   
                     toast.error("Stripe session creation failed", {
                         position: 'top-right',
                     });
                 }
+                
 
                
             } catch (err) {
@@ -81,6 +83,10 @@ const CheckOut = () => {
         }
         if (Option === 'COD') {
             alert('Order placed successfully');
+            
+            await axios.delete(`${BASE_URL}/api/user/cart/clear-cart`, {}, { withCredentials: true });
+            dispatch(loadUserCart());
+            dispatch(loadUserCart());
             
             
         }

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useGetUserDataQuery } from '../services/userApi';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 import { useDispatch } from 'react-redux';
@@ -62,9 +62,9 @@ const UserProfile = ({ userId }) => {
                 <a href="#" onClick={handleLogout} className=' overflow-hidden font-bold font-poppins text-black text-base w-full py-1 border border-black leading-6 tracking-normal text-center rounded-sm '>
                     Log Out
                 </a>
-                <a href="/Account" className=' whitespace-nowrap overflow-hidden font-bold font-poppins text-black text-base w-full  rounded-sm '>
+                <Link to="/Account" className=' whitespace-nowrap overflow-hidden font-bold font-poppins text-black text-base w-full  rounded-sm '>
                     Manage Account
-                </a>
+                </Link>
                 
                
                

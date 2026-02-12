@@ -103,36 +103,21 @@ const NewArrival = () => {
 
                 <div className='grid place-items-start  sm:flex sm:flex-row mt-15 sm:justify-center sm:items-center w-full gap-6 sm:gap-6 md:gap-16 lg:gap-22'>
                     <div className='flex sm:flex-col items-center gap-16 sm:gap-6'>
-                        <img
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1, rotate: 360, y: 0 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            viewport={{ amount: 0.1 }}
-                            src={Services} alt="Services" className='w-20 h-20' />
+                        <img src={Services} alt="Services" className='w-20 h-20' />
                         <div className='flex flex-col gap-1 items-center'>
                             <p className='font-poppins whitespace-nowrap text-[16px] lg:text-[20px] font-semibold text-[#000000] leading-7 tracking-[0]'>FREE AND FAST DELIVERY</p>
                             <p className='font-poppins whitespace-nowrap text-[12px] lg:text-[14px] normal text-[#000000] leading-7 tracking-[0]'>Free delivery for all orders over $140</p>
                         </div>
                     </div>
                     <div className='flex sm:flex-col items-center gap-16 sm:gap-6'>
-                        <img
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1, rotate: 360, y: 0 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            viewport={{ amount: 0.1 }}
-                            src={Services} alt="Services" className='w-20 h-20' />
+                        <img src={Services} alt="Services" className='w-20 h-20' />
                         <div className='flex flex-col gap-1 items-center'>
                             <p className='font-poppins text-[16px] whitespace-nowrap lg:text-[20px] font-semibold text-[#000000] leading-7 tracking-[0]'>FREE AND FAST DELIVERY</p>
                             <p className='font-poppins text-[12px] whitespace-nowrap lg:text-[14px] normal text-[#000000] leading-7 tracking-[0]'>Free delivery for all orders over $140</p>
                         </div>
                     </div>
                     <div className='flex sm:flex-col items-center gap-16 sm:gap-6'>
-                        <img
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1, rotate: 360, y: 0 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            viewport={{ amount: 0.1 }}
-                            src={Services} alt="Services" className='w-20 h-20' />
+                        <img src={Services} alt="Services" className='w-20 h-20' />
                         <div className='flex flex-col gap-1 items-center'>
                             <p className='font-poppins text-[16px] lg:text-[20px] whitespace-nowrap font-semibold text-[#000000] leading-7 tracking-[0]'>FREE AND FAST DELIVERY</p>
                             <p className='font-poppins text-[12px] lg:text-[14px] whitespace-nowrap normal text-[#000000] leading-7 tracking-[0]'>Free delivery for all orders over $140</p>

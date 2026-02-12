@@ -12,6 +12,8 @@ import { addToCartBackend } from "../services/adToCart";
 import { useGetUserDataQuery } from '../services/userApi';
 import { ToastContainer, toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import Loader from "../components/Loader";
+import RecommendedProducts from "../components/RecommendedItems"
 
 
 
@@ -26,11 +28,13 @@ const AllProductCategory = () => {
 
     const { data, isLoading, isError } = useGetProductDataQuery(category);
 
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <div class="flex mt-70 justify-center items-center">
+        <Loader/>
+    </div>;
     if (isError) return <p>Error loading products</p>;
     const handleAddToCart = (product) => {
         if (!userData) {
-            // setShowLoginPopup(true);
+
             toast.error("Please Login to Proceed", {
                 position: 'top-right',
             });
@@ -51,10 +55,13 @@ const AllProductCategory = () => {
             <Header />
             <Navbar />
 
-            <div className="flex-1 p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="relative flex-1 p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                
                 {data?.data.length === 0 && <p>No products found in {category}</p>}
+               
                 {data?.data.map((product) => (
                     <div key={product._id ?? index} className=' flex flex-col gap-4 '>
+                        {/* {isLoading && <Loader />} */}
                         <div className='w-full max-w-67 ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
                           justify-center'>
                             <div className='flex flex-row justify-between items-start'>
@@ -89,6 +96,7 @@ const AllProductCategory = () => {
                         </div>
 
                         <div className='ProductDetails flex flex-col gap-2'>
+                           
                             <p className='text-[#000000] font-poppins text-[16px] font-medium leading-6 tracking-[0]'>{product.pname}</p>
                             <p className='text-[#DB4444] font-poppins text-[16px] flex flex-row gap-4 font-medium leading-6 tracking-[0]'>$ {product.orignalPrice}
                                 <span className='text-[#000000] line-through opacity-50'>
@@ -106,6 +114,7 @@ const AllProductCategory = () => {
                     </div>
                 ))}
             </div>
+            <RecommendedProducts className="mt-6"/>
 
 
 
