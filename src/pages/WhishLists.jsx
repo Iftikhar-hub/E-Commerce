@@ -74,7 +74,7 @@ const WhishList = () => {
                             wishlistItems.length === 0 ? (
                                 <p className="text-[22px]  text-red-900 font-bold text-center mt-6">Your wishlist is empty</p>
                             ) : (
-                                    wishlistItems.map((product, index) => (
+                                    wishlistIte.map((product, index) => (
                                     <div className='w-full flex flex-col gap-4 '>
                                         < div className='w-full ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
                                               justify-center'>
