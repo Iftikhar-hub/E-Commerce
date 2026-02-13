@@ -7,14 +7,17 @@ export const productApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl:`${BASE_URL}/api/user`}),
     endpoints: (builder) => ({
         getProductData: builder.query({
-           query: (category) => {
+            query: ( category) => {
                 if (category) {
                     return `/productDisplay?category=${encodeURIComponent(category)}`;
                 }
+
                 return '/productDisplay';
+                
             },
-            
         })
+        
+        
 
     })
 })

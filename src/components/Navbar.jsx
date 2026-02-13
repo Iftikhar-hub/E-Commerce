@@ -38,6 +38,11 @@ const Navbar = ({ userId }) => {
 
     ]
     const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = useState("");
+    const handleSearch = () => {
+        if (!searchTerm.trim()) return;
+        navigate(`/search?q=${searchTerm}`);
+    };
 
 
     const handleTpaddedCart = () => {
@@ -133,8 +138,9 @@ const Navbar = ({ userId }) => {
 
                 <div className="flex flex-row gap-6 items-center justify-between">
                     <div className="flex max-[862px]:hidden flex-row gap-2.5 bg-[#F5F5F5] py-1.75 pl-5 pr-3 rounded-sm ">
-                        <input type="search" placeholder="What are you looking for?" className="opacity-50 font-poppins text-xs font-normal leading-4.5 tracking-normal text-[#000000]" />
-                        <img src={searchIcon} alt="searchIcon" className='w-6 h-6 cursor-pointer' />
+                        <input type="search" placeholder="What are you looking for?" className=" font-poppins text-xs font-normal leading-4.5 tracking-normal text-[#000000] outline-0 " value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)} />
+                        <img src={searchIcon} alt="searchIcon" onClick={handleSearch} className='w-6 h-6 cursor-pointer' />
 
                     </div>
 
