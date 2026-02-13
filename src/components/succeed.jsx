@@ -19,20 +19,15 @@ const Success = () => {
         const handleSuccess = async () => {
             try {
                 if (!sessionId) return;
-
-                // 1️⃣ Get invoice
                 const res = await axios.get(
                     `${BASE_URL}/get-invoice/${sessionId}`
                 );
                 setInvoiceUrl(res.data.invoice_url);
 
-                // 2️⃣ Clear cart in backend
                 await axios.delete(
                     `${BASE_URL}/api/user/cart/clear-cart`,
                     { withCredentials: true }
                 );
-
-                // 3️⃣ Reload Redux cart
                 dispatch(loadUserCart());
 
             } catch (err) {
@@ -50,7 +45,7 @@ const Success = () => {
 
             <div className="flex flex-col items-center mt-20 gap-5">
                 <h1 className="text-3xl font-bold text-[#DB4444]">
-                    Payment Successful 🎉
+                    Payment Successful 
                 </h1>
 
                 {invoiceUrl ? (
