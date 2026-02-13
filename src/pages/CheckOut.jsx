@@ -11,6 +11,7 @@ import {motion} from 'framer-motion'
 import { BASE_URL } from '../utils/data';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { loadUserCart } from '../services/adToCart';
 
 
 
@@ -86,7 +87,7 @@ const CheckOut = () => {
             
             await axios.delete(`${BASE_URL}/api/user/cart/clear-cart`, {}, { withCredentials: true });
             dispatch(loadUserCart());
-            dispatch(loadUserCart());
+           
             
             
             
