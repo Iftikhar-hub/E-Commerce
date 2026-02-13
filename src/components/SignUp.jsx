@@ -5,18 +5,15 @@ import Footer from "./footer";
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 import axios from "axios";
 import { useState } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import signupImage from '../assets/signupImage.png'
 import hide from '../assets/hide.png'
 import visible from '../assets/visible.png'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 import { BASE_URL } from "../utils/data";
 import { ToastContainer, toast } from 'react-toastify';
 
-// import { Icon } from 'react-icons-kit';
-// import { eyeOff } from 'react-icons-kit/feather/eyeOff';
-// import { eye } from 'react-icons-kit/feather/eye'
 
 const SignUp = () => {
     const [registerForm, setRegisterForm] = useState({
@@ -38,45 +35,53 @@ const SignUp = () => {
             setType('password')
         }
     }
-   
+
     const handleChange = (e) => {
-         const { name, value, files } = e.target;
-           if (name === "file") {
-             setRegisterForm({ ...registerForm, file: files[0] });
-         } else {
+        const { name, value, files } = e.target;
+        if (name === "file") {
+            setRegisterForm({ ...registerForm, file: files[0] });
+        } else {
             setRegisterForm({ ...registerForm, [name]: value });
-    }
+        }
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             const formData = new FormData();
-              formData.append("fname", registerForm.fname);
-              formData.append("email", registerForm.email);
-              formData.append("pass", registerForm.pass);
-              formData.append("cpass", registerForm.cpass);
+            formData.append("fname", registerForm.fname);
+            formData.append("email", registerForm.email);
+            formData.append("pass", registerForm.pass);
+            formData.append("cpass", registerForm.cpass);
             //   formData.append("file", registerForm.file);
             const res = await axios.post(`${BASE_URL}/api/user/user-insert`, formData,
                 {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
                 });
-            toast.success(res.data.msg, {
+            localStorage.setItem('isAuth', 'true');
+
+            const userId = res.data.id;
+            localStorage.setItem("userId", userId);
+            toast.success(res.data.msg, "Welcome", {
                 position: 'top-right',
                 autoClose: 3000,
             });
-            // setMessage(res.data.msg); 
-            navigate('/login')
-            
-            
+            navigate('/')
+
+
+
+
+
+
+
         } catch (err) {
             toast.error(err.response?.data?.msg || "Something Wrong, Please try again", {
                 position: 'top-right',
                 autoClose: 3000,
             });
-           
+
         }
     };
     return (
@@ -91,7 +96,7 @@ const SignUp = () => {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         viewport={{ amount: 0.1 }}
                         className="w-full max-w-201.25 rounded-sm h-120 xl:h-195.25 max-[800px]:hidden bg-[#CBE4E8]">
-                        <img src={signupImage} alt="signupImage" className=" w-229.75"/>
+                        <img src={signupImage} alt="signupImage" className=" w-229.75" />
                     </motion.div>
 
                     <motion.div
@@ -118,8 +123,8 @@ const SignUp = () => {
 
                         <form onSubmit={handleSubmit} encType="multipart/form-data" className="w-full max-w-80 flex flex-col gap-4">
                             <input type="text" name='fname' value={registerForm.fname}
-                                onChange={handleChange} placeholder="Name" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required autoComplete="fname"/>
-                            
+                                onChange={handleChange} placeholder="Name" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required autoComplete="fname" />
+
                             <input type="email" name='email' value={registerForm.email}
                                 onChange={handleChange} placeholder="Email" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required autoComplete="email" />
                             {/* <input onChange={handleChange} autocomplete="file" type="file" name="file" className="border-b h-12 p-2 border-[#ccc9c9] outline-0 text-[#6e6d6d]"
@@ -136,37 +141,37 @@ const SignUp = () => {
                                 </span>
 
                             </div>
-                           
+
 
                             <input type="password" name='cpass' value={registerForm.cpass}
-                                onChange={handleChange} placeholder="Confirm Password" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required autoComplete="cpass"/>
-                            
-                        
+                                onChange={handleChange} placeholder="Confirm Password" className="border-b h-12 p-2 border-[#ccc9c9] outline-0" required autoComplete="cpass" />
+
+
                             <button className="w-full relative group bg-[#DB4444] py-4 flex items-center justify-center  
                              rounded-sm text-[#FAFAFA] text-[16px] font-medium font-poppins cursor-pointer">
                                 <span className='z-10 relative'>Create Account</span>
                                 <div class="absolute inset-0 bg-[#b82525]   h-0 group-hover:h-full  transition-all duration-300 ease-in-out rounded-sm "></div>
                             </button>
-                    
+
                         </form>
                         {/* <button className="w-full relative group max-w-80 border border-[#DB4444] py-4 flex flex-row gap-4 items-center justify-center rounded-sm text-[#000000]  text-[16px] font-medium font-poppins cursor-pointer"><FaGoogle className="w-6 h-6 text-[#DB4444] group-hover:text-white z-10" /> 
                             <span className='z-10 relative group-hover:text-white'>Sign up with Google</span>
                             <div class="absolute inset-0 bg-[#DB4444] w-0 group-hover:w-full  transition-all duration-300 ease-in-out rounded-sm "></div>
                         </button> */}
 
-                        <div className="w-full max-w-80 flex flex-row gap-1 justify-center items-center"> 
+                        <div className="w-full max-w-80 flex flex-row gap-1 justify-center items-center">
                             <p className="font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#424242]">Already have account?</p>
                             <a href='/login' className=" cursor-pointer font-poppins font-regular text-[16px] leading-6 tracking-[0] text-[#424242] underline underline-offset-4">Login</a>
                         </div>
 
                     </motion.div>
                 </div>
-           <div className="flex-1" />
+                <div className="flex-1" />
             </div>
 
             <Footer />
 
-            
+
         </div>
 
 

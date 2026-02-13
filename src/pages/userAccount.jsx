@@ -67,13 +67,13 @@ const Account = ({ userId }) => {
                     <p className="font-poppins font-regular text-[14px] leading-5.25 text-[#DB4444] font-bold"> <span className="text-[#000000]">Wellcome</span> {userData.name}</p>
 
                     <div className="w-full flex flex-row gap-4 justify-between">
-                        <div className="flex flex-col items-start gap-6">
+                        <div className="flex flex-col items-start gap-6 h-full ">
                             <button onClick={() => handleTabClick('profile')}
-                                className={`${window.location.pathname === "/profile" ? "font-poppins font-regular text-[14px] leading-5.25 text-red-800 cursor-pointer font-bold" : "font-poppins font-regular text-[14px] leading-5.25  cursor-pointer font-bold text-[#000000]"}`}>Manage Profile</button>
+                                className={`${activeTab === "profile" ? "font-poppins font-regular text-[14px] leading-5.25 text-red-800 cursor-pointer font-bold" : "font-poppins font-regular text-[14px] leading-5.25  cursor-pointer font-bold text-[#000000]"}`}>Manage Profile</button>
 
-                            <button onClick={() => handleTabClick('cart')} className="font-poppins font-regular text-[14px] leading-5.25 text-[#000000] cursor-pointer font-bold">My Cart</button>
+                            <button onClick={() => handleTabClick('cart')} className={`${activeTab === "cart" ? "font-poppins font-regular text-[14px] leading-5.25 text-red-800 cursor-pointer font-bold" : "font-poppins font-regular text-[14px] leading-5.25  cursor-pointer font-bold text-[#000000]"}`}>My Cart</button>
 
-                            <button onClick={() => handleTabClick('wishlist')} className="font-poppins font-regular text-[14px] leading-5.25 text-[#000000] cursor-pointer font-bold">My Wishlist</button>
+                            <button onClick={() => handleTabClick('wishlist')} className={`${activeTab === "wishlist" ? "font-poppins font-regular text-[14px] leading-5.25 text-red-800 cursor-pointer font-bold" : "font-poppins font-regular text-[14px] leading-5.25  cursor-pointer font-bold text-[#000000]"}`}>My Wishlist</button>
 
                         </div>
                         <div className="content-area">

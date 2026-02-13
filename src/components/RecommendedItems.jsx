@@ -6,9 +6,10 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import view from '../assets/view.svg'
 import YelowStar from '../assets/YelowStar.svg'
-import { useDispatch } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { addToWishlistBackend } from '../services/adToWishlist.js';
 
 const RecommendedProducts = () => {
     
@@ -21,6 +22,7 @@ const RecommendedProducts = () => {
 
     const { data } = useGetProductDataQuery("bestSelling");
     const [displayProducts, setDisplayedProducts] = useState([]);
+    const wishlistItems = useSelector((state) => state.wishlist.items, shallowEqual)
 
     useEffect(() => {
         if (data && data.data) {
