@@ -38,7 +38,7 @@ const Products = () => {
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
 
-    const { data: userData , isLoading } = useGetUserDataQuery();
+    const { data: userData, isLoading } = useGetUserDataQuery();
 
     const [showLoginPopup, setShowLoginPopup] = useState(false);
 
@@ -75,10 +75,10 @@ const Products = () => {
     //          .unwrap()
     //          .then(() => toast.success("Item Removed from wishlist"))
     //          .catch(() => toast.error("Failed To Remove")); 
-         
+
 
     // };
-    
+
 
 
     const { data } = useGetProductDataQuery();
@@ -92,12 +92,12 @@ const Products = () => {
 
     const cartItems = useSelector((state) => state.cart.items);
     const wishlistItems = useSelector((state) => state.wishlist.items);
-    
+
 
     // Counter
     const initialTime = 2 * 24 * 60 * 60;
     const [timeRemaining, setTimeRemaining] = useState(initialTime);
-     
+
 
     useEffect(() => {
         const timerInterval = setInterval(() => {
@@ -212,7 +212,7 @@ const Products = () => {
                     className="mySwiper w-full">
                     {displayProducts && displayProducts?.slice(0, 8).map((product, index) => (
                         <SwiperSlide key={product._id ?? index} className=' flex flex-col gap-4 '>
-                            <div className='w-full max-w-67 ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
+                            <div className='w-full group max-w-67 ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
                           justify-center'>
                                 <div className='flex flex-row justify-between items-start'>
                                     <p className='py-1 px-3 rounded-sm bg-[#DB4444] text-[#FAFAFA] text-[12px] font-normal leading-4.5 tracking-0 text-center'>-40%</p>
@@ -220,16 +220,16 @@ const Products = () => {
                                         {
                                             userData ? (
                                                 wishlistItems.find((item) => item._id === product._id) ? (
-                                                    <button  className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
-                                                        <FaHeart className='text-[20px] text-[#DB4444]'/>
+                                                    <button className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
+                                                        <FaHeart className='text-[20px] text-[#DB4444]' />
                                                     </button>
                                                 ) : (
-                                                        <button onClick={() => handleAddToWishlist(product)} className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
-                                                            <FaRegHeart className='text-[18px] ' />
-                                                        </button>  
-                                                )   
+                                                    <button onClick={() => handleAddToWishlist(product)} className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
+                                                        <FaRegHeart className='text-[18px] ' />
+                                                    </button>
+                                                )
 
-                                            ) : 
+                                            ) :
                                                 <button onClick={() => handleAddToWishlist(product)} className='cursor-pointer w-8.5 h-8.5 flex items-center justify-center rounded-full bg-white'>
                                                     <FaRegHeart className='text-[18px] ' />
                                                 </button>
@@ -240,22 +240,24 @@ const Products = () => {
                                     </div>
                                 </div>
 
-                                <img onClick={() => navigate(`/productDetails/${product._id}`)} src={product.image} alt="icon" className='w-43 h-38 mx-auto cursor-pointer' />
+                                <img onClick={() => navigate(`/productDetails/${product._id}`)} src={product.image} alt="icon" className='w-43 h-38 mx-auto cursor-pointer ' />
 
-                                {
-                                    userData ? (
-                                        cartItems.find((item) => item._id === product._id) ? (
-                                            <button className='mt-3 font-medium font-poppins cursor-not-allowed px-2 py-2 text-[white] text-center w-full bg-gray-400 rounded-sm ' disabled>Added to Cart</button>
+                                <div className='invisible  group-hover:visible '>
+                                    {
+                                        userData ? (
+                                            cartItems.find((item) => item._id === product._id) ? (
+                                                <button className='mt-3 font-medium font-poppins cursor-not-allowed px-2 py-2 text-[white] text-center w-full bg-gray-400 rounded-sm ' disabled>Added to Cart</button>
+                                            ) : (
+                                                <button onClick={() => handleAddToCart(product)} className=' mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
+                                            )
                                         ) : (
-                                            <button onClick={() => handleAddToCart(product)} className=' mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
+                                            <button onClick={() => handleAddToCart(product)} className='relative group mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>
+                                                <span className='w-full z-10 text-white relative'>Add To Cart</span>
+                                                <div class="absolute inset-0 bg-[#b82525] h-0 group-hover:h-full  transition-all duration-300 ease-in-out rounded-sm "></div>
+                                            </button>
                                         )
-                                    ) : (
-                                        <button onClick={() => handleAddToCart(product)} className='relative group mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>
-                                            <span className='w-full z-10 text-white relative'>Add To Cart</span>
-                                            <div class="absolute inset-0 bg-[#b82525] h-0 group-hover:h-full  transition-all duration-300 ease-in-out rounded-sm "></div>
-                                        </button>
-                                    )
-                                }
+                                    }
+                                </div>
 
                             </div>
 

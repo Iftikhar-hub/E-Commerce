@@ -34,7 +34,7 @@ const Navbar = ({ userId }) => {
     const navLinks = [
         { name: "Home", href: "/" },
         { name: "Contact", href: "/Contact" },
-        { name: "About", href: "#" },
+        { name: "About", href: "/About" },
 
     ]
     const navigate = useNavigate();
@@ -47,9 +47,9 @@ const Navbar = ({ userId }) => {
 
     const handleTpaddedCart = () => {
         if (!userData) {
-             toast.error("Please Login To View Your Cart", {
-                            position: 'top-right',
-                        });
+            toast.error("Please Login To View Your Cart", {
+                position: 'top-right',
+            });
             return;
         }
         navigate('/Cart');
@@ -64,7 +64,7 @@ const Navbar = ({ userId }) => {
         }
         navigate('/WhishLists');
     }
-    
+
 
     const [isUserProfileOpen, setIsUserProfileOpen] = useState(false);
     const toggleUserProfile = () => {
@@ -119,14 +119,14 @@ const Navbar = ({ userId }) => {
                             <a href="#" className='text-[#000000] font-poppins text-base font-normal leading-6 tracking-normal text-center'></a>
                         ) : (
                             <>
-                                    <a href="/signup" className={`${window.location.pathname === "/login" ? "hidden" : "text-[#000000] max-[435px]:hidden group relative font-poppins text-base font-normal leading-6 tracking-normal text-center"} `}>Sign Up
-                                        <span className="absolute w-0 h-0.5 left-0 bottom-0  insect-0 group-hover:w-full bg-[#DB4444] transition-all decoration-300 ease-in-out"></span>
-                                        <span className={`${window.location.pathname === "/signup" ? "absolute w-full h-0.5 left-0 bottom-0  insect-0  bg-[#DB4444] " : " "}`}></span>
+                                    <a href="/signup" className={`${window.location.pathname === "/login" || window.location.pathname === "/" || window.location.pathname === "/Contact" || window.location.pathname === "/About" ? "hidden" : "text-[#000000] max-[435px]:hidden group relative font-poppins text-base font-normal leading-6 tracking-normal text-center"} `}>Sign Up
+                                    <span className="absolute w-0 h-0.5 left-0 bottom-0  insect-0 group-hover:w-full bg-[#DB4444] transition-all decoration-300 ease-in-out"></span>
+                                    <span className={`${window.location.pathname === "/signup" ? "absolute w-full h-0.5 left-0 bottom-0  insect-0  bg-[#DB4444] " : " "}`}></span>
                                 </a>
 
-                                    <a href="/login" className={`${window.location.pathname === "/signup" ? "hidden" : "text-[#000000] max-[435px]:hidden group relative font-poppins text-base font-normal leading-6 tracking-normal text-center"} `}>Login
-                                        <span className='absolute w-0 h-0.5 left-0 bottom-0  insect-0 group-hover:w-full bg-[#DB4444] transition-all decoration-300 ease-in-out'></span>
-                                        <span className={`${window.location.pathname === "/login" ? "absolute w-full h-0.5 left-0 bottom-0  insect-0  bg-[#DB4444] " : " "}`}></span>
+                                <a href="/login" className={`${window.location.pathname === "/signup" ? "hidden" : "text-[#000000] max-[435px]:hidden group relative font-poppins text-base font-normal leading-6 tracking-normal text-center"} `}>Login
+                                    <span className='absolute w-0 h-0.5 left-0 bottom-0  insect-0 group-hover:w-full bg-[#DB4444] transition-all decoration-300 ease-in-out'></span>
+                                    <span className={`${window.location.pathname === "/login" ? "absolute w-full h-0.5 left-0 bottom-0  insect-0  bg-[#DB4444] " : " "}`}></span>
                                 </a>
                             </>
                         )}
@@ -195,7 +195,7 @@ const Navbar = ({ userId }) => {
 
                         )}
 
-                        
+
 
 
 
@@ -235,7 +235,7 @@ const Navbar = ({ userId }) => {
                                 ) : (
                                     <MdArrowDropDown className='w-6 h-6 rotate-180' />
                                 )}
-                                
+
 
                             </p>
                             <AnimatePresence>
@@ -246,13 +246,13 @@ const Navbar = ({ userId }) => {
                                         exit={{ opacity: 0, height: 0 }}
                                         transition={{ duration: 0.3, ease: "easeInOut" }}
                                         className='w-full flex flex-col gap-2 items-start justify-center pl-4 border-l border-white'>
-                                         {CategoryLinks.map((link, index) => (
-                                 <a key={index} href={link.href} className="text-[#ffffff] font-poppins text-[14px] font-normal leading-6 tracking-normal text-center">
-                                    {link.name}</a>))}
+                                        {CategoryLinks.map((link, index) => (
+                                            <a key={index} href={link.href} className="text-[#ffffff] font-poppins text-[14px] font-normal leading-6 tracking-normal text-center">
+                                                {link.name}</a>))}
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                           
+
                         </div>
 
                         <div className='w-full flex flex-row items-center justify-between gap-5'>
@@ -271,7 +271,7 @@ const Navbar = ({ userId }) => {
 
 
                         </div>
-                        
+
 
                     </motion.div>
                 )}

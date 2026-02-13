@@ -10,6 +10,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { addToWishlistBackend } from '../services/adToWishlist.js';
+import { addToCartBackend } from '../services/adToCart.js';
 
 const RecommendedProducts = () => {
     
@@ -30,6 +31,21 @@ const RecommendedProducts = () => {
         }
 
     }, [data])
+
+     const handleAddToCart = (product) => {
+                if (!userData) {
+                    toast.error("Please Login to Cart", {
+                        position: 'top-right',
+                    });
+                    return;
+                }
+        
+                dispatch(addToCartBackend({ product }))
+                    .unwrap()
+                    .then(() => toast.success("Added to cart! "))
+                    .catch(() => toast.error("Failed to add Cart"));
+        
+            };
 
      const handleAddToWishlist = (product) => {
                 if (!userData) {
@@ -53,7 +69,7 @@ const RecommendedProducts = () => {
                 {displayProducts && displayProducts?.slice(0, 4).map((product, index) => (
                     <div key={product._id ?? index} className='w-full  flex flex-col gap-4 '>
                         < div className='w-ful ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex  
-                                             flex-col justify-center'>
+                                             flex-col justify-center group'>
                             <div className='flex flex-row justify-between items-start'>
                                 <div></div>
                                 <div className='flex flex-col gap-2'>
@@ -80,6 +96,23 @@ const RecommendedProducts = () => {
                                 </div>
                             </div>
                             <img onClick={() => navigate(`/productDetails/${product._id}`)} src={product.image} alt="product" className='w-43 h-38 mx-auto cursor-pointer' />
+
+                            <div className='invisible  group-hover:visible '>
+                                {
+                                    userData ? (
+                                        cartItems.find((item) => item._id === product._id) ? (
+                                            <button className='mt-3 font-medium font-poppins cursor-not-allowed px-2 py-2 text-[white] text-center w-full bg-gray-400 rounded-sm ' disabled>Added to Cart</button>
+                                        ) : (
+                                            <button onClick={() => handleAddToCart(product)} className=' mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
+                                        )
+                                    ) : (
+                                        <button onClick={() => handleAddToCart(product)} className='relative group mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>
+                                            <span className='w-full z-10 text-white relative'>Add To Cart</span>
+                                            <div class="absolute inset-0 bg-[#b82525] h-0 group-hover:h-full  transition-all duration-300 ease-in-out rounded-sm "></div>
+                                        </button>
+                                    )
+                                }
+                            </div>
                         </div>
 
                         <div className='w-full ProductDetails flex flex-col gap-2'>

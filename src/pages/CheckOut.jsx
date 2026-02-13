@@ -2,6 +2,7 @@ import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import Footer from '../components/footer'
 import axios from "axios";
+import { useGetUserDataQuery } from '../services/userApi';
 
 import bankImage from '../assets/bankImage.png'
 
@@ -12,12 +13,14 @@ import { BASE_URL } from '../utils/data';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { loadUserCart } from '../services/adToCart';
+import Loader from '../components/Loader';
 
 
 
-const CheckOut = () => {
+const CheckOut = ({ userId }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+  
 
     const [Option, setOption] = useState('BANK');
 
@@ -120,6 +123,16 @@ const CheckOut = () => {
         }
 
     }
+    const { data: userData, isLoading, isError, error } = useGetUserDataQuery(userId);
+    if (isLoading) return <div class="flex mt-70 justify-center items-center">
+        <Loader />
+    </div>;
+
+    if (isError) {
+
+        return <div className='text-red-500'> <p>Failed To Load</p>
+            Error: {error.status}</div>;
+    }
 
     return (
         <div className="flex flex-col h-screen">
@@ -137,7 +150,7 @@ const CheckOut = () => {
                         viewport={{ amount: 0.1 }}
                         className='flex flex-col gap-6  py-1  rounded-sm'>
                         
-                        <input type="text" required placeholder='Name' name='userName' value={userInfo.userName}
+                        <input type="text" required placeholder={userData.name} name='userName' value={userInfo.userName}
                             onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
                         
                         <input type="text" placeholder='Company Name (Optional)' maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
@@ -149,7 +162,7 @@ const CheckOut = () => {
                         
                         <input type="text" inputMode="numeric" required pattern="[0-9]*" name='userNumber' value={userInfo.userNumber} onChange={userInfoChange} placeholder='Phone Number' maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
 
-                        <input type="email" required placeholder='Email Address' name='userEmail' value={userInfo.userEmail} onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
+                        <input type="email" required placeholder={userData.email} name='userEmail' value={userInfo.userEmail} onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
 
                         <div className='flex flex-row gap-1 items-center' >
                             <input type="checkbox" className='w-4 h-4 cursor-pointer accent-[#DB4444]' />

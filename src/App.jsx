@@ -25,6 +25,7 @@ import AllProductCategory from "./pages/AllProductCategory";
 import Contact from './pages/Contact.jsx'
 import Search from './pages/Search.jsx'
 import Account from './pages/userAccount.jsx'
+import About from './pages/About.jsx'
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
         <Route path="/category/:category" element={<AllProductCategory />} />
         <Route path="/search" element={<Search />} />
         <Route path="/Account" element={<Account />} />
+        <Route path="/About" element={<About />} />
 
 
   

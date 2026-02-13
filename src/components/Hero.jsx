@@ -33,18 +33,14 @@ const Hero = () => {
                         className="font-poppins cursor-pointer whitespace-nowrap text-start font-normal leading-6 tracking-normal text-[#000000]">
                         {link.name}</a>))}
             </div>
-            <div className="max-[1220px]:mt-11 flex flex-col items-center w-full max-w-200">
+            <div className="max-[1220px]:mt-11 flex-col items-center w-full max-w-200">
                 <Slider className='w-full' />
 
-                <div className='max-[640px]:hidden  max-[1220px]:grid hidden gap-2 sm:gap-4 grid-cols-3 md:grid-cols-4 lg:grid-cols-5 mt-6  w-full max-w-400 px-4'>
-                    <a href="#" className="font-poppins font-bold whitespace-nowrap text-start  leading-6 tracking-normal text-[#000000]">
-                        Women's Fashion
-                    </a>
-                    <a href="#" className="font-poppins font-bold whitespace-nowrap text-start  leading-6 tracking-normal text-[#000000]">
-                        Men's Fashion
-                    </a>
+                <div className='max-[640px]:hidden  hidden max-[1220px]:flex mt-10  items-center gap-6 overflow-x-scroll w-full max-w-400 px-4'>
+                   
                     {CategoryLinks.map((link, index) => (
-                        <a key={index} href={link.href} className="font-poppins font-bold whitespace-nowrap text-start  leading-6 tracking-normal text-[#000000]">
+                        <a key={index} onClick={() => handleCategoryClick(link.name)} className="font-poppins font-bold whitespace-nowrap text-start  leading-6 tracking-normal text-[#000000] px-4 py-2 rounded-sm 
+                        shadow-[0px_1px_15px_0px_#0000000D]">
                             {link.name}</a>))}
 
 

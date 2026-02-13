@@ -54,7 +54,7 @@ const Contact = () => {
 
                 <div className=" w-full max-w-400  flex flex-col gap-20 items-end justify-center mx-auto md:mt-20 mt-6">
                     
-                    <div className="w-full flex gap-20 flex-col xl:flex-row justify-between items-start xl:items-center">
+                    <div className="w-full flex gap-20 flex-col xl:flex-row justify-between items-start ">
                         <div className=" max-[500px]:hidden flex justify-between xl:flex-col p-4 gap-16 shadow-[0px_1px_13px_0px_#0000000D] rounded-lg"
                         >
                             <div className="flex flex-col gap-4">
@@ -80,7 +80,7 @@ const Contact = () => {
 
                         </div>
 
-                        <form onSubmit={handleSubmit} className="flex flex-col mt-0 p-4 gap-6 max-[500px]:w-full shadow-[0px_1px_13px_0px_#0000000D] rounded-lg">
+                        <form onSubmit={handleSubmit} className="flex flex-col mt-0 p-4 gap-6 w-full shadow-[0px_1px_13px_0px_#0000000D] rounded-lg">
 
                             <div className="grid grid-cols-3 max-[500px]:grid-cols-1  items-center gap-4 justify-between">
                                 <div className="flex flex-row gap-2 py-2 pl-4 bg-[#F5F5F5] rounded-sm  overflow-x-hidden">

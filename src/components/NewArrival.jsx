@@ -42,7 +42,7 @@ const NewArrival = () => {
                              text-[#FAFAFA]'>PlayStation 5</p>
                             <p className='font-inter text-[14px] font-regular leading-6 tracking-[0.03em] 
                              text-[#FAFAFA]'>Black and White version of the PS5 <br /> coming out on sale.</p>
-                            <a href="#" className='font-inter underline-offset-3 underline text-[14px] font-semibold leading-6 tracking-[0.03em] 
+                            <a href="/AllProducts" className='font-inter underline-offset-3 underline text-[14px] font-semibold leading-6 tracking-[0.03em] 
                              text-[#FAFAFA]'>Shop Now</a>
 
 
@@ -56,7 +56,7 @@ const NewArrival = () => {
                                 <p className='font-inter text-[24px] font-semibold leading-6 tracking-[0.03em] text-[#FAFAFA]'>Women’s Collections</p>
                                 <p className='font-inter text-[14px] font-regular leading-6 tracking-[0.03em] 
                               text-[#FAFAFA]'>Featured woman collections that <br /> give you another vibe.</p>
-                              <a href="#" className='font-inter underline-offset-3 underline text-[14px] font-semibold leading-6 tracking-[0.03em] 
+                                <a href="/AllProducts" className='font-inter underline-offset-3 underline text-[14px] font-semibold leading-6 tracking-[0.03em] 
                              text-[#FAFAFA]'>Shop Now</a>
                             </div>
                         </div>
@@ -69,7 +69,7 @@ const NewArrival = () => {
                                     <p className='font-inter text-[24px] font-semibold leading-6 tracking-[0.03em] text-[#FAFAFA]'>PlayStation 5</p>
                                     <p className='font-inter text-[14px] font-regular leading-6 tracking-[0.03em] 
                                      text-[#FAFAFA]'>Black and White version of the PS5</p>
-                                    <a href="#" className='font-inter underline-offset-3 underline text-[14px] font-semibold leading-6 tracking-[0.03em] 
+                                    <a href="/AllProducts" className='font-inter underline-offset-3 underline text-[14px] font-semibold leading-6 tracking-[0.03em] 
                                     text-[#FAFAFA]'>Shop Now</a>
                                  </div>
                                 
@@ -80,7 +80,7 @@ const NewArrival = () => {
                                     <p className='font-inter text-[24px] font-semibold leading-6 tracking-[0.03em] text-[#FAFAFA]'>Speakers</p>
                                     <p className='font-inter text-[14px] font-regular leading-6 tracking-[0.03em] 
                                      text-[#FAFAFA]'>Amazon wireless speakers</p>
-                                    <a href="#" className='font-inter underline-offset-3 underline text-[14px] font-semibold leading-6 tracking-[0.03em] 
+                                    <a href="/AllProducts" className='font-inter underline-offset-3 underline text-[14px] font-semibold leading-6 tracking-[0.03em] 
                                     text-[#FAFAFA]'>Shop Now</a>
                                  </div>
                                 
@@ -91,7 +91,7 @@ const NewArrival = () => {
                                     <p className='font-inter text-[24px] font-semibold leading-6 tracking-[0.03em] text-[#FAFAFA]'>Perfume</p>
                                     <p className='font-inter text-[14px] font-regular leading-6 tracking-[0.03em] 
                                      text-[#FAFAFA]'>GUCCI INTENSE OUD EDP</p>
-                                    <a href="#" className='font-inter underline-offset-3 underline text-[14px] font-semibold leading-6 tracking-[0.03em] 
+                                    <a href="/AllProducts" className='font-inter underline-offset-3 underline text-[14px] font-semibold leading-6 tracking-[0.03em] 
                                     text-[#FAFAFA]'>Shop Now</a>
                                  </div>
                                 

@@ -166,7 +166,7 @@ const AllProducts = () => {
                             {displayProducts && displayProducts.map((product, index) => (
                                 <div key={product._id ?? index} className=' flex flex-col gap-4 '>
                                     <div className='w-67 ProductImage bg-[#F5F5F5] rounded-sm py-3 px-3 flex flex-col    
-                                  justify-center'>
+                                  justify-center group'>
                                         <div className='flex flex-row justify-between items-start'>
                                             <p className='py-1 px-3 rounded-sm bg-[#DB4444] text-[#FAFAFA] text-[12px] font-normal leading-4.5 tracking-0 text-center'>-40%</p>
                                             <div className='flex flex-col gap-2'>
@@ -181,20 +181,22 @@ const AllProducts = () => {
         
                                         <img onClick={() => navigate(`/productDetails/${product._id}`)} src={product.image} alt="icon" className='w-43 h-38 mx-auto cursor-pointer' />
         
-                                        {
-                                            userData ? (
-                                                cartItems.find((item) => item._id === product._id) ? (
-                                                    <button className='mt-3 font-medium font-poppins cursor-not-allowed px-2 py-2 text-[white] text-center w-full bg-gray-400 rounded-sm ' disabled>Added to Cart</button>
+                                        <div className='invisible  group-hover:visible '>
+                                            {
+                                                userData ? (
+                                                    cartItems.find((item) => item._id === product._id) ? (
+                                                        <button className='mt-3 font-medium font-poppins cursor-not-allowed px-2 py-2 text-[white] text-center w-full bg-gray-400 rounded-sm ' disabled>Added to Cart</button>
+                                                    ) : (
+                                                        <button onClick={() => handleAddToCart(product)} className=' mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
+                                                    )
                                                 ) : (
-                                                    <button onClick={() => handleAddToCart(product)} className=' mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>Add To Cart</button>
+                                                    <button onClick={() => handleAddToCart(product)} className='relative group mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>
+                                                        <span className='w-full z-10 text-white relative'>Add To Cart</span>
+                                                        <div class="absolute inset-0 bg-[#b82525] h-0 group-hover:h-full  transition-all duration-300 ease-in-out rounded-sm "></div>
+                                                    </button>
                                                 )
-                                            ) : (
-                                                <button onClick={() => handleAddToCart(product)} className='relative group mt-3 font-medium font-poppins cursor-pointer px-2 py-2 text-[white] text-center w-full bg-[#DB4444] rounded-sm'>
-                                                    <span className='w-full z-10 text-white relative'>Add To Cart</span>
-                                                    <div class="absolute inset-0 bg-[#b82525] h-0 group-hover:h-full  transition-all duration-300 ease-in-out rounded-sm "></div>
-                                                </button>
-                                            )
-                                        }
+                                            }
+                                        </div>
         
                                     </div>
         
