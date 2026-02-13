@@ -63,6 +63,8 @@ const CheckOut = () => {
                 console.log("Stripe session response:", res.data);
                 if (res.data.url) {
                     window.location.href = res.data.url;
+                    await axios.delete(`${BASE_URL}/api/user/cart/clear-cart`, {}, { withCredentials: true });
+                    dispatch(loadUserCart());
                   
                 } else {
                   
