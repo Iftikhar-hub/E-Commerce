@@ -15,7 +15,11 @@ export const productApi = createApi({
                 return '/productDisplay';
                 
             },
-        })
+        }),
+
+        searchProduct: builder.query({
+            query: (query) => `/search-products?q=${encodeURIComponent(query)}`,
+        }),
         
         
 
@@ -24,4 +28,4 @@ export const productApi = createApi({
 
 
 
-export const { useGetProductDataQuery, useUpdateProductMutation } = productApi;
+export const { useGetProductDataQuery, useUpdateProductMutation, useSearchProductQuery } = productApi;

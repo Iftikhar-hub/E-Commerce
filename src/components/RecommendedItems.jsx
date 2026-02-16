@@ -63,7 +63,7 @@ const RecommendedProducts = () => {
             };
     return (
 
-        <div className="w-full px-6 mt-12 flex flex-col gap-6">
+        <div className="w-full max-w-400 px-6 mx-auto mt-12 flex flex-col gap-6">
             <p className="text-black font-bold text-[26px] font-poppins leading-6">Recommended For You</p>
             <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7.5  max-w-350 overflow-x-hidden no-scrollbar'>
                 {displayProducts && displayProducts?.slice(0, 4).map((product, index) => (

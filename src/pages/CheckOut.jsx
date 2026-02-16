@@ -58,8 +58,11 @@ const CheckOut = ({ userId }) => {
             try {
                 const res = await axios.post(
                     `${BASE_URL}/create-checkout-session`,
-                    { cartItems },
-                    {userInfo: userInfo},
+                    {
+                        cartItems,
+                        userEmail : userData.email
+                     },
+                    
                     { headers: { 'Content-Type': 'application/json' } }
 
                 );
