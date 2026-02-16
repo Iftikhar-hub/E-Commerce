@@ -19,6 +19,7 @@ const RecommendedProducts = () => {
     const { data: userData } = useGetUserDataQuery();
     const numberOfIcons = 5;
     const iconsArray = Array.from({ length: numberOfIcons });
+     const cartItems = useSelector(state => state.cart.items, shallowEqual);
     
 
     const { data } = useGetProductDataQuery("bestSelling");
