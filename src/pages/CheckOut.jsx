@@ -153,7 +153,7 @@ const CheckOut = ({ userId }) => {
                         viewport={{ amount: 0.1 }}
                         className='flex flex-col gap-6  py-1  rounded-sm'>
                         
-                        <input type="text" required placeholder={userData.name} name='userName' value={userInfo.userName}
+                        <input type="text" required placeholder={userData.name} name='userName' value={userData.name}
                             onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
                         
                         <input type="text" placeholder='Company Name (Optional)' maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
@@ -165,7 +165,7 @@ const CheckOut = ({ userId }) => {
                         
                         <input type="text" inputMode="numeric" required pattern="[0-9]*" name='userNumber' value={userInfo.userNumber} onChange={userInfoChange} placeholder='Phone Number' maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
 
-                        <input type="email" required placeholder={userData.email} name='userEmail' value={userInfo.userEmail} onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
+                        <input type="email" required placeholder={userData.email} name='userEmail' value={userData.email} onChange={userInfoChange} maxLength={50} className='w-100 px-2 py-1 border-b border-[#e4e3e3] outline-0' />
 
                         <div className='flex flex-row gap-1 items-center' >
                             <input type="checkbox" className='w-4 h-4 cursor-pointer accent-[#DB4444]' />
@@ -228,12 +228,12 @@ const CheckOut = ({ userId }) => {
                                 <p className='text-[16px] font-normal tracking-0 font-poppins'>Cash on Delivery</p>
                             </div>
 
-                            <div className='flex flex-row justify-between gap-5 h-12 items-center'>
+                            {/* <div className='flex flex-row justify-between gap-5 h-12 items-center'>
                                 <input type='text' placeholder='Coupon Code' onChange={handleCouponChange} name='coupon'
                                     value={productCoupon.coupon} className='border text-[#000000]  border-[#00000080]  py-2 px-2 rounded-sm font-medium text-[16px] font-poppins outline-0' />
                                 <button onClick={couponSubmit} className='bg-[#DB4444] transition-colors duration-500 hover:bg-[#b73434] text-white py-2 px-8 whitespace-nowrap rounded-sm font-medium text-[16px] font-poppins'>Apply Coupon </button>
 
-                            </div>
+                            </div> */}
 
 
                             <button type="button" onClick={handleSubmit} className='bg-[#DB4444] transition-colors duration-500 hover:bg-[#b73434] text-white py-2 px-8 rounded-sm font-medium text-[16px] font-poppins cursor-pointer'>Order Now </button>

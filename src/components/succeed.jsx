@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import { BASE_URL } from '../utils/data';
 import { useDispatch } from "react-redux";
 import { loadUserCart } from "../services/adToCart";
+import { Link } from 'react-router-dom';
 
 const Success = () => {
     const [searchParams] = useSearchParams();
@@ -38,28 +39,23 @@ const Success = () => {
         handleSuccess();
     }, [sessionId, dispatch]);
 
+ 
+
     return (
         <div className='flex flex-col h-screen'>
             <Header />
             <Navbar />
 
-            <div className="flex flex-col items-center mt-20 gap-5">
+            <div className="flex flex-col max-w-400 mx-auto items-center justify-center mt-20 gap-5">
                 <h1 className="text-3xl font-bold text-[#DB4444]">
-                    Payment Successful 
+                    Payment Successful
                 </h1>
 
-                {invoiceUrl ? (
-                    <a
-                        href={invoiceUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="bg-[#DB4444] text-white px-6 py-3 rounded-md"
-                    >
-                        Download Invoice 📄
-                    </a>
-                ) : (
-                    <p>Generating invoice...</p>
-                )}
+                <Link to="/" className='py-3 border border-[#DB4444] text-center whitespace-nowrap overflow-hidden font-bold font-poppins text-black text-base w-full  rounded-sm '>
+                    Back to Home
+                </Link>
+
+
             </div>
         </div>
     );
